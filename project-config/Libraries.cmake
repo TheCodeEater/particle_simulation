@@ -14,4 +14,24 @@ find_package(ROOT REQUIRED)
 #link libraries defines
 #Define a set of libraries to be linked
 #Variables must have this structure: PROGRAM_LIBRARIES_<combination_name>
-set(PROGRAM_LIBRARIES_DEFAULT ROOT::Core)
+set(PROGRAM_LIBRARIES_DEFAULT
+        ROOT::Core
+        ROOT::Gpad
+        ROOT::Graf3d
+        ROOT::Graf
+        ROOT::Hist
+        ROOT::Imt
+        ROOT::MathCore
+        ROOT::Matrix
+        ROOT::MultiProc
+        ROOT::Net
+        ROOT::Physics
+        ROOT::Postscript
+        ROOT::RIO
+        ROOT::ROOTDataFrame
+        ROOT::ROOTVecOps
+        ROOT::Rint
+        ROOT::Thread
+        ROOT::TreePlayer
+        ROOT::Tree
+        )
