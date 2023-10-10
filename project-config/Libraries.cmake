@@ -34,4 +34,5 @@ set(PROGRAM_LIBRARIES_DEFAULT
         ROOT::Thread
         ROOT::TreePlayer
         ROOT::Tree
+        ROOT::Gui
         )
