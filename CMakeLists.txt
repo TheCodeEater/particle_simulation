@@ -6,7 +6,10 @@ project(Root_template_project VERSION 0.0.1)
 # For best practice, avoid defining here variables needed in the included scripts
 # Always write absolute paths, using CMAKE_SOURCE_DIR to get the project root
 
+#set config base path
 set(CONFIG_BUILD_DIR ${CMAKE_SOURCE_DIR}/project-config)
+#set target config file folder
+set(CONFIG_TARGET_DIR ${CONFIG_BUILD_DIR}/targets)
 
 # Config files
 # Include configuration files
@@ -23,3 +26,7 @@ include(${CONFIG_BUILD_DIR}/ProgramModules.cmake)
 
 #Libraries
 include(${CONFIG_BUILD_DIR}/Libraries.cmake)
+
+#Targets
+#Include target configuration
+include(${CONFIG_BUILD_DIR}/Targets.cmake)
