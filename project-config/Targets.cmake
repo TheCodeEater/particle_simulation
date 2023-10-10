@@ -3,5 +3,4 @@
 # Alternatively, they can be set up here, along with extra logic
 
 #List configuration files for targets to be compiled
-set(PROGRAM_TARGET_CONFIG
-        ${CONFIG_TARGET_DIR}/TargetMain.cmake)
+include(${CONFIG_TARGET_DIR}/TargetMain.cmake)

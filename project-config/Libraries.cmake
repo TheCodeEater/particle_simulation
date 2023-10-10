@@ -14,4 +14,4 @@ find_package(ROOT REQUIRED)
 #link libraries defines
 #Define a set of libraries to be linked
 #Variables must have this structure: PROGRAM_LIBRARIES_<combination_name>
-set(PROGRAM_LIBRARIES_DEFAULT ROOT)
+set(PROGRAM_LIBRARIES_DEFAULT ROOT::Core)
