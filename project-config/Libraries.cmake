@@ -4,7 +4,9 @@
 
 # Libraries path define
 # Add path to local libraries
-link_directories()
+# Note: the Find<library>.cmake must be placed in an immediate subdirectory of the specific
+#library folder
+list(APPEND CMAKE_PREFIX_PATH ${CMAKE_SOURCE_DIR}/libraries)
 
 #find package section
 find_package(ROOT REQUIRED)
