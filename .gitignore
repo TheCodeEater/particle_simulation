@@ -1,5 +1,5 @@
 #ignore directories
 cmake-build-release
-cmake-build-release
+cmake-build-debug
 build
 
