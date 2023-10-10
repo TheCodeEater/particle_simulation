@@ -4,4 +4,4 @@
 
 #List configuration files for targets to be compiled
 set(PROGRAM_TARGET_CONFIG
-        )
+        ${CONFIG_TARGET_DIR}/TargetMain.cmake)
