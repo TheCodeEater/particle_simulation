@@ -4,6 +4,7 @@
 # Set CONFIG_AUTODETECT_ROOT_STD to do this automatically
 # If unset, defaults to C++17 (the std used at the creation of this template
 #
+include_guard(GLOBAL) #Compiler options should be processed once
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -20,5 +21,3 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 string(APPEND CMAKE_CXX_FLAGS " -Wall -Wextra -Wpedantic ")
 string(APPEND CMAKE_CXX_FLAGS " -fsanitize=address,undefined -fno-omit-frame-pointer")
 string(APPEND CMAKE_EXE_LINKER_FLAGS " -fsanitize=address,undefined -fno-omit-frame-pointer")
-#set base code files
-set(CODE )

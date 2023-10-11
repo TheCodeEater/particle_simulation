@@ -6,8 +6,8 @@
 #
 #####################
 
-set(PROGRAM_SOURCES ${CMAKE_SOURCE_DIR}/src)
-set(PROGRAM_HEADERS ${CMAKE_SOURCE_DIR}/include)
+set(PROGRAM_SOURCES ${CMAKE_SOURCE_DIR}/main/src)
+set(PROGRAM_HEADERS ${CMAKE_SOURCE_DIR}/main/include)
 
 # Root config
 # C++ std autodetection

@@ -22,10 +22,11 @@ include(${CONFIG_BUILD_DIR}/CompilerFlags.cmake)
 
 #Program modules
 #Configure the various program modules
-include(${CONFIG_BUILD_DIR}/ProgramModules.cmake)
+#Now done in the main folder scope
+#include(${CONFIG_BUILD_DIR}/ProgramModules.cmake)
 
 #Libraries
-include(${CONFIG_BUILD_DIR}/Libraries.cmake)
+include(${CONFIG_BUILD_DIR}/Dependencies.cmake)
 
 #Targets
 #Include target configuration

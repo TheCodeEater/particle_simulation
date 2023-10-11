@@ -1,7 +1,7 @@
 #
 # Libraries config file
 # This scripts finds dependencies and configures them
-
+include_guard(DIRECTORY)
 # Libraries path define
 # Add path to local libraries
 # Note: the Find<library>.cmake must be placed in an immediate subdirectory of the specific
