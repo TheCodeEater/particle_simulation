@@ -8,22 +8,14 @@ project(Root_template_project VERSION 0.0.1)
 
 #set config base path
 set(CONFIG_BUILD_DIR ${CMAKE_SOURCE_DIR}/project-config)
-#set target config file folder
-set(CONFIG_TARGET_DIR ${CONFIG_BUILD_DIR}/targets)
 
 # Config files
 # Include configuration files
-
 include(${CMAKE_SOURCE_DIR}/project-config/Config.cmake)
 
 # Compiler flags
 # NOTE: must be placed after config as variables needed are defined there
 include(${CONFIG_BUILD_DIR}/CompilerFlags.cmake)
-
-#Program modules
-#Configure the various program modules
-#Now done in the main folder scope
-#include(${CONFIG_BUILD_DIR}/ProgramModules.cmake)
 
 #Libraries
 include(${CONFIG_BUILD_DIR}/Dependencies.cmake)
