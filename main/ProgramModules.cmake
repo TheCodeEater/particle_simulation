@@ -5,4 +5,7 @@
 # Note: use this only for program-specific code, if you plan to use shared components,
 # add them as a library
 include_guard(DIRECTORY)
- set(PROGRAM_MODULES_MAIN ${PROGRAM_SOURCES}/main.cpp)
+ set(PROGRAM_MODULES_MAIN
+         ${PROGRAM_SOURCES}/main.cpp
+         ${PROGRAM_SOURCES}/Application/Application.cpp
+         ${PROGRAM_HEADERS}/Application/Application.hpp)
