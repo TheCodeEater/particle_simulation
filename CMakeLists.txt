@@ -11,7 +11,7 @@ set(CONFIG_BUILD_DIR ${CMAKE_SOURCE_DIR}/project-config)
 
 # Config files
 # Include configuration files
-include(${CMAKE_SOURCE_DIR}/project-config/Config.cmake)
+include(${CMAKE_SOURCE_DIR}/project-config/Settings.cmake)
 
 # Compiler flags
 # NOTE: must be placed after config as variables needed are defined there
@@ -19,6 +19,9 @@ include(${CONFIG_BUILD_DIR}/CompilerFlags.cmake)
 
 #Libraries
 include(${CONFIG_BUILD_DIR}/Dependencies.cmake)
+
+#Configure project files
+include(${CONFIG_BUILD_DIR}/Configuration.cmake)
 
 #Targets
 #Include target configuration
