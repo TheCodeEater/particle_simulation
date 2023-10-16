@@ -8,6 +8,6 @@
 //HEADER TO DEFINE MACROS FOR THE TEMPLATE CODE
 
 //base namespace name for root application
-#cmakedefine PROGRAM_NAMESPACE
+#define BASE_NS @PROGRAM_NAMESPACE@
 
 #endif //ROOT_TEMPLATE_PROJECT_DEFINITIONS_HPP
