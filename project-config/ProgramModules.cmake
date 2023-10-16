@@ -7,6 +7,4 @@
 include_guard(DIRECTORY)
  set(PROGRAM_MODULES_MAIN
          ${PROGRAM_SOURCES}/main.cpp
-         ${PROGRAM_SOURCES}/Application/Application.cpp
-         ${PROGRAM_HEADERS}/Application/Application.hpp
          ${PROGRAM_HEADERS}/Definitions.hpp)

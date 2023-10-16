@@ -18,6 +18,7 @@ set(PROGRAM_CODE_TEMPLATES ${CMAKE_SOURCE_DIR}/templates)
 ###########
 set(PROGRAM_NAMESPACE RootApplication)
 set(PROGRAM_NAME "RootTemplate")
+set(PROGRAM_ATTACH_CLING TRUE)
 
 # Root config
 # C++ std autodetection

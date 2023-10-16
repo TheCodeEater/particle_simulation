@@ -5,12 +5,16 @@
 #include "TH1F.h"
 #include "TRandom.h"
 #include "TApplication.h"
+#include "TRint.h"
 #include "TRootCanvas.h"
+
+#include "Definitions.hpp"
 
 #include <random>
 
 int main(int argc, char** argv) {
-    TApplication app("app", &argc, argv);
+    //create root application
+    APP_TYPE app(APP_NAME, &argc, argv);
 
     gRandom->SetSeed(std::random_device{}()); //generate random seed using hardware
 

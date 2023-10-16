@@ -10,5 +10,12 @@
 //base namespace name for root application
 #define BASE_NS @PROGRAM_NAMESPACE@
 #define APP_NAME "@PROGRAM_NAME@"
+#cmakedefine PROGRAM_ATTACH_CLING
+
+#ifdef PROGRAM_ATTACH_CLING
+#define APP_TYPE TRint
+#else
+#define APP_TYPE TApplication
+#endif
 
 #endif //ROOT_TEMPLATE_PROJECT_DEFINITIONS_HPP
