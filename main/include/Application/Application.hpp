@@ -5,7 +5,9 @@
 #ifndef ROOT_TEMPLATE_PROJECT_APPLICATION_HPP
 #define ROOT_TEMPLATE_PROJECT_APPLICATION_HPP
 
-namespace Application{
+#include "Definitions.hpp"
+
+namespace BASE_NS{
 
 }
 
