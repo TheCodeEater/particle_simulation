@@ -7,8 +7,16 @@
 
 #include "Definitions.hpp"
 
-namespace BASE_NS{
+#include "TApplication.h"
+#include "TRootCanvas.h"
 
+namespace BASE_NS{
+    class Application{
+
+    public:
+    private:
+        TApplication
+    };
 }
 
 #endif //ROOT_TEMPLATE_PROJECT_APPLICATION_HPP

@@ -12,7 +12,12 @@ set(PROGRAM_HEADERS ${CMAKE_SOURCE_DIR}/main/include)
 set(PROGRAM_COMPONENTS ${CMAKE_SOURCE_DIR}/components)
 set(PROGRAM_CODE_TEMPLATES ${CMAKE_SOURCE_DIR}/templates)
 
+###########
+# Code metadata definitions
+#Define variables to configure template code files
+###########
 set(PROGRAM_NAMESPACE RootApplication)
+set(PROGRAM_NAME "RootTemplate")
 
 # Root config
 # C++ std autodetection
