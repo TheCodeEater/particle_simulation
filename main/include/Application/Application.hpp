@@ -11,11 +11,14 @@
 #include "TRootCanvas.h"
 
 namespace BASE_NS{
+    /**
+     * Class to represent the root application itself
+     */
     class Application{
 
     public:
     private:
-        TApplication
+        TApplication app_;
     };
 }
 
