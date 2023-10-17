@@ -1,3 +1,14 @@
+# Basic high energy physics simulator
+This program is designed to simulate a particle detector observing the traces of the following particles (and their associated antiparticles):
+
+1) Pion 
+2) Kaon 
+3) Proton 
+
+In addition, the program simulates the decay and resonance phenomenons of neutral Kaons (K0)
+
+
+
 # Definitions
 We shall use some naming conventions in this file
 
