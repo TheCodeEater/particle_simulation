@@ -5,12 +5,10 @@ This program is designed to simulate a particle detector observing the traces of
 2) Kaon 
 3) Proton 
 
-In addition, the program simulates the decay and resonance phenomenons of neutral Kaons (K0)
+In addition, the program simulates the decay and resonance phenomenons of neutral Kaons (K0) by turning it into its decayment products.
 
 
-
-# Definitions
-We shall use some naming conventions in this file
+# Naming conventions
 
 1) Component: a set of classes along with their headers that define a logical component of the program. 
 
