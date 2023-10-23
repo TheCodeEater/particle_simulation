@@ -10,3 +10,9 @@ add_executable(${PROGRAM_TARGET_MAIN} ${PROGRAM_MODULES_MAIN})
 
 target_include_directories(${PROGRAM_TARGET_MAIN} PRIVATE ${PROGRAM_HEADERS})
 target_link_libraries(${PROGRAM_TARGET_MAIN} ${PROGRAM_LIBRARIES_DEFAULT})
+
+#Generate root dictionary
+ROOT_GENERATE_DICTIONARY(main_dictionary
+        ${PROGRAM_HEADERS}/MyClass.h
+        MODULE ${PROGRAM_TARGET_MAIN}
+        LINKDEF dictionary/Linkdef.h)
