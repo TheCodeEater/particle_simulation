@@ -13,6 +13,6 @@ target_link_libraries(${PROGRAM_TARGET_MAIN} ${PROGRAM_LIBRARIES_DEFAULT})
 
 #Generate root dictionary
 ROOT_GENERATE_DICTIONARY(main_dictionary
-        ${PROGRAM_HEADERS}/MyClass.h
+        #Add header files here
         MODULE ${PROGRAM_TARGET_MAIN}
         LINKDEF dictionary/Linkdef.h)
