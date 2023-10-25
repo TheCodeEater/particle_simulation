@@ -8,7 +8,9 @@
 #include "Definitions.hpp"
 
 namespace BASE_NS{
+    class Particle{
 
+    };
 }
 
 #endif //ROOT_TEMPLATE_PROJECT_PARTICLE_HPP
