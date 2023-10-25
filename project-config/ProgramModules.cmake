@@ -12,6 +12,11 @@ include_guard(DIRECTORY)
 set(PROGRAM_MODULES_MAIN_H
         ${PROGRAM_HEADERS}/Definitions.hpp)
 
+set(PROGRAM_MODULES_PARTICLES_H
+        ${PROGRAM_HEADERS}/particles/Particle.hpp
+        ${PROGRAM_HEADERS}/particles/ParticleType.hpp
+        ${PROGRAM_HEADERS}/particles/ResonanceType.hpp)
+
 #Example
 # set(PROGRAM_MODULES_GRAPHICS_SRC ${PROGRAM_SOURCES}/graphics.cpp)
 # set(PROGRAM_MDOULES_GRAPHICS_H ${PROGRAM_HEADERS}/graphics.hpp)

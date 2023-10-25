@@ -19,7 +19,7 @@ set(PROGRAM_TEST_UNIT ${PROGRAM_TEST}/unit)
 # Code metadata definitions
 #Define variables to configure template code files
 ###########
-set(PROGRAM_NAMESPACE RootApplication)
+set(PROGRAM_NAMESPACE ResonanceSimulator)
 set(PROGRAM_NAME "RootTemplate")
 set(PROGRAM_ATTACH_CLING TRUE)
 set(PROGRAM_USE_LOCAL_OWNERSHIP TRUE)
