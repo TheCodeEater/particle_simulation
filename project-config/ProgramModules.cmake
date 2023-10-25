@@ -17,10 +17,16 @@ set(PROGRAM_MODULES_PARTICLES_H
         ${PROGRAM_HEADERS}/particles/ParticleType.hpp
         ${PROGRAM_HEADERS}/particles/ResonanceType.hpp)
 
+set(PROGRAM_MODULES_PARTICLES_SRC
+        ${PROGRAM_SOURCES}/particles/Particle.cpp
+        ${PROGRAM_SOURCES}/particles/ParticleType.cpp
+        ${PROGRAM_SOURCES}/particles/ResonanceType.cpp)
+
 #Example
 # set(PROGRAM_MODULES_GRAPHICS_SRC ${PROGRAM_SOURCES}/graphics.cpp)
 # set(PROGRAM_MDOULES_GRAPHICS_H ${PROGRAM_HEADERS}/graphics.hpp)
 
 #General header variables
 set(PROGRAM_MODULES_ALL_HEADERS
-        ${PROGRAM_MDOULES_MAIN_H})
+        ${PROGRAM_MDOULES_MAIN_H}
+        ${PROGRAM_MODULES_PARTICLES_H})

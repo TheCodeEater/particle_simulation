@@ -7,8 +7,11 @@ set(PROGRAM_TARGET_MAIN main.bin)
 
 # Register the executable
 add_executable(${PROGRAM_TARGET_MAIN}
+        ${PROGRAM_MODULES_ALL_HEADERS})
+
+target_sources( ${PROGRAM_TARGET_MAIN} PRIVATE
         ${PROGRAM_MODULES_MAIN_SRC}
-        ${PROGRAM_MODULES_MAIN_H})
+        ${PROGRAM_MODULES_PARTICLE_SRC})
 
 target_include_directories(${PROGRAM_TARGET_MAIN} PRIVATE ${PROGRAM_HEADERS})
 target_link_libraries(${PROGRAM_TARGET_MAIN} ${PROGRAM_LIBRARIES_DEFAULT})
