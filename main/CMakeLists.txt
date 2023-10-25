@@ -6,13 +6,15 @@ include(${CONFIG_BUILD_DIR}/ProgramModules.cmake)
 set(PROGRAM_TARGET_MAIN main.bin)
 
 # Register the executable
-add_executable(${PROGRAM_TARGET_MAIN} ${PROGRAM_MODULES_MAIN})
+add_executable(${PROGRAM_TARGET_MAIN}
+        ${PROGRAM_MODULES_MAIN_SRC}
+        ${PROGRAM_MODULES_MAIN_H})
 
 target_include_directories(${PROGRAM_TARGET_MAIN} PRIVATE ${PROGRAM_HEADERS})
 target_link_libraries(${PROGRAM_TARGET_MAIN} ${PROGRAM_LIBRARIES_DEFAULT})
 
 #Generate root dictionary
 ROOT_GENERATE_DICTIONARY(main_dictionary
-        #Add header files here
+        ${PROGRAM_MODULES_ALL_HEADERS}
         MODULE ${PROGRAM_TARGET_MAIN}
-        LINKDEF dictionary/Linkdef.h)
+        LINKDEF ${PROGRAM_BASE}/dictionary/Linkdef.h)

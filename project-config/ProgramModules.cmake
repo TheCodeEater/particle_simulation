@@ -6,10 +6,16 @@
 # Note: use this only for program-specific code, if you plan to use shared components,
 # add them as a library
 include_guard(DIRECTORY)
- set(PROGRAM_MODULES_MAIN
-         ${PROGRAM_SOURCES}/main.cpp
-         ${PROGRAM_HEADERS}/Definitions.hpp)
+ set(PROGRAM_MODULES_MAIN_SRC
+         ${PROGRAM_SOURCES}/main.cpp)
+
+set(PROGRAM_MODULES_MAIN_H
+        ${PROGRAM_HEADERS}/Definitions.hpp)
 
 #Example
 # set(PROGRAM_MODULES_GRAPHICS_SRC ${PROGRAM_SOURCES}/graphics.cpp)
 # set(PROGRAM_MDOULES_GRAPHICS_H ${PROGRAM_HEADERS}/graphics.hpp)
+
+#General header variables
+set(PROGRAM_MODULES_ALL_HEADERS
+        ${PROGRAM_MDOULES_MAIN_H})
