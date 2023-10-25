@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.16)
 project(Root_template_project VERSION 0.0.1)
 
+#test configuration
+include(CTest)
+
 # Defines
 # Define variables and stuff needed later
 # For best practice, avoid defining here variables needed in the included scripts
