@@ -3,20 +3,14 @@
 //
 #include "TApplication.h"
 #include "TRint.h"
-#include "TH1.h"
-#include "TH2.h"
-#include "TH3.h"
-#include "TTree.h"
+#include "TDirectory.h"
 
 #include "Definitions.hpp"
 
 int main(int argc, char** argv) {
     //object ownership setup
     #ifdef PROGRAM_USE_LOCAL_OWNERSHIP
-    TH1::AddDirectory(false);
-    TH2::AddDirectory(false);
-    TH3::AddDirectory(false);
-    //TTree::AddDirectory(kFalse);
+        TDirectory::AddDirectory(kFALSE);
     #endif
     //create root application
     APP_TYPE app(APP_NAME, &argc, argv);
