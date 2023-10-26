@@ -13,6 +13,11 @@ namespace BASE_NS{
 
     public:
         ResonanceType(std::string const& name, double mass, int charge,double width);
+
+        [[nodiscard]] double GetWidth() const;
+
+        void Print() const override;
+
     private:
         double fWidth;
     };
