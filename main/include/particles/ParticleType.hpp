@@ -14,7 +14,7 @@ namespace BASE_NS{
 
     public:
         ParticleType(std::string const& name, double mass, int charge);
-        void Print() const;
+        virtual void Print() const;
 
         [[nodiscard]] const std::string &GetName() const;
 
