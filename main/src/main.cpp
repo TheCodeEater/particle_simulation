@@ -52,6 +52,13 @@ int main(int argc, char** argv) {
             }else{
                 particle_name="K*";
             }
+
+            //convert to cartesian
+            const double px{};
+            const double py{};
+            const double pz{};
+
+            return BASE_NS::Particle{particle_name,px,py,pz};
         });
 
     //create root application
