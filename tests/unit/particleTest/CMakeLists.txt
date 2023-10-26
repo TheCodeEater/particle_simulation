@@ -5,14 +5,12 @@
 include_guard(GLOBAL)
 include(${CONFIG_BUILD_DIR}/ProgramModules.cmake)
 
-set(PROGRAM_TARGET_TEST_PARTICLE particleTest.t )
+set(PROGRAM_TARGET_TEST_PARTICLE particleTest.t)
 
 add_executable(${PROGRAM_TARGET_TEST_PARTICLE}
         particleTest.test.cpp
-        ${PROGRAM_ALL_HEADERS}) #add also equired program modules
-
-target_sources(${PROGRAM_TARGET_TEST_PARTICLE} PRIVATE
-        ${PROGRAM_MODULES_PARTICLES_SRC})
+        ${PROGRAM_ALL_HEADERS}
+        ${PROGRAM_MODULES_PARTICLES_SRC}) #add also equired program modules
 
 # target_link_libraries#link needed libraries
 target_include_directories(${PROGRAM_TARGET_TEST_PARTICLE}

@@ -14,6 +14,7 @@
 
 namespace BASE_NS{
     class Particle{
+        using pTypeStorage=std::map<std::string, std::unique_ptr<ParticleType>>;
     public:
         explicit Particle(std::string const& name,double Px=0, double Py=0, double Pz=0);
 
@@ -35,7 +36,7 @@ namespace BASE_NS{
         [[nodiscard]] double InvMass(Particle const& p) const;
 
     private:
-        static std::map<std::string, std::unique_ptr<ParticleType>> fParticleType;
+        static pTypeStorage fParticleType;
         static constexpr int fMaxNumParticleType{10};
 
         std::string fParticleName;

@@ -96,4 +96,7 @@ namespace BASE_NS{
             std::pow(fPy,2)+
             std::pow(fPz,2));
     }
+
+    //initialise map
+    Particle::pTypeStorage Particle::fParticleType{};
 }
