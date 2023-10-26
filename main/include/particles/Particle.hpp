@@ -9,6 +9,7 @@
 #include "particles/ParticleType.hpp"
 #include "particles/ResonanceType.hpp"
 
+#include <memory>
 #include <map>
 #include <string>
 
