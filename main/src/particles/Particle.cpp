@@ -10,6 +10,9 @@ namespace BASE_NS{
         fPx{Px},
         fPy{Py},
         fPz{Pz}{
-
+        //check that the requested particle name exist
+        if(fParticleType.find(name)==fParticleType.end()){
+            throw std::out_of_range{"Non c'e', perche' non c'e'?"};
+        }
     }
 }
