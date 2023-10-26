@@ -11,7 +11,8 @@ add_executable(${PROGRAM_TARGET_TEST_PARTICLE}
         particleTest.test.cpp
         ${PROGRAM_ALL_HEADERS}) #add also equired program modules
 
-target_sources(${PROGRAM_MODULES_PARTICLES_SRC})
+target_sources(${PROGRAM_TARGET_TEST_PARTICLE} PRIVATE
+        ${PROGRAM_MODULES_PARTICLES_SRC})
 
 # target_link_libraries#link needed libraries
 target_include_directories(${PROGRAM_TARGET_TEST_PARTICLE}
