@@ -111,8 +111,6 @@ namespace BASE_NS{
         double massDau1 = dau1.GetMass();
         double massDau2 = dau2.GetMass();
 
-        if(fIParticle > -1){ // add width effect
-
             // gaussian random numbers
 
             float x1, x2, w, y1, y2;
@@ -128,9 +126,7 @@ namespace BASE_NS{
             y1 = x1 * w;
             y2 = x2 * w;
 
-            massMot += fParticleType[fIParticle]->GetWidth() * y1;
-
-        }
+            massMot += fParticleType[fParticleName]->GetWidth() * y1;
 
         if(massMot < massDau1 + massDau2){
             printf("Decayment cannot be preformed because mass is too low in this channel\n");
