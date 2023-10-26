@@ -14,7 +14,7 @@ namespace BASE_NS{
     public:
         ResonanceType(std::string const& name, double mass, int charge,double width);
 
-        [[nodiscard]] double GetWidth() const;
+        [[nodiscard]] double GetWidth() const override;
 
         void Print() const override;
 
