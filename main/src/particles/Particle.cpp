@@ -3,6 +3,8 @@
 //
 #include "particles/Particle.hpp"
 
+#include <algorithm>
+
 namespace BASE_NS{
 
     Particle::Particle(const std::string &name, double Px, double Py, double Pz):
@@ -40,5 +42,11 @@ namespace BASE_NS{
             throw std::out_of_range{"Non c'e', perche' non c'e'?"};
         }
         fParticleName=name;
+    }
+
+    void Particle::PrintParticleList() {
+        std::for_each(fParticleType.cbegin(),fParticleType.cend(),[](auto const& node){
+            node.second->Print();
+        });
     }
 }

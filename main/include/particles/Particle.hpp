@@ -20,6 +20,7 @@ namespace BASE_NS{
         [[nodiscard]] const std::string &GetParticleName() const;
 
         static void AddParticleType(std::string const& name, double mass, int charge, double width=0);
+        static void PrintParticleList();
 
         void SetParticleType(std::string const& name);
 
