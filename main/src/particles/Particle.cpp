@@ -4,6 +4,8 @@
 #include "particles/Particle.hpp"
 
 #include <algorithm>
+#include <iostream>
+#include <numeric>
 
 namespace BASE_NS{
 
@@ -48,5 +50,45 @@ namespace BASE_NS{
         std::for_each(fParticleType.cbegin(),fParticleType.cend(),[](auto const& node){
             node.second->Print();
         });
+    }
+
+    void Particle::PrintData() const {
+        std::cout<<"Name:"<<fParticleName<<'\n'
+            <<"PX"<<fPx<<'\n'
+            <<"PY"<<fPy<<'\n'
+            <<"PZ"<<fPz<<'\n';
+    }
+
+    void Particle::SetP(double px, double py, double pz) {
+        fPx=px;
+        fPy=py;
+        fPz=pz;
+    }
+
+    double Particle::GetPx() const {
+        return fPx;
+    }
+
+    double Particle::GetPy() const {
+        return fPy;
+    }
+
+    double Particle::GetPz() const {
+        return fPz;
+    }
+
+    double Particle::InvMass(const Particle &p) const {
+        return 0;
+    }
+
+    [[nodiscard]] double Particle::GetMass() const {
+        return fParticleType.at(fParticleName)->GetMass();
+    }
+
+    double Particle::GetEnergy() const {
+        return std::sqrt(std::pow(GetMass(),2)+
+            std::pow(fPx,2)+
+            std::pow(fPy,2)+
+            std::pow(fPz,2));
     }
 }

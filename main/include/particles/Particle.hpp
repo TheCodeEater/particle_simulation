@@ -23,6 +23,16 @@ namespace BASE_NS{
         static void PrintParticleList();
 
         void SetParticleType(std::string const& name);
+        void PrintData() const;
+
+        void SetP(double px, double py, double pz);
+        [[nodiscard]] double GetPx() const;
+        [[nodiscard]] double GetPy() const;
+        [[nodiscard]] double GetPz() const;
+
+        [[nodiscard]] double GetMass() const;
+        double GetEnergy() const;
+        [[nodiscard]] double InvMass(Particle const& p) const;
 
     private:
         static std::map<std::string, std::unique_ptr<ParticleType>> fParticleType;
