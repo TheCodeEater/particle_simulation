@@ -11,6 +11,10 @@
 namespace BASE_NS{
     class ResonanceType : public ParticleType{
 
+    public:
+        ResonanceType(std::string const& name, double mass, int charge,int width);
+    private:
+        double fWidth;
     };
 }
 

@@ -5,4 +5,7 @@
 
 namespace BASE_NS{
 
+    ResonanceType::ResonanceType(const std::string &name, double mass, int charge, int width) {
+
+    }
 }
