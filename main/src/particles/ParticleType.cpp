@@ -28,4 +28,8 @@ namespace BASE_NS{
     int ParticleType::GetCharge() const {
         return fCharge;
     }
+
+    double ParticleType::GetWidth() const {
+        return 0;
+    }
 }

@@ -32,8 +32,10 @@ namespace BASE_NS{
         [[nodiscard]] double GetPz() const;
 
         [[nodiscard]] double GetMass() const;
-        double GetEnergy() const;
+        [[nodiscard]] double GetEnergy() const;
         [[nodiscard]] double InvMass(Particle const& p) const;
+
+        int Decay2body(Particle &dau1,Particle &dau2) const;
 
     private:
         static pTypeStorage fParticleType;
@@ -43,6 +45,8 @@ namespace BASE_NS{
         double fPx;
         double fPy;
         double fPz;
+
+        void Boost(double bx, double by, double bz);
     };
 }
 
