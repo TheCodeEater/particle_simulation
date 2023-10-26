@@ -78,7 +78,12 @@ namespace BASE_NS{
     }
 
     double Particle::InvMass(const Particle &p) const {
-        return 0;
+        return std::sqrt(
+                std::pow(GetEnergy()+p.GetEnergy(),2)
+                - (std::pow(fPx+p.GetPx(),2)
+                    +std::pow(fPy+p.GetPy(),2)
+                    +std::pow(fPz+p.GetPz(),2))
+                );
     }
 
     [[nodiscard]] double Particle::GetMass() const {
