@@ -12,11 +12,11 @@
 
 int main(int argc, char** argv) {
     //object ownership setup
-    #ifdef PROGRAM_USE_LOCAL_OWNERSHIP
+  /*  #ifdef PROGRAM_USE_LOCAL_OWNERSHIP
         TDirectory::AddDirectory(kFALSE);
     #endif
     //create root application
-    APP_TYPE app(APP_NAME, &argc, argv);
+    APP_TYPE app(APP_NAME, &argc, argv);*/
 
     BASE_NS::Particle::AddParticleType("Pi+", 0.13957, 1);
     BASE_NS::Particle::AddParticleType("P-+", 0.13957, -1);
@@ -58,10 +58,10 @@ int main(int argc, char** argv) {
                 name = "P-";
             } else { name = "K*"; }
 
-            EventParticles.emplace_back(name, P * TMath::Sin(theta)*TMath::Cos(phi), P*TMath::Sin(theta)*TMath::Sin(phi), P*TMath::Cos(theta));
+            EventParticles.emplace_back(name, P*TMath::Sin(theta)*TMath::Cos(phi), P*TMath::Sin(theta)*TMath::Sin(phi), P*TMath::Cos(theta));
         }
     }
     //run application
-    app.Run();
+    //app.Run();
     return 0;
 }
