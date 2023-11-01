@@ -165,4 +165,6 @@ namespace BASE_NS{
         fPy += gamma2*bp*by + gamma*by*energy;
         fPz += gamma2*bp*bz + gamma*bz*energy;
     }
+
+    //ClassImp(Particle);
 }

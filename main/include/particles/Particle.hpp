@@ -48,6 +48,8 @@ namespace BASE_NS{
         double fPx;
         double fPy;
         double fPz;
+
+        //ClassDef(Particle, 1);
     };
 }
 
