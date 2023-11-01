@@ -24,6 +24,8 @@ namespace BASE_NS{
 
         [[nodiscard]] int GetCharge() const;
 
+        [[nodiscard]] virtual double GetWidth() const;
+
     private:
         std::string fName;
         double fMass;
