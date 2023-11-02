@@ -7,14 +7,16 @@
 
 #include "Definitions.hpp"
 #include "TFile.h"
+#include "TH1.h"
 #include <string>
+#include <unordered_map>
 
 namespace BASE_NS{
     /**
      * This class encapsulates the data analysis for the K* decayment trace
      */
     class dataAnalyser{
-
+        using histoContainer=std::unordered_map<std::string,TH1F>;
     public:
         /**
          * Construct the analyser class
@@ -23,15 +25,19 @@ namespace BASE_NS{
         explicit dataAnalyser(std::string const& path);
 
         /**
-         *
+         * Get a const reference to the underlying root TFile
          */
-         [[nodiscard]] TFile const& getFile() const;
+         [[nodiscard]] TFile const& GetFile() const;
 
     private:
         /**
          * A pointer to an instance of a root file
          */
         std::unique_ptr<TFile> fFile;
+        /**
+         * A pointer to the list of stored objects
+         */
+         histoContainer fList;
     };
 }
 

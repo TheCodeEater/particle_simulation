@@ -4,19 +4,32 @@
 #include "particleAnalyser.hpp"
 #include "Definitions.hpp"
 
+#include "TKey.h"
+
 namespace BASE_NS{
 
     dataAnalyser::dataAnalyser(const std::string &path):
         //open the root file in read only mode
-        fFile{new TFile{path.c_str(),"READ"}}{
+        fFile{new TFile{path.c_str(),"READ"}},
+        //create empty TList
+        fList{}{
 
         //check that the file was opened correctly
-        if(fFile->IsZombie()){
+        if(fFile->IsOpen()){
             throw std::runtime_error{"Cannot open root file. Path: "+path};
+        }
+
+        //populate the list from tfile
+        //get the TList
+        const TList* histoList{dynamic_cast<TList*>(fFile->Get("particles_decay_data"))};
+
+        //if the list does not exist or it is not the correct type, throw
+        if(histoList== nullptr){
+            throw std::bad_cast{};
         }
     }
 
-    TFile const &dataAnalyser::getFile() const {
+    TFile const &dataAnalyser::GetFile() const {
         //check wether file is valid using unique_ptr bool conversion operator
         if(!fFile){
             throw std::runtime_error{"Root file object is invalid!"};
