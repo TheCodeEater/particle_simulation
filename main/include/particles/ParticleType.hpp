@@ -10,15 +10,19 @@
 #include <string>
 
 namespace BASE_NS{
+
+
     class ParticleType{
+        enum Type{P_Pion, N_Pion, P_Kaon, N_Kaon, P_Prot, N_Prot, R_Kaon};
 
     public:
-        ParticleType(std::string const& name, double mass, int charge);
+
+        ParticleType(int name, double mass, int charge);
         virtual ~ParticleType()=default;
 
         virtual void Print() const;
 
-        [[nodiscard]] const std::string &GetName() const;
+        [[nodiscard]] int GetName() const;
 
         [[nodiscard]] double GetMass() const;
 
@@ -27,7 +31,7 @@ namespace BASE_NS{
         [[nodiscard]] virtual double GetWidth() const;
 
     private:
-        std::string fName;
+         Type fName;
         double fMass;
         int fCharge;
     };

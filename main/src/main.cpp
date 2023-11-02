@@ -8,7 +8,7 @@
 #include "TMath.h"
 #include "TH1.h"
 #include "TFile.h"
-
+#include <iostream>
 #include "../include/particles/Particle.hpp"
 #include "Definitions.hpp"
 
@@ -20,13 +20,13 @@ int main(int argc, char** argv) {
     //create root application
     APP_TYPE app(APP_NAME, &argc, argv);*/
 
-    BASE_NS::Particle::AddParticleType("Pi+", 0.13957, 1);
-    BASE_NS::Particle::AddParticleType("Pi-", 0.13957, -1);
-    BASE_NS::Particle::AddParticleType("K+", 0.49367, 1);
-    BASE_NS::Particle::AddParticleType("K-", 0.49367, -1);
-    BASE_NS::Particle::AddParticleType("P+", 0.93827, 1);
-    BASE_NS::Particle::AddParticleType("P-", 0.93827, -1);
-    BASE_NS::Particle::AddParticleType("K*", 0.89166, 0, 0.050);
+    BASE_NS::Particle::AddParticleType(0, 0.13957, 1);
+    BASE_NS::Particle::AddParticleType(1, 0.13957, -1);
+    BASE_NS::Particle::AddParticleType(2, 0.49367, 1);
+    BASE_NS::Particle::AddParticleType(3, 0.49367, -1);
+    BASE_NS::Particle::AddParticleType(4, 0.93827, 1);
+    BASE_NS::Particle::AddParticleType(5, 0.93827, -1);
+    BASE_NS::Particle::AddParticleType(6, 0.89166, 0, 0.050);
     gRandom->SetSeed();
 
     std::vector<BASE_NS::Particle> EventParticles;
@@ -53,9 +53,9 @@ int main(int argc, char** argv) {
     double phi{};
     double P{};
     double x{};
-    std::string name{};
+    int name{};
     //10^5 eventi
-    for(int j = 0; j < 1E5; ++j){
+    for(int j = 0; j < 1E2; ++j){
         //genero le 100 particelle
         for(int i = 0; i < 1E2; ++i){
             phi = gRandom->Uniform(0, 2 * TMath::Pi());
@@ -64,43 +64,43 @@ int main(int argc, char** argv) {
             PolarAngles->Fill(theta);
             P = gRandom->Exp(1);
             Impulse->Fill(P);
-
+            std::cout << "event: " << j << " particle: " << i << "\n";
             x=gRandom->Rndm();
             if (x < 0.4) {
-                name = "Pi+";
+                name = 0;
                 ParticlesType->Fill(0);
             } else if (x < 0.8) {
-                name = "Pi-";
+                name = 1;
                 ParticlesType->Fill(1);
             } else if (x < 0.85) {
-                name = "K+";
+                name = 2;
                 ParticlesType->Fill(2);
             } else if (x < 0.9) {
-                name = "K-";
+                name = 3;
                 ParticlesType->Fill(3);
             } else if (x < 0.945) {
-                name = "P+";
+                name = 4;
                 ParticlesType->Fill(4);
             } else if (x < 0.99) {
-                name = "P-";
+                name = 5;
                 ParticlesType->Fill(5);
-            } else { name = "K*";
+            } else { name = 6;
                 ParticlesType->Fill(6);}
 
-            if(name == "K*"){
+            if(name == 6){
                 double y = gRandom->Rndm();
-                std::string name1{};
-                std::string name2{};
+                int name1{};
+                int name2{};
                 if(y < 0.5){
-                    name1 = "Pi+";
-                    name2 = "K-";
+                    name1 = 0;
+                    name2 = 3;
                 } else {
-                    name1 = "Pi-";
-                    name2 = "K+";
+                    name1 = 1;
+                    name2 = 2;
                 }
                 BASE_NS::Particle p1(name1, 0, 0, 0);
                 BASE_NS::Particle p2(name2, 0, 0, 0);
-                BASE_NS::Particle pRes("K*", P*TMath::Sin(theta)*TMath::Cos(phi), P*TMath::Sin(theta)*TMath::Sin(phi), P*TMath::Cos(theta));
+                BASE_NS::Particle pRes(6, P*TMath::Sin(theta)*TMath::Cos(phi), P*TMath::Sin(theta)*TMath::Sin(phi), P*TMath::Cos(theta));
 
                 if(pRes.Decay2body(p1, p2) != 0){
                     throw std::runtime_error("aaaaaaaaaaaaaaaah");
@@ -128,16 +128,16 @@ int main(int argc, char** argv) {
                 if(p.GetCharge() * EventParticles[j].GetCharge() == 1){
                     InvariantMassesAllc->Fill(p.InvMass(EventParticles[j]));
                 }
-                if(p.GetParticleName() == "Pi+" && EventParticles[j].GetParticleName() == "K-"){
+                if(p.GetParticleName() == 0 && EventParticles[j].GetParticleName() == 3){
                     InvariantMassesPipKn->Fill(p.InvMass(EventParticles[j]));
                 }
-                if(p.GetParticleName() == "Pi-" && EventParticles[j].GetParticleName() == "K+"){
+                if(p.GetParticleName() == 1 && EventParticles[j].GetParticleName() == 2){
                     InvariantMassesPinKp->Fill(p.InvMass(EventParticles[j]));
                 }
-                if(p.GetParticleName() == "Pi+" && EventParticles[j].GetParticleName() == "K+"){
+                if(p.GetParticleName() == 0 && EventParticles[j].GetParticleName() == 2){
                     InvariantMassesPipKp->Fill(p.InvMass(EventParticles[j]));
                 }
-                if(p.GetParticleName() == "Pi-" && EventParticles[j].GetParticleName() == "K-"){
+                if(p.GetParticleName() == 1 && EventParticles[j].GetParticleName() == 3){
                     InvariantMassesPinKn->Fill(p.InvMass(EventParticles[j]));
                 }
             }

@@ -10,21 +10,22 @@
 #include "particles/ResonanceType.hpp"
 
 #include <memory>
-#include <map>
+#include <vector>
 #include <string>
+
 
 namespace BASE_NS{
     class Particle{
-        using pTypeStorage=std::map<std::string, std::unique_ptr<ParticleType>>;
+        using pTypeStorage=std::vector<std::unique_ptr<ParticleType>>;
     public:
-        explicit Particle(std::string const& name,double Px=0, double Py=0, double Pz=0);
+        explicit Particle(int name,double Px=0, double Py=0, double Pz=0);
 
-        [[nodiscard]] const std::string &GetParticleName() const;
+        [[nodiscard]] int GetParticleName() const;
 
-        static void AddParticleType(std::string const& name, double mass, int charge, double width=0);
+        static void AddParticleType(int name, double mass, int charge, double width=0);
         static void PrintParticleList();
 
-        void SetParticleType(std::string const& name);
+        void SetParticleType(int name);
         void PrintData() const;
 
         void SetP(double px, double py, double pz);
@@ -45,7 +46,7 @@ namespace BASE_NS{
         static pTypeStorage fParticleType;
         static constexpr int fMaxNumParticleType{10};
 
-        std::string fParticleName;
+        int fParticleName;
         double fPx;
         double fPy;
         double fPz;

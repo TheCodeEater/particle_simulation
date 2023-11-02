@@ -12,7 +12,7 @@ namespace BASE_NS{
     class ResonanceType : public ParticleType{
 
     public:
-        ResonanceType(std::string const& name, double mass, int charge,double width);
+        ResonanceType(int const name, double mass, int charge,double width);
 
         [[nodiscard]] double GetWidth() const override;
 

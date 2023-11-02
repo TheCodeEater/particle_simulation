@@ -7,7 +7,7 @@
 
 namespace BASE_NS{
 
-    ResonanceType::ResonanceType(const std::string &name, double mass, int charge, double width):
+    ResonanceType::ResonanceType(const int name, double mass, int charge, double width):
         ParticleType{name,mass,charge},
         fWidth{width}{
 
