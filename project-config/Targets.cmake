@@ -4,6 +4,7 @@
 
 #Add subdirectories
 add_subdirectory(${CMAKE_SOURCE_DIR}/main)
+add_subdirectory(${ANALYSER_BASE})
 
 
 #Add tests

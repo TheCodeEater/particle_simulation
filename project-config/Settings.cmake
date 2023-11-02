@@ -15,6 +15,10 @@ set(PROGRAM_CODE_TEMPLATES ${CMAKE_SOURCE_DIR}/templates)
 set(PROGRAM_TEST ${CMAKE_SOURCE_DIR}/tests)
 set(PROGRAM_TEST_UNIT ${PROGRAM_TEST}/unit)
 
+set(ANALYSER_BASE ${CMAKE_SOURCE_DIR}/analyser)
+set(ANALYSER_SOURCES ${ANALYSER_BASE}/src )
+set(ANALYSER_HEADERS ${ANALYSER_BASE}/include)
+
 ###########
 # Code metadata definitions
 #Define variables to configure template code files

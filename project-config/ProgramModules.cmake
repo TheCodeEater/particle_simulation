@@ -22,6 +22,9 @@ set(PROGRAM_MODULES_PARTICLES_SRC
         ${PROGRAM_SOURCES}/particles/ParticleType.cpp
         ${PROGRAM_SOURCES}/particles/ResonanceType.cpp)
 
+set(PROGRAM_MODULES_ANALYSER_SRC
+        ${ANALYSER_SOURCES}/analyser.cpp)
+
 #Example
 # set(PROGRAM_MODULES_GRAPHICS_SRC ${PROGRAM_SOURCES}/graphics.cpp)
 # set(PROGRAM_MDOULES_GRAPHICS_H ${PROGRAM_HEADERS}/graphics.hpp)
