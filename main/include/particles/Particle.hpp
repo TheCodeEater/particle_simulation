@@ -31,6 +31,7 @@ namespace BASE_NS{
         [[nodiscard]] double GetPx() const;
         [[nodiscard]] double GetPy() const;
         [[nodiscard]] double GetPz() const;
+        [[nodiscard]] int GetCharge() const;
 
         [[nodiscard]] double GetMass() const;
         [[nodiscard]] double GetEnergy() const;

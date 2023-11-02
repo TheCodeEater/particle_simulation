@@ -166,5 +166,9 @@ namespace BASE_NS{
         fPz += gamma2*bp*bz + gamma*bz*energy;
     }
 
+    int Particle::GetCharge() const {
+        return fParticleType[fParticleName]->GetCharge();
+    }
+
     //ClassImp(Particle);
 }
