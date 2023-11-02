@@ -22,8 +22,12 @@ set(PROGRAM_MODULES_PARTICLES_SRC
         ${PROGRAM_SOURCES}/particles/ParticleType.cpp
         ${PROGRAM_SOURCES}/particles/ResonanceType.cpp)
 
+set(PROGRAM_MODULES_ANALYSER_H
+        ${ANALYSER_HEADERS}/particleAnalyser.hpp)
+
 set(PROGRAM_MODULES_ANALYSER_SRC
-        ${ANALYSER_SOURCES}/analyser.cpp)
+        ${ANALYSER_SOURCES}/analyser.cpp
+        ${ANALYSER_SOURCES}/particleAnalyser.cpp)
 
 #Example
 # set(PROGRAM_MODULES_GRAPHICS_SRC ${PROGRAM_SOURCES}/graphics.cpp)
@@ -32,4 +36,5 @@ set(PROGRAM_MODULES_ANALYSER_SRC
 #General header variables
 set(PROGRAM_MODULES_ALL_HEADERS
         ${PROGRAM_MDOULES_MAIN_H}
-        ${PROGRAM_MODULES_PARTICLES_H})
+        ${PROGRAM_MODULES_PARTICLES_H}
+        ${PROGRAM_MODULES_ANALYSER_H})
