@@ -27,6 +27,14 @@ namespace BASE_NS{
         if(histoList== nullptr){
             throw std::bad_cast{};
         }
+        //populate map
+        std::for_each(histoList->begin(),histoList->end(),[](auto object){
+            auto histo=dynamic_cast<TH1F*>(object);
+            if(histo== nullptr){
+                throw std::bad_cast{};
+            }
+            return std::pair<std::string,TH1F*>{histo->GetName(),histo};
+        });
     }
 
     TFile const &dataAnalyser::GetFile() const {
