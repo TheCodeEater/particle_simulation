@@ -11,7 +11,10 @@ target_sources( ${PROGRAM_TARGET_ANALYSER} PRIVATE
         ${PROGRAM_MODULES_PARTICLES_SRC})
 
 
-target_include_directories(${PROGRAM_TARGET_ANALYSER} PRIVATE ${PROGRAM_HEADERS})
+target_include_directories(${PROGRAM_TARGET_ANALYSER}
+        PRIVATE
+        ${PROGRAM_HEADERS}
+        ${ANALYSER_HEADERS})
 target_link_libraries(${PROGRAM_TARGET_ANALYSER} ${PROGRAM_LIBRARIES_DEFAULT})
 
 #Generate root dictionary
