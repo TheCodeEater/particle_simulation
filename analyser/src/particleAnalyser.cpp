@@ -6,6 +6,9 @@
 
 #include "particleStorage.hpp"
 
+#include "TFitResult.h"
+#include "TFitResultPtr.h"
+
 namespace BASE_NS{
 
     dataAnalyser::dataAnalyser(const std::string &path):
@@ -37,5 +40,22 @@ namespace BASE_NS{
 
     const dataAnalyser::dataContainer &dataAnalyser::GetData() const {
         return *fData;
+    }
+
+    [[maybe_unused]] bool dataAnalyser::CheckGeneration() {
+        //check type proportion generation
+
+        //check angular proportions
+        {
+            //Get angular data
+            auto & azimuthal{fData->AzimuthAngles};
+            auto & polar{fData->PolarAngles};
+
+            //run the fit
+            auto azFit=azimuthal.Fit("pol0","S");
+            auto polFit=polar.Fit("pol0","S");
+
+            azFit->Prob();
+        }
     }
 }

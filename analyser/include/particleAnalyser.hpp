@@ -40,6 +40,20 @@ namespace BASE_NS{
         [[nodiscard]] dataContainer const& GetData() const;
 
          //analysers
+         /**
+          * Check wether the generated particles are consistent with the generation parameters
+          *
+          * Particle type generation is said to be consistent if the required value is compatible
+          * with the observed one (i.e. falls into the uncertainty interval)
+          *
+          * Angular and pulse distribution are compatible depeding on the Chi square.
+          * The test uses a defualt confidence level of 95 %
+          *
+          * Due to root internal fitting this function cannot be const
+          *
+          * @return True if consistent, false otherwise
+          */
+         [[maybe_unused]] bool CheckGeneration();
 
     private:
         TFile fFile; ///Underlying root file
