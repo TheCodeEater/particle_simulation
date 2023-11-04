@@ -18,7 +18,7 @@ namespace BASE_NS{
         using histCont=std::unordered_map<std::string,TH1F>;
         using hist=TH1F;
 
-        particleStorage()=default;
+        particleStorage();
 
         //Histograms classified by type
         hist GeneratedTypes{};

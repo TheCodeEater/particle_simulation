@@ -6,6 +6,11 @@
 #include "Rtypes.h"
 
 namespace BASE_NS{
-    //to figure out why it does not work
+    particleStorage::particleStorage() {
+        //generate data structures for histogram error calculation
+        for(auto & node: invMasses){
+            node.second.Sumw2();
+        }
+    }
     //ClassImp(particleStorage);
 }
