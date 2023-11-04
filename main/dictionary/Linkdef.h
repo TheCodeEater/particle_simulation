@@ -8,6 +8,7 @@
 #ifdef __CLING__
 #pragma link C++ nestedclasses; //link nested classes
 #pragma link C++ nestedtypedefs; //link nested typedefs
+#pragma link C++ class particleStorage;
 //#pragma link C++ class MyClass; link myClass
 #endif
 

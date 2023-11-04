@@ -31,7 +31,7 @@ namespace BASE_NS{
         //store all invariant masses histograms into a container
         histCont invMasses{};
 
-        ClassDefOverride(particleStorage,1);
+        ClassDefInlineOverride(particleStorage,1);
     };
 }
 
