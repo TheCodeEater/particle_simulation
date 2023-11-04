@@ -15,19 +15,21 @@ namespace BASE_NS{
      * The storage type may vary across different versions
      */
     struct particleStorage: public TObject{
-        using histCont=std::unique_ptr<std::string,TH1F>;
+        using histCont=std::unordered_map<std::string,TH1F>;
         using hist=TH1F;
 
+        particleStorage()=default;
+
         //Histograms classified by type
-        hist GeneratedTypes;
-        hist PolarAngles;
-        hist AzimuthAngles;
-        hist Pulse;
-        hist TransPulse;
-        hist Energy;
+        hist GeneratedTypes{};
+        hist PolarAngles{};
+        hist AzimuthAngles{};
+        hist Pulse{};
+        hist TransPulse{};
+        hist Energy{};
 
         //store all invariant masses histograms into a container
-        histCont invMasses;
+        histCont invMasses{};
 
         ClassDefOverride(particleStorage,1);
     };

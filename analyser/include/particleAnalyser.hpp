@@ -10,13 +10,15 @@
 #include "TH1.h"
 #include <string>
 #include <unordered_map>
+#include "particleStorage.hpp"
 
 namespace BASE_NS{
     /**
      * This class encapsulates the data analysis for the K* decayment trace
      */
     class dataAnalyser{
-        using histoContainer=std::unordered_map<std::string,TH1F>;
+        using dataContainer=particleStorage;
+        using dataContainerPtr=std::unique_ptr<dataContainer>;
     public:
         /**
          * Construct the analyser class
@@ -30,14 +32,8 @@ namespace BASE_NS{
          [[nodiscard]] TFile const& GetFile() const;
 
     private:
-        /**
-         * A pointer to an instance of a root file
-         */
-        std::unique_ptr<TFile> fFile;
-        /**
-         * A pointer to the list of stored objects
-         */
-         histoContainer fList;
+        TFile fFile; ///Underlying root file
+         dataContainerPtr fData; ///Underlying data container
     };
 }
 
