@@ -46,7 +46,7 @@ namespace BASE_NS{
         return *fData;
     }
 
-    [[maybe_unused]] bool dataAnalyser::CheckGeneration(double confidenceLevel) {
+    [[maybe_unused]] dataAnalyser::CheckResult dataAnalyser::CheckGeneration(double confidenceLevel) {
         //check type proportion generation
 
         //check angular proportions
@@ -54,23 +54,30 @@ namespace BASE_NS{
             //Get angular data
             auto & azimuthal{fData->AzimuthAngles};
             auto & polar{fData->PolarAngles};
+            auto & pulse{fData->Pulse};
 
-            //run the fit
-            auto azFit=azimuthal.Fit("pol0","S");
-            auto polFit=polar.Fit("pol0","S");
+            //fit data storage
+            std::unordered_map<const char*,TFitResultPtr> fits;
+
+            //run the fit, saving results in tfit ptr
+            fits.insert({"Azimuth",azimuthal.Fit("pol0","S")});
+            fits.insert({"Polar",polar.Fit("pol0","S")});
+            fits.insert({"Pulse",pulse.Fit("expo","S")});
 
             //create result structure
             bool success{};
             std::stringstream errors{};
             //check fit
-            if(azFit->Prob() <= confidenceLevel){
-                success=false;
-                errors<<"Azimuthal fit failed. Observed probability: "<<azFit->Prob()<<"\n";
+            for(auto const& node : fits){
+                auto& fitPtr{node.second};
+
+                if(fitPtr->Prob()<=confidenceLevel){
+                    success=false;
+                    errors<<node.first<<" fit failed. Observed probability: "<<fitPtr->Prob()<<"\n";
+                }
             }
-            if(polFit->Prob()<=confidenceLevel){
-                success=false;
-                errors<<"Polar fit failed. Observed probability: "<<polFit->Prob()<<"\n";
-            }
+            //create data structure
+            return CheckResult{success,errors.str()};
         }
     }
 
