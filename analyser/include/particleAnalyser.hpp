@@ -74,7 +74,7 @@ namespace BASE_NS{
           * Due to root internal fitting this function cannot be const
           *
           * @param The confidence level
-          * @return True if consistent, false otherwise
+          * @return A structure holding the result, both generally and specific error codes
           */
          [[maybe_unused]] CheckResult CheckGeneration(double confidenceLevel);
 
