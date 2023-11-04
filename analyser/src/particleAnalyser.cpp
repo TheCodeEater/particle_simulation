@@ -42,7 +42,7 @@ namespace BASE_NS{
         return *fData;
     }
 
-    [[maybe_unused]] bool dataAnalyser::CheckGeneration() {
+    [[maybe_unused]] bool dataAnalyser::CheckGeneration(double confidenceLevel) {
         //check type proportion generation
 
         //check angular proportions
@@ -57,5 +57,13 @@ namespace BASE_NS{
 
             azFit->Prob();
         }
+    }
+
+    dataAnalyser::CheckResult::operator bool() const {
+        return fSuccessful;
+    }
+
+    std::string const &dataAnalyser::CheckResult::GetError() const {
+        return fError;
     }
 }

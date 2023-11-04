@@ -47,17 +47,40 @@ namespace BASE_NS{
           * with the observed one (i.e. falls into the uncertainty interval)
           *
           * Angular and pulse distribution are compatible depeding on the Chi square.
-          * The test uses a defualt confidence level of 95 %
+          * The test uses a defualt confidence level given
           *
           * Due to root internal fitting this function cannot be const
           *
+          * @param The confidence level
           * @return True if consistent, false otherwise
           */
-         [[maybe_unused]] bool CheckGeneration();
+         [[maybe_unused]] bool CheckGeneration(double confidenceLevel);
 
     private:
         TFile fFile; ///Underlying root file
          dataContainerPtr fData; ///Underlying data container
+
+         /**
+          * Represent the result of distribution consistency check
+          */
+         class CheckResult{
+
+         public:
+             /**
+              * Convert to bool
+              * @return fSuccessful
+              */
+             explicit operator bool() const;
+
+             /**
+              * Get error string
+              * @return error string
+              */
+             [[nodiscard]] std::string const& GetError() const;
+         private:
+             bool fSuccessful; /// wether the check was successful
+             std::string fError; /// Arose errors
+         };
     };
 }
 
