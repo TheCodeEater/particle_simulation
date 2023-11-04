@@ -41,6 +41,15 @@ namespace BASE_NS{
             bool fSuccessful{}; /// wether the check was successful
             std::string fError{}; /// Arose errors
         };
+
+        /**
+         * Struct to hold the result of the required histogram difference
+         */
+        struct Result{
+            TH1F diff1; /// Difference between the 2 kaon-pion histograms
+            TH1F diff2; /// Difference between the concordant and discordant charge histogram
+        };
+
     public:
         /**
          * Construct the analyser class
@@ -77,6 +86,8 @@ namespace BASE_NS{
           * @return A structure holding the result, both generally and specific error codes
           */
          [[maybe_unused]] CheckResult CheckGeneration(double confidenceLevel);
+
+         [[nodiscard]] Result GetDecaymentSignal() const;
 
     private:
         TFile fFile; ///Underlying root file

@@ -26,12 +26,10 @@ namespace BASE_NS{
             throw std::runtime_error{"Cannot open root file. Path: "+path};
         }
 
-        //populate the list from tfile
-        //get the TList
+        //load data
         fData=std::unique_ptr<dataContainer> (
                 dynamic_cast<dataContainer*>(fFile.Get("particles_decay_data"))
                 );
-
     }
 
     TFile const &dataAnalyser::GetFile() const {
@@ -79,6 +77,10 @@ namespace BASE_NS{
             //create data structure
             return CheckResult{success,errors.str()};
         }
+    }
+
+    dataAnalyser::Result dataAnalyser::GetDecaymentSignal() const {
+        return dataAnalyser::Result();
     }
 
     dataAnalyser::CheckResult::operator bool() const {
