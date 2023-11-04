@@ -80,7 +80,11 @@ namespace BASE_NS{
     }
 
     dataAnalyser::Result dataAnalyser::GetDecaymentSignal() const {
-        return dataAnalyser::Result();
+        TH1F signal1{fData->invMasses["DiscordantPK"]-fData->invMasses["ConcordantPK"]};
+        TH1F signal2{fData->invMasses["AllDiscordant"]-fData->invMasses["AllConcordant"]};
+
+        //return the 2 signals
+        return {signal1,signal2};
     }
 
     dataAnalyser::CheckResult::operator bool() const {
