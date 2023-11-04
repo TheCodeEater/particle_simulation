@@ -80,8 +80,11 @@ namespace BASE_NS{
     }
 
     dataAnalyser::Result dataAnalyser::GetDecaymentSignal() const {
-        TH1F signal1{fData->invMasses["DiscordantPK"]-fData->invMasses["ConcordantPK"]};
-        TH1F signal2{fData->invMasses["AllDiscordant"]-fData->invMasses["AllConcordant"]};
+        auto signal1=std::make_unique<TH1F>(
+                fData->invMasses["DiscordantPK"]-fData->invMasses["ConcordantPK"]);
+
+        auto signal2=std::make_unique<TH1F>(
+                fData->invMasses["AllDiscordant"]-fData->invMasses["AllConcordant"]);
 
         //return the 2 signals
         return {signal1,signal2};
