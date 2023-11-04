@@ -25,11 +25,21 @@ namespace BASE_NS{
          * @param path Path to the ROOT file holding the required objects
          */
         explicit dataAnalyser(std::string const& path);
-
+        //Getters
         /**
          * Get a const reference to the underlying root TFile
          */
          [[nodiscard]] TFile const& GetFile() const;
+         /**
+          * Get a const reference to underlying dataContainer structure
+          */
+          [[nodiscard]] dataContainer& GetData();
+        /**
+        * Get a const reference to underlying dataContainer structure
+        */
+        [[nodiscard]] dataContainer const& GetData() const;
+
+         //analysers
 
     private:
         TFile fFile; ///Underlying root file

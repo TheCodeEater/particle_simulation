@@ -30,4 +30,12 @@ namespace BASE_NS{
     TFile const &dataAnalyser::GetFile() const {
         return fFile;
     }
+
+    dataAnalyser::dataContainer &dataAnalyser::GetData() {
+        return *fData;
+    }
+
+    const dataAnalyser::dataContainer &dataAnalyser::GetData() const {
+        return *fData;
+    }
 }
