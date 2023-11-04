@@ -2,12 +2,16 @@
 // Created by Giacomo Errani on 02/11/23.
 //
 #include "particleAnalyser.hpp"
+
+#include <utility>
 #include "Definitions.hpp"
 
 #include "particleStorage.hpp"
 
 #include "TFitResult.h"
 #include "TFitResultPtr.h"
+
+#include <sstream>
 
 namespace BASE_NS{
 
@@ -55,7 +59,18 @@ namespace BASE_NS{
             auto azFit=azimuthal.Fit("pol0","S");
             auto polFit=polar.Fit("pol0","S");
 
-            azFit->Prob();
+            //create result structure
+            bool success{};
+            std::stringstream errors{};
+            //check fit
+            if(azFit->Prob() <= confidenceLevel){
+                success=false;
+                errors<<"Azimuthal fit failed. Observed probability: "<<azFit->Prob()<<"\n";
+            }
+            if(polFit->Prob()<=confidenceLevel){
+                success=false;
+                errors<<"Polar fit failed. Observed probability: "<<polFit->Prob()<<"\n";
+            }
         }
     }
 
@@ -65,5 +80,11 @@ namespace BASE_NS{
 
     std::string const &dataAnalyser::CheckResult::GetError() const {
         return fError;
+    }
+
+    dataAnalyser::CheckResult::CheckResult(bool success, std::string error):
+        fSuccessful{success},
+        fError{std::move(error)}{
+
     }
 }

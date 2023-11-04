@@ -66,6 +66,7 @@ namespace BASE_NS{
          class CheckResult{
 
          public:
+             CheckResult(bool success, std::string  error);
              /**
               * Convert to bool
               * @return fSuccessful
@@ -78,8 +79,8 @@ namespace BASE_NS{
               */
              [[nodiscard]] std::string const& GetError() const;
          private:
-             bool fSuccessful; /// wether the check was successful
-             std::string fError; /// Arose errors
+             bool fSuccessful{}; /// wether the check was successful
+             std::string fError{}; /// Arose errors
          };
     };
 }
