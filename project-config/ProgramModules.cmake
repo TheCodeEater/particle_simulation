@@ -25,7 +25,7 @@ set(PROGRAM_MODULES_PARTICLES_SRC
 set(PROGRAM_MODULES_ANALYSER_H
         ${ANALYSER_HEADERS}/particleAnalyser.hpp
         ${ANALYSER_HEADERS}/analyserGraphics.hpp
-        ${ANALUSER_HEADERS}/dataStructures/signalFitResult.hpp)
+        ${ANALYSER_HEADERS}/dataStructures/signalFitResult.hpp)
 
 set(PROGRAM_MODULES_ANALYSER_SRC
         ${ANALYSER_SOURCES}/analyser.cpp
