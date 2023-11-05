@@ -28,6 +28,12 @@ namespace BASE_NS{
     public:
         AnalyzerGraphics();
 
+        /**
+         * Change currently active screen
+         * @param screen the screen to be shown
+         */
+        void ShowScreen(Menu screen);
+
     private:
         Menu fActiveScreen; /// Currently active screen
         CanvasPtr fCanvas; /// Canvas used to show data

@@ -9,3 +9,7 @@ BASE_NS::AnalyzerGraphics::AnalyzerGraphics():
 
 }
 
+void BASE_NS::AnalyzerGraphics::ShowScreen(BASE_NS::Menu screen) {
+    fActiveScreen=screen; //set the currenlty active screen
+}
+
