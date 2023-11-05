@@ -42,19 +42,6 @@ namespace BASE_NS{
             bool fSuccessful{}; /// wether the check was successful
             std::string fError{}; /// Arose errors
         };
-
-        /**
-         * Struct to hold the result of the required histogram difference
-         */
-        struct SignalResult{
-            using Hist=TH1F;
-            using FitPtr=TFitResultPtr;
-
-            Hist signal1; /// Difference between the 2 kaon-pion histograms
-            Hist signal2; /// Difference between the concordant and discordant charge histogram
-            FitPtr fitSignal1; /// Fit result ptr for signal 1
-            FitPtr fitSignal2; /// Fit result ptr for signal 2
-        };
         /**
          * Struct to hold the fit result for the generation data histograms
          */
