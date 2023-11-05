@@ -23,11 +23,13 @@ set(PROGRAM_MODULES_PARTICLES_SRC
         ${PROGRAM_SOURCES}/particles/ResonanceType.cpp)
 
 set(PROGRAM_MODULES_ANALYSER_H
-        ${ANALYSER_HEADERS}/particleAnalyser.hpp)
+        ${ANALYSER_HEADERS}/particleAnalyser.hpp
+        ${ANALYSER_HEADERS}/analyserGraphics.hpp)
 
 set(PROGRAM_MODULES_ANALYSER_SRC
         ${ANALYSER_SOURCES}/analyser.cpp
-        ${ANALYSER_SOURCES}/particleAnalyser.cpp)
+        ${ANALYSER_SOURCES}/particleAnalyser.cpp
+        ${ANALYSER_SOURCES}/analyserGraphics.cpp)
 
 set(PROGRAM_MODULES_STORAGE_SRC
         ${ANALYSER_SOURCES}/particleStorage.cpp)
