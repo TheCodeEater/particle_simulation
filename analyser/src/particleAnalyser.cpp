@@ -86,7 +86,7 @@ namespace BASE_NS{
         return CheckResult{success,errors.str()};
     }
 
-    dataAnalyser::Result dataAnalyser::GetDecaymentSignal() const {
+    dataAnalyser::SignalResult dataAnalyser::GetDecaymentSignal() const {
         auto signal1=std::make_unique<TH1F>(
                 fData->invMasses["DiscordantPK"]-fData->invMasses["ConcordantPK"]);
 
@@ -98,6 +98,23 @@ namespace BASE_NS{
         auto fit2=signal2->Fit("gaus","S");
         //return the 2 signals
         return {std::move(signal1),std::move(signal2),fit1,fit2};
+    }
+
+    dataAnalyser::GenerationResult dataAnalyser::GetGenerationFits() const {
+        //Get angular data
+        auto & azimuthal{fData->AzimuthAngles};
+        auto & polar{fData->PolarAngles};
+        auto & pulse{fData->Pulse};
+
+        //fit data storage
+        std::unordered_map<std::string,TFitResultPtr> fits;
+
+        //run the fit, saving results in tfit ptr
+        fits.insert({"Azimuth",azimuthal.Fit("pol0","S")});
+        fits.insert({"Polar",polar.Fit("pol0","S")});
+        fits.insert({"Pulse",pulse.Fit("expo","S")});
+
+        return fits;
     }
 
     dataAnalyser::CheckResult::operator bool() const {

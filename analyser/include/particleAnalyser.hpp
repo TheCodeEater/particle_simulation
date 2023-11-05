@@ -19,6 +19,7 @@ namespace BASE_NS{
     class dataAnalyser{
         using dataContainer=particleStorage;
         using dataContainerPtr=std::unique_ptr<dataContainer>;
+        using GenerationResult=std::unordered_map<std::string,TFitResultPtr>;
         /**
  * Represent the result of distribution consistency check
  */
@@ -45,7 +46,7 @@ namespace BASE_NS{
         /**
          * Struct to hold the result of the required histogram difference
          */
-        struct Result{
+        struct SignalResult{
             using HPtr=std::unique_ptr<TH1F>;
             using FitPtr=TFitResultPtr;
 
@@ -54,6 +55,16 @@ namespace BASE_NS{
             FitPtr fitSignal1; /// Fit result ptr for signal 1
             FitPtr fitSignal2; /// Fit result ptr for signal 2
         };
+        /**
+         * Struct to hold the fit result for the generation data histograms
+         */
+        /*struct GenerationResult{
+            using FitPtr=TFitResultPtr;
+
+            FitPtr azimuth{}; /// Azimuth angle fit
+            FitPtr polar{}; /// Polar angle fit
+            FitPtr pulse{}; /// Pulse fit
+        };*/
 
     public:
         /**
@@ -92,7 +103,18 @@ namespace BASE_NS{
           */
          [[maybe_unused]] CheckResult CheckGeneration(double confidenceLevel);
 
-         [[nodiscard]] Result GetDecaymentSignal() const;
+         /**
+          * Run the decayment signal analysis
+          * @return A SignalResult structure holding K* decayment signal distribution along
+          * with gaussian fit results
+          */
+         [[nodiscard]] SignalResult GetDecaymentSignal() const;
+
+         /**
+          * Fit the histograms of the data used to generate decayment events and particles
+          * @return Struct holding fit result data
+          */
+         [[nodiscard]] GenerationResult GetGenerationFits() const;
 
     private:
         TFile fFile; ///Underlying root file
