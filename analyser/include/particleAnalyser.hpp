@@ -18,7 +18,7 @@ namespace BASE_NS{
      */
     class dataAnalyser{
         using dataContainer=particleStorage;
-        using dataContainerPtr=std::unique_ptr<dataContainer>;
+        using dataContainerPtr=std::shared_ptr<dataContainer>;
         using GenerationResult=std::unordered_map<std::string,TFitResultPtr>;
         /**
  * Represent the result of distribution consistency check

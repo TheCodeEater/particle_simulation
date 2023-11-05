@@ -27,9 +27,9 @@ namespace BASE_NS{
         }
 
         //load data
-        fData=std::unique_ptr<dataContainer> (
-                dynamic_cast<dataContainer*>(data_source.Get("particles_decay_data"))
-                );
+        fData=dataContainerPtr{
+                dynamic_cast<dataContainer *>(data_source.Get("particles_decay_data"))
+            };
     }
 
     dataAnalyser::dataContainer &dataAnalyser::GetData() {
