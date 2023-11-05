@@ -82,7 +82,7 @@ namespace BASE_NS{
         return CheckResult{success,errors.str()};
     }
 
-    dataAnalyser::SignalResult dataAnalyser::GetDecaymentSignal() const {
+    std::shared_ptr<dataAnalyser::SignalResult> dataAnalyser::GetDecaymentSignal() const {
         auto signal1=TH1F{
                 fData->invMasses["DiscordantPK"]-fData->invMasses["ConcordantPK"]};
 
@@ -93,7 +93,7 @@ namespace BASE_NS{
         auto fit1=signal1.Fit("gaus","S");
         auto fit2=signal2.Fit("gaus","S");
         //return the 2 signals
-        return {signal1,signal2,fit1,fit2};
+        return std::make_shared<SignalResult>(signal1,signal2,fit1,fit2);
     }
 
     dataAnalyser::GenerationResult dataAnalyser::GetGenerationFits() const {

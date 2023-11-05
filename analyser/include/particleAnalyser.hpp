@@ -104,7 +104,7 @@ namespace BASE_NS{
           * @return A SignalResult structure holding K* decayment signal distribution along
           * with gaussian fit results
           */
-         [[nodiscard]] SignalResult GetDecaymentSignal() const;
+         [[nodiscard]] std::shared_ptr<SignalResult> GetDecaymentSignal() const;
 
          /**
           * Fit the histograms of the data used to generate decayment events and particles

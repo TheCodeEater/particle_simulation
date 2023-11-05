@@ -24,7 +24,8 @@ set(PROGRAM_MODULES_PARTICLES_SRC
 
 set(PROGRAM_MODULES_ANALYSER_H
         ${ANALYSER_HEADERS}/particleAnalyser.hpp
-        ${ANALYSER_HEADERS}/analyserGraphics.hpp)
+        ${ANALYSER_HEADERS}/analyserGraphics.hpp
+        ${ANALUSER_HEADERS}/particleStorageStrucures.hpp)
 
 set(PROGRAM_MODULES_ANALYSER_SRC
         ${ANALYSER_SOURCES}/analyser.cpp
