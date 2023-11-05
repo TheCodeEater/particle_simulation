@@ -28,10 +28,10 @@ namespace BASE_NS{
      */
     class AnalyzerGraphics{
         using CanvasPtr=std::unique_ptr<TCanvas>;
-        using screenDataStorage=std::unordered_map<std::string,TList>;
+        using screenDataStorage=std::unordered_map<Menu,std::unique_ptr<TList>>;
 
     public:
-        explicit AnalyzerGraphics(std::shared_ptr<dataAnalyser> analyser);
+        explicit AnalyzerGraphics(dataAnalyser& analyser);
 
         /**
          * Change currently active screen
@@ -40,8 +40,8 @@ namespace BASE_NS{
         void ShowScreen(Menu screen);
 
     private:
-        std::shared_ptr<dataAnalyser> fDataAnalyser; /// Pointer to the object handling analysed data
-        std::shared_ptr<SignalResult> fSignalResult;
+        //std::shared_ptr<dataAnalyser> fDataAnalyser; /// Pointer to the object handling analysed data
+        //std::shared_ptr<SignalResult> fSignalResult;
 
         Menu fActiveScreen; /// Currently active screen
         CanvasPtr fCanvas; /// Canvas used to show data
