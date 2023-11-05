@@ -83,17 +83,17 @@ namespace BASE_NS{
     }
 
     dataAnalyser::SignalResult dataAnalyser::GetDecaymentSignal() const {
-        auto signal1=std::make_unique<TH1F>(
-                fData->invMasses["DiscordantPK"]-fData->invMasses["ConcordantPK"]);
+        auto signal1=TH1F{
+                fData->invMasses["DiscordantPK"]-fData->invMasses["ConcordantPK"]};
 
-        auto signal2=std::make_unique<TH1F>(
-                fData->invMasses["AllDiscordant"]-fData->invMasses["AllConcordant"]);
+        auto signal2=TH1F{
+                fData->invMasses["AllDiscordant"]-fData->invMasses["AllConcordant"]};
 
         //run fit
-        auto fit1=signal1->Fit("gaus","S");
-        auto fit2=signal2->Fit("gaus","S");
+        auto fit1=signal1.Fit("gaus","S");
+        auto fit2=signal2.Fit("gaus","S");
         //return the 2 signals
-        return {std::move(signal1),std::move(signal2),fit1,fit2};
+        return {signal1,signal2,fit1,fit2};
     }
 
     dataAnalyser::GenerationResult dataAnalyser::GetGenerationFits() const {
