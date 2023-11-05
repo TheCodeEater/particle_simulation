@@ -10,6 +10,8 @@
 #include "TCanvas.h"
 #include "TList.h"
 
+#include "particleAnalyser.hpp"
+
 namespace BASE_NS{
     /**
      * This enums defines the possible scenes that can be displayed
@@ -29,7 +31,7 @@ namespace BASE_NS{
         using screenDataStorage=std::unordered_map<std::string,TList>;
 
     public:
-        AnalyzerGraphics();
+        explicit AnalyzerGraphics(std::shared_ptr<dataAnalyser> analyser);
 
         /**
          * Change currently active screen
@@ -38,6 +40,8 @@ namespace BASE_NS{
         void ShowScreen(Menu screen);
 
     private:
+        std::shared_ptr<dataAnalyser> fDataAnalyser; /// Pointer to the object handling analysed data
+
         Menu fActiveScreen; /// Currently active screen
         CanvasPtr fCanvas; /// Canvas used to show data
 

@@ -3,11 +3,13 @@
 //
 #include "analyserGraphics.hpp"
 
-BASE_NS::AnalyzerGraphics::AnalyzerGraphics():
-    fActiveScreen{Menu::mainMenu},
-    fCanvas{new TCanvas()} {
+BASE_NS::AnalyzerGraphics::AnalyzerGraphics(std::shared_ptr<dataAnalyser> analyser):
+    fDataAnalyser{std::move(analyser)}, //shared pointer already copied. Just move
+    fActiveScreen{Menu::mainMenu}, //set main menu
+    fCanvas{new TCanvas()} //create empty canvas
+        {
 
-}
+        }
 
 void BASE_NS::AnalyzerGraphics::ShowScreen(BASE_NS::Menu screen) {
     fActiveScreen=screen; //set the currenlty active screen
