@@ -46,8 +46,10 @@ namespace BASE_NS{
 
     [[maybe_unused]] dataAnalyser::CheckResult dataAnalyser::CheckGeneration(double confidenceLevel) {
         //check type proportion generation
-
-        //check angular proportions
+        //result variable data
+        bool success{};
+        std::stringstream errors{};
+        //check histograms generated according to PDF
         {
             //Get angular data
             auto & azimuthal{fData->AzimuthAngles};
@@ -62,9 +64,6 @@ namespace BASE_NS{
             fits.insert({"Polar",polar.Fit("pol0","S")});
             fits.insert({"Pulse",pulse.Fit("expo","S")});
 
-            //create result structure
-            bool success{};
-            std::stringstream errors{};
             //check fit
             for(auto const& node : fits){
                 auto& fitPtr{node.second};
@@ -74,9 +73,17 @@ namespace BASE_NS{
                     errors<<node.first<<" fit failed. Observed probability: "<<fitPtr->Prob()<<"\n";
                 }
             }
-            //create data structure
-            return CheckResult{success,errors.str()};
         }
+        //check particle types histogram
+        {
+            auto& genHist{fData->GeneratedTypes};
+            //for each bin
+            for(int i{};i<genHist.GetNbinsX();++i){
+                //compare with required generation
+            }
+        }
+        //create data structure and return
+        return CheckResult{success,errors.str()};
     }
 
     dataAnalyser::Result dataAnalyser::GetDecaymentSignal() const {
