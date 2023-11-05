@@ -34,12 +34,12 @@ namespace BASE_NS{
             };
     }
 
-    dataAnalyser::dataContainer &dataAnalyser::GetData() {
-        return *fData;
+    dataAnalyser::dataContainerPtr dataAnalyser::GetData() {
+        return fData;
     }
 
-    const dataAnalyser::dataContainer &dataAnalyser::GetData() const {
-        return *fData;
+    dataAnalyser::dataContainerConstPtr dataAnalyser::GetData() const {
+        return fData;
     }
 
     [[maybe_unused]] CheckResult dataAnalyser::CheckGeneration(double confidenceLevel) {

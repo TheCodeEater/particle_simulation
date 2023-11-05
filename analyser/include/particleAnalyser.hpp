@@ -17,11 +17,17 @@
 
 namespace BASE_NS{
     /**
-     * This class encapsulates the data analysis for the K* decayment trace
+     * This class encapsulates the data analysis for the K* decayment trace.
+     * The class acts as a mere analysis running tool: results are NOT stored internally. The user is required
+     * to handle their storage
+     *
+     * The class provides shared ownership about source data, to allow further
+     * manipulation before running the true analysis
      */
     class dataAnalyser{
         using dataContainer=particleStorage;
         using dataContainerPtr=std::shared_ptr<dataContainer>;
+        using dataContainerConstPtr=std::shared_ptr<const dataContainer>;
         using GenerationResult=std::unordered_map<std::string,TFitResultPtr>;
 
     public:
@@ -33,11 +39,11 @@ namespace BASE_NS{
          /**
           * Get a const reference to underlying dataContainer structure
           */
-          [[nodiscard]] dataContainer& GetData();
+          [[nodiscard]] dataContainerPtr GetData();
         /**
-        * Get a const reference to underlying dataContainer structure
+        * Get a const pointer to underlying dataContainer structure
         */
-        [[nodiscard]] dataContainer const& GetData() const;
+        [[nodiscard]] dataContainerConstPtr GetData() const;
 
          //analysers
          /**
@@ -59,8 +65,11 @@ namespace BASE_NS{
 
          /**
           * Run the decayment signal analysis
-          * @return A SignalResult structure holding K* decayment signal distribution along
+          * @return A shared pointer to SignalResult structure holding K* decayment signal distribution along
           * with gaussian fit results
+          *
+          * Note: the returned structure is generated ex-novo at each invocation. Nothing is stored internally
+          * about this analysis result
           */
          [[nodiscard]] std::shared_ptr<SignalResult> GetDecaymentSignal() const;
 
@@ -72,7 +81,6 @@ namespace BASE_NS{
 
     private:
          dataContainerPtr fData; ///Underlying data container
-         std::shared_ptr<SignalResult> fSignal; /// Signal analysis result
     };
 }
 
