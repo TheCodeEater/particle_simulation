@@ -7,8 +7,9 @@
 
 #include <memory>
 #include <unordered_map>
+
 #include "TCanvas.h"
-#include "TList.h"
+#include "TPad.h"
 
 #include "particleAnalyser.hpp"
 
@@ -25,7 +26,10 @@ namespace BASE_NS{
     private:
         std::shared_ptr<particleStorage> fInputData; /// Pointer to the object handling analysed data
         std::shared_ptr<SignalResult> fSignalResult;
+
         CanvasPtr fCanvas; /// Canvas used to show data
+        //screens
+        std::unordered_map<std::string,TPad> fViews;
     };
 }
 

@@ -9,7 +9,8 @@ namespace BASE_NS{
     AnalyzerGraphics::AnalyzerGraphics(dataAnalyser& analyser):
             fInputData{analyser.GetData()}, //get input data
             fSignalResult{analyser.GetDecaymentSignal()}, //run fit
-            fCanvas{new TCanvas()}//create empty canvas
+            fCanvas{new TCanvas()},//create empty canvas
+            fViews{}
     {
 
 
