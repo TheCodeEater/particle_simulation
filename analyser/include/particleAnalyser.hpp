@@ -10,7 +10,10 @@
 #include "TH1.h"
 #include <string>
 #include <unordered_map>
+
 #include "particleStorage.hpp"
+#include "dataStructures/genCheckResult.hpp"
+#include "dataStructures/signalFitResult.hpp"
 
 namespace BASE_NS{
     /**

@@ -31,7 +31,8 @@ set(PROGRAM_MODULES_ANALYSER_H
 set(PROGRAM_MODULES_ANALYSER_SRC
         ${ANALYSER_SOURCES}/analyser.cpp
         ${ANALYSER_SOURCES}/particleAnalyser.cpp
-        ${ANALYSER_SOURCES}/analyserGraphics.cpp)
+        ${ANALYSER_SOURCES}/analyserGraphics.cpp
+        ${ANALYSER_SOURCES}/dataStructures/genCheckResult.cpp)
 
 set(PROGRAM_MODULES_STORAGE_SRC
         ${ANALYSER_SOURCES}/particleStorage.cpp)
