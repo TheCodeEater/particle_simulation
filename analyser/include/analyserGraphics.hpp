@@ -6,7 +6,9 @@
 #define ROOT_TEMPLATE_PROJECT_ANALYSERGRAPHICS_HPP
 
 #include <memory>
+#include <unordered_map>
 #include "TCanvas.h"
+#include "TList.h"
 
 namespace BASE_NS{
     /**
@@ -24,6 +26,7 @@ namespace BASE_NS{
      */
     class AnalyzerGraphics{
         using CanvasPtr=std::unique_ptr<TCanvas>;
+        using screenDataStorage=std::unordered_map<std::string,TList>;
 
     public:
         AnalyzerGraphics();
@@ -37,6 +40,8 @@ namespace BASE_NS{
     private:
         Menu fActiveScreen; /// Currently active screen
         CanvasPtr fCanvas; /// Canvas used to show data
+
+        screenDataStorage fGraphicData; /// store graphical objects for each screen
     };
 }
 
