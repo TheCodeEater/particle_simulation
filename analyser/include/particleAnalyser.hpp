@@ -46,10 +46,13 @@ namespace BASE_NS{
          * Struct to hold the result of the required histogram difference
          */
         struct Result{
-            using Ptr=std::unique_ptr<TH1F>;
+            using HPtr=std::unique_ptr<TH1F>;
+            using FitPtr=TFitResultPtr;
 
-            Ptr diff1; /// Difference between the 2 kaon-pion histograms
-            Ptr diff2; /// Difference between the concordant and discordant charge histogram
+            HPtr signal1; /// Difference between the 2 kaon-pion histograms
+            HPtr signal2; /// Difference between the concordant and discordant charge histogram
+            FitPtr fitSignal1; /// Fit result ptr for signal 1
+            FitPtr fitSignal2; /// Fit result ptr for signal 2
         };
 
     public:
