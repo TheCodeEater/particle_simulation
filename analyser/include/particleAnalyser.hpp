@@ -20,38 +20,6 @@ namespace BASE_NS{
         using dataContainer=particleStorage;
         using dataContainerPtr=std::shared_ptr<dataContainer>;
         using GenerationResult=std::unordered_map<std::string,TFitResultPtr>;
-        /**
- * Represent the result of distribution consistency check
- */
-        class CheckResult{
-
-        public:
-            CheckResult(bool success, std::string error);
-            /**
-             * Convert to bool
-             * @return fSuccessful
-             */
-            explicit operator bool() const;
-
-            /**
-             * Get error string
-             * @return error string
-             */
-            [[nodiscard]] std::string const& GetError() const;
-        private:
-            bool fSuccessful{}; /// wether the check was successful
-            std::string fError{}; /// Arose errors
-        };
-        /**
-         * Struct to hold the fit result for the generation data histograms
-         */
-        /*struct GenerationResult{
-            using FitPtr=TFitResultPtr;
-
-            FitPtr azimuth{}; /// Azimuth angle fit
-            FitPtr polar{}; /// Polar angle fit
-            FitPtr pulse{}; /// Pulse fit
-        };*/
 
     public:
         /**
