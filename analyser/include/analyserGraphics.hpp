@@ -29,7 +29,7 @@ namespace BASE_NS{
 
         CanvasPtr fCanvas; /// Canvas used to show data
         //screens
-        std::unordered_map<std::string,TPad> fViews;
+        std::unordered_map<std::string,std::unique_ptr<TPad>> fViews;
     };
 }
 
