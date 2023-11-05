@@ -41,6 +41,7 @@ namespace BASE_NS{
 
     private:
         std::shared_ptr<dataAnalyser> fDataAnalyser; /// Pointer to the object handling analysed data
+        std::shared_ptr<SignalResult> fSignalResult;
 
         Menu fActiveScreen; /// Currently active screen
         CanvasPtr fCanvas; /// Canvas used to show data
