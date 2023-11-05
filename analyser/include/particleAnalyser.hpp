@@ -101,7 +101,8 @@ namespace BASE_NS{
           * @param The confidence level
           * @return A structure holding the result, both generally and specific error codes
           */
-         // MOVE TO TESTS[[maybe_unused]] CheckResult CheckGeneration(double confidenceLevel);
+         // MOVE TO TESTS
+         [[maybe_unused]] CheckResult CheckGeneration(double confidenceLevel);
 
          /**
           * Run the decayment signal analysis
