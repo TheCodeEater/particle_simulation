@@ -16,24 +16,20 @@
 namespace BASE_NS{
 
     dataAnalyser::dataAnalyser(const std::string &path):
-        //open the root file in read only mode
-        fFile{path.c_str(),"READ"},
         //create empty TList
         fData{}{
+        //open the file in read only mode
+        TFile data_source{path.c_str(),"READ"};
 
         //check that the file was opened correctly
-        if(fFile.IsOpen()){
+        if(data_source.IsOpen()){
             throw std::runtime_error{"Cannot open root file. Path: "+path};
         }
 
         //load data
         fData=std::unique_ptr<dataContainer> (
-                dynamic_cast<dataContainer*>(fFile.Get("particles_decay_data"))
+                dynamic_cast<dataContainer*>(data_source.Get("particles_decay_data"))
                 );
-    }
-
-    TFile const &dataAnalyser::GetFile() const {
-        return fFile;
     }
 
     dataAnalyser::dataContainer &dataAnalyser::GetData() {
