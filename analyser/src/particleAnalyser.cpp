@@ -7,6 +7,8 @@
 #include "Definitions.hpp"
 
 #include "particleStorage.hpp"
+#include "dataStructures/signalFitResult.hpp"
+#include "dataStructures/genCheckResult.hpp"
 
 #include "TFitResult.h"
 #include "TFitResultPtr.h"
@@ -40,7 +42,7 @@ namespace BASE_NS{
         return *fData;
     }
 
-    [[maybe_unused]] dataAnalyser::CheckResult dataAnalyser::CheckGeneration(double confidenceLevel) {
+    [[maybe_unused]] CheckResult dataAnalyser::CheckGeneration(double confidenceLevel) {
         //check type proportion generation
         //result variable data
         bool success{};
@@ -82,7 +84,7 @@ namespace BASE_NS{
         return CheckResult{success,errors.str()};
     }
 
-    std::shared_ptr<dataAnalyser::SignalResult> dataAnalyser::GetDecaymentSignal() const {
+    std::shared_ptr<SignalResult> dataAnalyser::GetDecaymentSignal() const {
         auto signal1=TH1F{
                 fData->invMasses["DiscordantPK"]-fData->invMasses["ConcordantPK"]};
 
@@ -113,17 +115,4 @@ namespace BASE_NS{
         return fits;
     }
 
-    dataAnalyser::CheckResult::operator bool() const {
-        return fSuccessful;
-    }
-
-    std::string const &dataAnalyser::CheckResult::GetError() const {
-        return fError;
-    }
-
-    dataAnalyser::CheckResult::CheckResult(bool success, std::string error):
-        fSuccessful{success},
-        fError{std::move(error)}{
-
-    }
 }
