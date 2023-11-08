@@ -14,6 +14,9 @@
 #include "../include/particles/Particle.hpp"
 #include "Definitions.hpp"
 
+#include "generator/ProportionGenerator.hpp"
+#include "particles/ParticleType.hpp"
+
 int main(int argc, char** argv) {
     //object ownership setup
     //#ifdef PROGRAM_USE_LOCAL_OWNERSHIP
@@ -56,8 +59,22 @@ int main(int argc, char** argv) {
     double P{};
     double x{};
     int name{};
+
+    using Pt = BASE_NS::ParticleType;
+    using PtType = Pt::Type;
+
+    proportionGenerator<PtType> gen{std::map<PtType,float>{
+        {PtType::P_Pion,0.4},
+        {PtType::N_Pion,0.4},
+        {PtType::P_Kaon,0.05},
+        {PtType::N_Kaon,0.05},
+        {PtType::P_Prot,0.045},
+        {PtType::N_Prot,0.045},
+        {PtType::R_Kaon,0.01}
+
+    }};
     //10^5 eventi
-    for(int j = 0; j < 4e4; ++j){
+    for(int j = 0; j < 1e5; ++j){
         //genero le 100 particelle
         for(int i = 0; i < 1E2; ++i) {
             phi = gRandom->Uniform(0, 2 * TMath::Pi());
@@ -67,7 +84,7 @@ int main(int argc, char** argv) {
             P = gRandom->Exp(1);
             Impulse->Fill(P);
             //std::cout << "event: " << j << " particle: " << i << "\n";
-            x = gRandom->Uniform(0, 1);
+            /*x = gRandom->Uniform(0, 1);
             if (x < 0.4) {
                 name = 0;
                 ParticlesType->Fill(0);
@@ -89,7 +106,10 @@ int main(int argc, char** argv) {
             } else {
                 name = 6;
                 ParticlesType->Fill(6);
-            }
+            }*/
+            name=gen();
+            ParticlesType->Fill(name);
+
 
             if(name == 6){
                 double y = gRandom->Rndm();
@@ -119,9 +139,9 @@ int main(int argc, char** argv) {
                 Energies->Fill(p.GetEnergy());
             }
         }
-        EventParticles.insert(EventParticles.end(),
-                              std::make_move_iterator(DecayProducts.begin()),
-                              std::make_move_iterator(DecayProducts.end()));
+        //EventParticles.insert(EventParticles.end(),
+         //                     std::make_move_iterator(DecayProducts.begin()),
+         //                     std::make_move_iterator(DecayProducts.end()));
         //loop scemo
         /*for(int i = 0; i < EventParticles.size(); ++i){
             auto p = EventParticles[i];

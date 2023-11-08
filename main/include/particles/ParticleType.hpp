@@ -13,9 +13,9 @@ namespace BASE_NS{
 
 
     class ParticleType{
-        enum Type{P_Pion, N_Pion, P_Kaon, N_Kaon, P_Prot, N_Prot, R_Kaon};
 
     public:
+        enum Type{P_Pion, N_Pion, P_Kaon, N_Kaon, P_Prot, N_Prot, R_Kaon};
 
         ParticleType(int name, double mass, int charge);
         virtual ~ParticleType()=default;

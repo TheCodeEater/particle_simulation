@@ -33,7 +33,7 @@ class proportionGenerator {
      * @param sourceData Map associating values to be generated to relevant probability values
      */
 public:
-    using probType=short;/// type to represent probability
+    using probType=float;/// type to represent probability
 
     explicit proportionGenerator(std::map<GEN,probType> sourceData):
         fNodes{}{
@@ -44,7 +44,7 @@ public:
             return acc+node.second; //sum probabilities
         });
 
-        if(totalProb!=100){
+        if(std::abs(totalProb-100)<0.01){ //FP epsilon
             throw std::runtime_error{"Sum of probability is not 100!"};
         }
 
@@ -63,14 +63,15 @@ public:
      */
     GEN operator()(){
         //genrate value, cast to int
-        probType y{static_cast<probType>(gRandom->Rndm()*100)};
+        probType y{static_cast<probType>(gRandom->Rndm())};
 
         for(auto const& node:fNodes){
             //if the value generated is less than, i am generated
-            if(node.fCumulativeProbability<=y){
+            if(y<node.fCumulativeProbability){
                 return node.fValue; //end cycle
             }
         }
+        throw std::runtime_error{"Cannot generate!"};
     }
 
 private:
