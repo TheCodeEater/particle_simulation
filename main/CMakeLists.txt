@@ -11,9 +11,15 @@ add_executable(${PROGRAM_TARGET_MAIN}
 
 target_sources( ${PROGRAM_TARGET_MAIN} PRIVATE
         ${PROGRAM_MODULES_MAIN_SRC}
-        ${PROGRAM_MODULES_PARTICLES_SRC})
+        ${PROGRAM_MODULES_PARTICLES_SRC}
+        ${PROGRAM_MODULES_STORAGE_SRC})
 
-target_include_directories(${PROGRAM_TARGET_MAIN} PRIVATE ${PROGRAM_HEADERS})
+target_include_directories(${PROGRAM_TARGET_MAIN}
+        PRIVATE
+        ${PROGRAM_HEADERS}
+        ${ANALYSER_HEADERS}
+        )
+
 target_link_libraries(${PROGRAM_TARGET_MAIN} ${PROGRAM_LIBRARIES_DEFAULT})
 
 #Generate root dictionary

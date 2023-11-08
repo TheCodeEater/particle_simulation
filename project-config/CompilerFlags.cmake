@@ -12,7 +12,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 if(CONFIG_AUTODETECT_ROOT_STD)
 message(FATAL_ERROR "Root c++ std autodetection scripts does not exist!")
 else()
-    set(CMAKE_CXX_STANDARD 23)
+    set(CMAKE_CXX_STANDARD 17)
 endif()
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
