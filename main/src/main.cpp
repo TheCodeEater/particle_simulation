@@ -16,11 +16,11 @@
 
 int main(int argc, char** argv) {
     //object ownership setup
-    #ifdef PROGRAM_USE_LOCAL_OWNERSHIP
-        TDirectory::AddDirectory(kFALSE);
-    #endif
+    //#ifdef PROGRAM_USE_LOCAL_OWNERSHIP
+     //   TDirectory::AddDirectory(kFALSE);
+    //#endif
     //create root application
-    APP_TYPE app(APP_NAME, &argc, argv);
+    //APP_TYPE app(APP_NAME, &argc, argv);
 
     BASE_NS::Particle::AddParticleType(0, 0.13957, 1);
     BASE_NS::Particle::AddParticleType(1, 0.13957, -1);
@@ -57,9 +57,9 @@ int main(int argc, char** argv) {
     double x{};
     int name{};
     //10^5 eventi
-    for(int j = 0; j < 20; ++j){
+    for(int j = 0; j < 4e4; ++j){
         //genero le 100 particelle
-        for(int i = 0; i < 1E2; ++i){
+        for(int i = 0; i < 1E2; ++i) {
             phi = gRandom->Uniform(0, 2 * TMath::Pi());
             AzimuthalAngles->Fill(phi);
             theta = gRandom->Uniform(0, TMath::Pi());
@@ -67,7 +67,7 @@ int main(int argc, char** argv) {
             P = gRandom->Exp(1);
             Impulse->Fill(P);
             //std::cout << "event: " << j << " particle: " << i << "\n";
-            x=gRandom->Rndm();
+            x = gRandom->Uniform(0, 1);
             if (x < 0.4) {
                 name = 0;
                 ParticlesType->Fill(0);
@@ -86,8 +86,10 @@ int main(int argc, char** argv) {
             } else if (x < 0.99) {
                 name = 5;
                 ParticlesType->Fill(5);
-            } else { name = 6;
-                ParticlesType->Fill(6);}
+            } else {
+                name = 6;
+                ParticlesType->Fill(6);
+            }
 
             if(name == 6){
                 double y = gRandom->Rndm();
@@ -107,20 +109,21 @@ int main(int argc, char** argv) {
                 if(pRes.Decay2body(p1, p2) != 0){
                     throw std::runtime_error("aaaaaaaaaaaaaaaah");
                 }
-                DecayProducts.emplace_back(p1);
-                DecayProducts.emplace_back(p2);
+                DecayProducts.push_back(p1);
+                DecayProducts.push_back(p2);
             } else {
                 BASE_NS::Particle p(name, P*TMath::Sin(theta)*TMath::Cos(phi), P*TMath::Sin(theta)*TMath::Sin(phi), P*TMath::Cos(theta));
-                EventParticles.emplace_back(p);
+                EventParticles.push_back(p);
                 const double TransImp = std::sqrt(std::pow(p.GetPx(), 2) + std::pow(p.GetPy(), 2));
                 TransverseImpulse->Fill(TransImp);
                 Energies->Fill(p.GetEnergy());
             }
         }
-
-        EventParticles.insert(EventParticles.end(), DecayProducts.begin(), DecayProducts.end());
+        EventParticles.insert(EventParticles.end(),
+                              std::make_move_iterator(DecayProducts.begin()),
+                              std::make_move_iterator(DecayProducts.end()));
         //loop scemo
-        for(int i = 0; i < EventParticles.size(); ++i){
+        /*for(int i = 0; i < EventParticles.size(); ++i){
             auto p = EventParticles[i];
             for( int j = i; j < EventParticles.size(); ++j){
                 InvariantMasses->Fill(p.InvMass(EventParticles[j])); //MI tra tutti
@@ -147,7 +150,7 @@ int main(int argc, char** argv) {
         for(int i = 0; i < DecayProducts.size(); i+=2){
             auto p = DecayProducts[i];
             InvariantMassesDprod->Fill(p.InvMass(DecayProducts[i+1]));
-        }
+        }*/
     }
     auto *file = new TFile("Particle.root", "RECREATE");
     file->Write();
