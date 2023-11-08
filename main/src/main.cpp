@@ -16,11 +16,11 @@
 
 int main(int argc, char** argv) {
     //object ownership setup
-  /*  #ifdef PROGRAM_USE_LOCAL_OWNERSHIP
+    #ifdef PROGRAM_USE_LOCAL_OWNERSHIP
         TDirectory::AddDirectory(kFALSE);
     #endif
     //create root application
-    APP_TYPE app(APP_NAME, &argc, argv);*/
+    APP_TYPE app(APP_NAME, &argc, argv);
 
     BASE_NS::Particle::AddParticleType(0, 0.13957, 1);
     BASE_NS::Particle::AddParticleType(1, 0.13957, -1);
