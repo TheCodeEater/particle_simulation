@@ -5,8 +5,60 @@
 #ifndef ROOT_TEMPLATE_PROJECT_PROPORTIONGENERATOR_HPP
 #define ROOT_TEMPLATE_PROJECT_PROPORTIONGENERATOR_HPP
 
+#include "particles/ParticleType.hpp"
+#include <map>
+#include <vector>
 
+#include <numeric>
+
+/**
+ * This class generates, based on definite proportions, the elements it is instructed to
+ * @tparam GEN The type of the object to be generated
+ *
+ * NOTE: probability is given in percentile in integer values (to avoid FP problems)
+ */
+ template<typename GEN>
 class proportionGenerator {
+    /**
+     * Struct representing a node of generation, holding values with cumulative weight
+     */
+    struct node{
+        GEN fValue{}; /// Value
+        float fCumulativeProbability{}; /// Relevant cumulative probability
+    };
+    /**
+     * Construct the generator
+     * @param sourceData Map associating values to be generated to relevant probability values
+     */
+public:
+    using probType=short;/// type to represent probability
+
+    explicit proportionGenerator(std::map<GEN,probType> sourceData):
+        fNodes{}{
+        //check probability
+        auto totalProb=std::accumulate(sourceData.begin(),
+                        sourceData.end(),
+                        0,[](auto const& acc,auto const& node){
+            return acc+node.second; //sum probabilities
+        });
+
+        if(totalProb!=100){
+            throw std::runtime_error{"Sum of probability is not 100!"};
+        }
+
+        //allocate space for the nodes
+        fNodes.reserve(sourceData.size());
+        //fill f nodes
+        probType accumulator{0}; //hold accumulate probability
+        for(auto const& node: sourceData){
+            accumulator+=node.second; //accumulate probabilities
+            fNodes.push_back({node.first,accumulator});
+        }
+    }
+
+private:
+    std::vector<node> fNodes;
+
 
 };
 
