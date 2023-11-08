@@ -11,6 +11,8 @@
 
 #include <numeric>
 
+#include "TRandom.h"
+
 /**
  * This class generates, based on definite proportions, the elements it is instructed to
  * @tparam GEN The type of the object to be generated
@@ -53,6 +55,21 @@ public:
         for(auto const& node: sourceData){
             accumulator+=node.second; //accumulate probabilities
             fNodes.push_back({node.first,accumulator});
+        }
+    }
+    /**
+     * Generate function
+     * @return A randomly generated value, based on the input data
+     */
+    GEN operator()(){
+        //genrate value, cast to int
+        probType y{static_cast<probType>(gRandom->Rndm()*100)};
+
+        for(auto const& node:fNodes){
+            //if the value generated is less than, i am generated
+            if(node.fCumulativeProbability<=y){
+                return node.fValue; //end cycle
+            }
         }
     }
 
