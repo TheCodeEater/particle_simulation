@@ -15,21 +15,21 @@ namespace BASE_NS{
             fViews["generationHistograms"]=std::make_unique<TPad>(
                 "genHist",
                 "Histograms of generation distribution",
-                1,1,0,0);
+                0,0,1,1);
             fViews["kinematicHistograms"]=std::make_unique<TPad>(
                     "kineticHist",
                     "Histograms of particle kinetic data",
-                    1,1,0,0
+                    0,0,1,1
                     );
             fViews["invariantMassesHistograms"]=std::make_unique<TPad>(
                     "invMassHist",
                     "Histograms of invariant masses",
-                    1,1,0,0
+                    0,0,1,1
                     );
             fViews["signalHistograms"]=std::make_unique<TPad>(
                     "sigHist",
                     "Histograms of K* signals",
-                    1,1,0,0
+                    0,0,1,1
                     );
     }
 }
