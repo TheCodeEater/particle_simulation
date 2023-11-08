@@ -6,10 +6,10 @@
 
 namespace BASE_NS{
 
-    ParticleType::ParticleType(const std::string &name, double mass, int charge):
-        fName{name},
-        fMass{mass},
-        fCharge{charge}{}
+    ParticleType::ParticleType(int name, double mass, int charge):
+        fName((Type)name),
+        fMass(mass),
+        fCharge(charge) {}
 
     void ParticleType::Print() const {
         std::cout<<"Name: "<<fName<<'\n'
@@ -17,7 +17,7 @@ namespace BASE_NS{
             <<"Charge: "<<fCharge<<'\n';
     }
 
-    const std::string &ParticleType::GetName() const {
+    int ParticleType::GetName() const {
         return fName;
     }
 

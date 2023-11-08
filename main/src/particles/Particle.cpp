@@ -6,49 +6,44 @@
 #include <algorithm>
 #include <iostream>
 #include <numeric>
+#include <cmath>
+#include <cstdlib>
 
 namespace BASE_NS{
 
-    Particle::Particle(const std::string &name, double Px, double Py, double Pz):
+    Particle::Particle(const int name, double Px, double Py, double Pz):
         fParticleName{name},
         fPx{Px},
         fPy{Py},
         fPz{Pz}{
         //check that the requested particle name exist
-        if(fParticleType.find(name)==fParticleType.end()){
-            throw std::out_of_range{"Non c'e', perche' non c'e'?"};
-        }
+        fParticleType.at(name);
     }
 
-    const std::string &Particle::GetParticleName() const {
+    int Particle::GetParticleName() const {
         return fParticleName;
     }
 
-    void Particle::AddParticleType(const std::string &name, double mass, int charge, double width) {
+    void Particle::AddParticleType(int name, double mass, int charge, double width) {
         if(fParticleType.size()==fMaxNumParticleType){
             throw std::runtime_error{"Maximum particle number reached!"};
         }
-        if(fParticleType.find(name)==fParticleType.end()){ //se non c'è, inserisci
+        //fParticleType.at(name); //se non c'è, inserisci
             if(width==0){ //may cause troubles with FP numbers
                 fParticleType[name]=std::make_unique<ParticleType>(name,mass,charge);
             }else{
                 fParticleType[name]=std::make_unique<ResonanceType>(name,mass,charge,width);
             }
-        }else{
-            throw std::runtime_error{"A particle with the same name already exists!"};
-        }
     }
 
-    void Particle::SetParticleType(const std::string &name) {
-        if(fParticleType.find(name)==fParticleType.end()){
-            throw std::out_of_range{"Non c'e', perche' non c'e'?"};
-        }
+    void Particle::SetParticleType(int name) {
+        fParticleType.at(name);
         fParticleName=name;
     }
 
     void Particle::PrintParticleList() {
         std::for_each(fParticleType.cbegin(),fParticleType.cend(),[](auto const& node){
-            node.second->Print();
+            node->Print();
         });
     }
 
@@ -100,10 +95,9 @@ namespace BASE_NS{
     //initialise map
     Particle::pTypeStorage Particle::fParticleType{};
 
-
-    int Particle::Decay2body(Particle &dau1,Particle &dau2) const {
+    int Particle::Decay2body(Particle &dau1, Particle &dau2) const {
         if(GetMass() == 0.0){
-            printf("Decayment cannot be preformed if mass is zero\n");
+            std::cout << "there is no decay if mass is zero";
             return 1;
         }
 
@@ -111,25 +105,22 @@ namespace BASE_NS{
         double massDau1 = dau1.GetMass();
         double massDau2 = dau2.GetMass();
 
-            // gaussian random numbers
+        double x1, x2, w, y1;
 
-            float x1, x2, w, y1, y2;
+        double invnum = 1./RAND_MAX;
+        do {
+            x1 = 2.0 * rand()*invnum - 1.0;
+            x2 = 2.0 * rand()*invnum - 1.0;
+            w = x1 * x1 + x2 * x2;
+        } while ( w >= 1.0 );
 
-            double invnum = 1./RAND_MAX;
-            do {
-                x1 = 2.0 * rand()*invnum - 1.0;
-                x2 = 2.0 * rand()*invnum - 1.0;
-                w = x1 * x1 + x2 * x2;
-            } while ( w >= 1.0 );
+        w = sqrt( (-2.0 * log( w ) ) / w );
+        y1 = x1 * w;
 
-            w = sqrt( (-2.0 * log( w ) ) / w );
-            y1 = x1 * w;
-            y2 = x2 * w;
-
-            massMot += fParticleType[fParticleName]->GetWidth() * y1;
+        massMot += fParticleType[fParticleName]->GetWidth() * y1;
 
         if(massMot < massDau1 + massDau2){
-            printf("Decayment cannot be preformed because mass is too low in this channel\n");
+            std::cout <<"Decayment cannot be preformed because mass is too low in this channel\n";
             return 2;
         }
 
@@ -153,9 +144,8 @@ namespace BASE_NS{
 
         return 0;
     }
-    void Particle::Boost(double bx, double by, double bz)
-    {
 
+    void Particle::Boost(double bx, double by, double bz) {
         double energy = GetEnergy();
 
         //Boost this Lorentz vector
@@ -168,4 +158,10 @@ namespace BASE_NS{
         fPy += gamma2*bp*by + gamma*by*energy;
         fPz += gamma2*bp*bz + gamma*bz*energy;
     }
+
+    int Particle::GetCharge() const {
+        return fParticleType[fParticleName]->GetCharge();
+    }
+
+    //ClassImp(Particle);
 }
