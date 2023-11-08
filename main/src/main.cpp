@@ -133,8 +133,8 @@ int main(int argc, char** argv) {
         //loop scemo
         for(int i = 0; i < EventParticles.size(); ++i){
             auto const& p = EventParticles[i];
-            for( int j = i; j < EventParticles.size(); ++j){
-                auto const& p2{EventParticles[j]};
+            for( int k = i; k < EventParticles.size(); ++k){
+                auto const& p2{EventParticles[k]};
 
                 InvariantMasses->Fill(p.InvMass(p2)); //MI tra tutti
                 if(p.GetCharge() * p2.GetCharge() == -1){
