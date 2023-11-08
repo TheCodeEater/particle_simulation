@@ -78,7 +78,7 @@ int main(int argc, char** argv) {
     }
     };
     //10^5 eventi
-    for(int j = 0; j < 1e5; ++j){
+    for(int j = 0; j < 1e4; ++j){
         //genero le 100 particelle
         for(int i = 0; i < 1E2; ++i) {
             //generate angles and pulse
@@ -131,8 +131,8 @@ int main(int argc, char** argv) {
             }
         }
         //loop scemo
-        /*for(int i = 0; i < EventParticles.size(); ++i){
-            auto p = EventParticles[i];
+        for(int i = 0; i < EventParticles.size(); ++i){
+            auto const& p = EventParticles[i];
             for( int j = i; j < EventParticles.size(); ++j){
                 InvariantMasses->Fill(p.InvMass(EventParticles[j])); //MI tra tutti
                 if(p.GetCharge() * EventParticles[j].GetCharge() == -1){
@@ -158,7 +158,7 @@ int main(int argc, char** argv) {
         for(int i = 0; i < DecayProducts.size(); i+=2){
             auto p = DecayProducts[i];
             InvariantMassesDprod->Fill(p.InvMass(DecayProducts[i+1]));
-        }*/
+        }
         EventParticles.clear();
     }
     auto *file = new TFile("Particle.root", "RECREATE");
