@@ -83,30 +83,7 @@ int main(int argc, char** argv) {
             PolarAngles->Fill(theta);
             P = gRandom->Exp(1);
             Impulse->Fill(P);
-            //std::cout << "event: " << j << " particle: " << i << "\n";
-            /*x = gRandom->Uniform(0, 1);
-            if (x < 0.4) {
-                name = 0;
-                ParticlesType->Fill(0);
-            } else if (x < 0.8) {
-                name = 1;
-                ParticlesType->Fill(1);
-            } else if (x < 0.85) {
-                name = 2;
-                ParticlesType->Fill(2);
-            } else if (x < 0.9) {
-                name = 3;
-                ParticlesType->Fill(3);
-            } else if (x < 0.945) {
-                name = 4;
-                ParticlesType->Fill(4);
-            } else if (x < 0.99) {
-                name = 5;
-                ParticlesType->Fill(5);
-            } else {
-                name = 6;
-                ParticlesType->Fill(6);
-            }*/
+            //generate particle
             name=gen();
             ParticlesType->Fill(name);
 
