@@ -9,6 +9,8 @@
 #include <cmath>
 #include <cstdlib>
 
+#include "TMath.h"
+
 namespace BASE_NS{
 
     Particle::Particle(const int name, double Px, double Py, double Pz):
