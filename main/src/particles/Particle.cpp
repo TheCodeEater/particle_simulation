@@ -75,11 +75,11 @@ namespace BASE_NS{
     }
 
     double Particle::InvMass(const Particle &p) const {
-        return std::sqrt(
-                std::pow(GetEnergy()+p.GetEnergy(),2)
-                - (std::pow(fPx+p.GetPx(),2)
-                    +std::pow(fPy+p.GetPy(),2)
-                    +std::pow(fPz+p.GetPz(),2))
+        return TMath::Sqrt(
+                TMath::Power(GetEnergy()+p.GetEnergy(),2)
+                - (TMath::Power(fPx+p.GetPx(),2)
+                    +TMath::Power(fPy+p.GetPy(),2)
+                    +TMath::Power(fPz+p.GetPz(),2))
                 );
     }
 
@@ -88,10 +88,10 @@ namespace BASE_NS{
     }
 
     double Particle::GetEnergy() const {
-        return std::sqrt(std::pow(GetMass(),2)+
-            std::pow(fPx,2)+
-            std::pow(fPy,2)+
-            std::pow(fPz,2));
+        return TMath::Sqrt(TMath::Power(GetMass(),2)+
+        TMath::Power(fPx,2)+
+        TMath::Power(fPy,2)+
+        TMath::Power(fPz,2));
     }
 
     //initialise map
