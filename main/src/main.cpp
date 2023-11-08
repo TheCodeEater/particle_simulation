@@ -78,7 +78,7 @@ int main(int argc, char** argv) {
     }
     };
     //10^5 eventi
-    for(int j = 0; j < 1e4; ++j){
+    for(int j = 0; j < 1e5; ++j){
         //genero le 100 particelle
         for(int i = 0; i < 1E2; ++i) {
             //generate angles and pulse
@@ -134,24 +134,26 @@ int main(int argc, char** argv) {
         for(int i = 0; i < EventParticles.size(); ++i){
             auto const& p = EventParticles[i];
             for( int j = i; j < EventParticles.size(); ++j){
-                InvariantMasses->Fill(p.InvMass(EventParticles[j])); //MI tra tutti
-                if(p.GetCharge() * EventParticles[j].GetCharge() == -1){
-                    InvariantMassesAlld->Fill(p.InvMass(EventParticles[j]));
+                auto const& p2{EventParticles[j]};
+
+                InvariantMasses->Fill(p.InvMass(p2)); //MI tra tutti
+                if(p.GetCharge() * p2.GetCharge() == -1){
+                    InvariantMassesAlld->Fill(p.InvMass(p2));
                 }
-                if(p.GetCharge() * EventParticles[j].GetCharge() == 1){
-                    InvariantMassesAllc->Fill(p.InvMass(EventParticles[j]));
+                if(p.GetCharge() * p2.GetCharge() == 1){
+                    InvariantMassesAllc->Fill(p.InvMass(p2));
                 }
-                if(p.GetParticleName() == 0 && EventParticles[j].GetParticleName() == 3){
-                    InvariantMassesPipKn->Fill(p.InvMass(EventParticles[j]));
+                if(p.GetParticleName() == 0 && p2.GetParticleName() == 3){
+                    InvariantMassesPipKn->Fill(p.InvMass(p2));
                 }
-                if(p.GetParticleName() == 1 && EventParticles[j].GetParticleName() == 2){
-                    InvariantMassesPinKp->Fill(p.InvMass(EventParticles[j]));
+                if(p.GetParticleName() == 1 && p2.GetParticleName() == 2){
+                    InvariantMassesPinKp->Fill(p.InvMass(p2));
                 }
-                if(p.GetParticleName() == 0 && EventParticles[j].GetParticleName() == 2){
-                    InvariantMassesPipKp->Fill(p.InvMass(EventParticles[j]));
+                if(p.GetParticleName() == 0 && p2.GetParticleName() == 2){
+                    InvariantMassesPipKp->Fill(p.InvMass(p2));
                 }
-                if(p.GetParticleName() == 1 && EventParticles[j].GetParticleName() == 3){
-                    InvariantMassesPinKn->Fill(p.InvMass(EventParticles[j]));
+                if(p.GetParticleName() == 1 && p2.GetParticleName() == 3){
+                    InvariantMassesPinKn->Fill(p.InvMass(p2));
                 }
             }
         }
