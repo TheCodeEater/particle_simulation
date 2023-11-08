@@ -1,0 +1,14 @@
+//
+// Created by Giacomo Errani on 08/11/23.
+//
+
+#ifndef ROOT_TEMPLATE_PROJECT_PROPORTIONGENERATOR_HPP
+#define ROOT_TEMPLATE_PROJECT_PROPORTIONGENERATOR_HPP
+
+
+class proportionGenerator {
+
+};
+
+
+#endif //ROOT_TEMPLATE_PROJECT_PROPORTIONGENERATOR_HPP

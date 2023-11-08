@@ -15,12 +15,14 @@ set(PROGRAM_MODULES_MAIN_H
 set(PROGRAM_MODULES_PARTICLES_H
         ${PROGRAM_HEADERS}/particles/Particle.hpp
         ${PROGRAM_HEADERS}/particles/ParticleType.hpp
-        ${PROGRAM_HEADERS}/particles/ResonanceType.hpp)
+        ${PROGRAM_HEADERS}/particles/ResonanceType.hpp
+        ${PROGRAM_HEADERS}/generator/ProportionGenerator.hpp)
 
 set(PROGRAM_MODULES_PARTICLES_SRC
         ${PROGRAM_SOURCES}/particles/Particle.cpp
         ${PROGRAM_SOURCES}/particles/ParticleType.cpp
-        ${PROGRAM_SOURCES}/particles/ResonanceType.cpp)
+        ${PROGRAM_SOURCES}/particles/ResonanceType.cpp
+        ${PROGRAM_SOURCES}/generator/ProportionGenerator.cpp)
 
 set(PROGRAM_MODULES_ANALYSER_H
         ${ANALYSER_HEADERS}/particleAnalyser.hpp
