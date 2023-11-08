@@ -93,7 +93,7 @@ namespace BASE_NS{
     }
 
     //initialise map
-    Particle::pTypeStorage Particle::fParticleType{};
+    Particle::pTypeStorage Particle::fParticleType(120);
 
     int Particle::Decay2body(Particle &dau1, Particle &dau2) const {
         if(GetMass() == 0.0){

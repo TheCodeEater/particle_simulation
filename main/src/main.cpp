@@ -57,7 +57,7 @@ int main(int argc, char** argv) {
     double x{};
     int name{};
     //10^5 eventi
-    for(int j = 0; j < 1E2; ++j){
+    for(int j = 0; j < 20; ++j){
         //genero le 100 particelle
         for(int i = 0; i < 1E2; ++i){
             phi = gRandom->Uniform(0, 2 * TMath::Pi());
@@ -66,7 +66,7 @@ int main(int argc, char** argv) {
             PolarAngles->Fill(theta);
             P = gRandom->Exp(1);
             Impulse->Fill(P);
-            std::cout << "event: " << j << " particle: " << i << "\n";
+            //std::cout << "event: " << j << " particle: " << i << "\n";
             x=gRandom->Rndm();
             if (x < 0.4) {
                 name = 0;
