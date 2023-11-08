@@ -17,6 +17,8 @@
 #include "generator/ProportionGenerator.hpp"
 #include "particles/ParticleType.hpp"
 
+#include <deque>
+
 int main(int argc, char** argv) {
     //object ownership setup
     //#ifdef PROGRAM_USE_LOCAL_OWNERSHIP
@@ -34,9 +36,9 @@ int main(int argc, char** argv) {
     BASE_NS::Particle::AddParticleType(6, 0.89166, 0, 0.050);
     gRandom->SetSeed();
 
-    std::vector<BASE_NS::Particle> EventParticles;
-    std::vector<BASE_NS::Particle> DecayProducts;
-    EventParticles.reserve(120);
+    std::deque<BASE_NS::Particle> EventParticles{};
+    //track decay products both in all events and separately
+    std::deque<BASE_NS::Particle> DecayProducts{};
 
     TH1F *ParticlesType = new TH1F("ParticlesType", "Particles Type", 7, 0, 7);
     TH1F *AzimuthalAngles = new TH1F("AzimuthalAngles", "Azimuthal Angles", 100, 0, 2*TMath::Pi());
@@ -110,13 +112,16 @@ int main(int argc, char** argv) {
 
                 BASE_NS::Particle p1(name1, 0, 0, 0);
                 BASE_NS::Particle p2(name2, 0, 0, 0);
-                BASE_NS::Particle pRes(6, P*TMath::Sin(theta)*TMath::Cos(phi), P*TMath::Sin(theta)*TMath::Sin(phi), P*TMath::Cos(theta));
+                BASE_NS::Particle pRes(PtType::R_Kaon, P*TMath::Sin(theta)*TMath::Cos(phi), P*TMath::Sin(theta)*TMath::Sin(phi), P*TMath::Cos(theta));
 
                 if(pRes.Decay2body(p1, p2) != 0){
                     throw std::runtime_error("aaaaaaaaaaaaaaaah");
                 }
                 DecayProducts.push_back(p1);
                 DecayProducts.push_back(p2);
+                //add separately
+                EventParticles.push_back(p1);
+                EventParticles.push_back(p2);
             } else {
                 BASE_NS::Particle p(name, P*TMath::Sin(theta)*TMath::Cos(phi), P*TMath::Sin(theta)*TMath::Sin(phi), P*TMath::Cos(theta));
                 EventParticles.push_back(p);
@@ -125,9 +130,6 @@ int main(int argc, char** argv) {
                 Energies->Fill(p.GetEnergy());
             }
         }
-        //EventParticles.insert(EventParticles.end(),
-         //                     std::make_move_iterator(DecayProducts.begin()),
-         //                     std::make_move_iterator(DecayProducts.end()));
         //loop scemo
         /*for(int i = 0; i < EventParticles.size(); ++i){
             auto p = EventParticles[i];
@@ -157,6 +159,7 @@ int main(int argc, char** argv) {
             auto p = DecayProducts[i];
             InvariantMassesDprod->Fill(p.InvMass(DecayProducts[i+1]));
         }*/
+        EventParticles.clear();
     }
     auto *file = new TFile("Particle.root", "RECREATE");
     file->Write();
