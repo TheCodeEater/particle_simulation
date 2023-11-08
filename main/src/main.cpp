@@ -54,16 +54,12 @@ int main(int argc, char** argv) {
     TH1F *InvariantMassesPinKn = new TH1F("InvariantMassesPinKn", "Invariant Masses PinKn", 100, 0, 10);
     TH1F *InvariantMassesDprod = new TH1F("InvariantMassesDprod", "Invariant Masses Dprod", 100, 0, 10);
 
-    double theta{};
-    double phi{};
-    double P{};
     double x{};
-    int name{};
 
     using Pt = BASE_NS::ParticleType;
     using PtType = Pt::Type;
 
-    proportionGenerator<PtType> gen{std::map<PtType,float>{
+    proportionGenerator<PtType> pGen{std::map<PtType,float>{
         {PtType::P_Pion,0.4},
         {PtType::N_Pion,0.4},
         {PtType::P_Kaon,0.05},
@@ -73,32 +69,45 @@ int main(int argc, char** argv) {
         {PtType::R_Kaon,0.01}
 
     }};
+
+    proportionGenerator<Pt::DecaymentType> decGen{{
+        {Pt::DecaymentType::P1,0.5},
+        {Pt::DecaymentType::P2,0.5}
+    }
+    };
     //10^5 eventi
     for(int j = 0; j < 1e5; ++j){
         //genero le 100 particelle
         for(int i = 0; i < 1E2; ++i) {
-            phi = gRandom->Uniform(0, 2 * TMath::Pi());
+            //generate angles and pulse
+            const double phi {gRandom->Uniform(0, 2 * TMath::Pi())};
+            const double theta {gRandom->Uniform(0, TMath::Pi())};
+            const double P {gRandom->Exp(1)};
+            //add values to test histograms (must be done here)
+            //because they are not tracked afterwards
             AzimuthalAngles->Fill(phi);
-            theta = gRandom->Uniform(0, TMath::Pi());
             PolarAngles->Fill(theta);
-            P = gRandom->Exp(1);
             Impulse->Fill(P);
+
             //generate particle
-            name=gen();
+            const PtType name{pGen()};
+            //add to histogram - try to move in another phase
             ParticlesType->Fill(name);
 
+            //if it is a resonance, make it decay
+            if(name == PtType::R_Kaon){
+                //generate decayment pair
+                PtType name1{},name2{};
 
-            if(name == 6){
-                double y = gRandom->Rndm();
-                int name1{};
-                int name2{};
-                if(y < 0.5){
-                    name1 = 0;
-                    name2 = 3;
-                } else {
-                    name1 = 1;
-                    name2 = 2;
+                //generate decayment couple
+                if(decGen()==Pt::DecaymentType::P1){
+                    name1=PtType::P_Pion;
+                    name2=PtType::N_Kaon;
+                }else{
+                    name1=PtType::N_Pion;
+                    name2=PtType::P_Kaon;
                 }
+
                 BASE_NS::Particle p1(name1, 0, 0, 0);
                 BASE_NS::Particle p2(name2, 0, 0, 0);
                 BASE_NS::Particle pRes(6, P*TMath::Sin(theta)*TMath::Cos(phi), P*TMath::Sin(theta)*TMath::Sin(phi), P*TMath::Cos(theta));

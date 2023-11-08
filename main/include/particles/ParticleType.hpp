@@ -16,6 +16,9 @@ namespace BASE_NS{
 
     public:
         enum Type{P_Pion, N_Pion, P_Kaon, N_Kaon, P_Prot, N_Prot, R_Kaon};
+        enum DecaymentType{
+            P1,//P+ K-
+            P2};//P- K+
 
         ParticleType(int name, double mass, int charge);
         virtual ~ParticleType()=default;
