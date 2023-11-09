@@ -32,6 +32,7 @@ namespace BASE_NS{
         CanvasPtr PartTypeCanvas;
         CanvasPtr DistributionsCanvas;
         CanvasPtr SumCanvas;
+        CanvasPtr PulseCanvas;
 
     };
 }
