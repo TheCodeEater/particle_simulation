@@ -21,24 +21,24 @@ namespace BASE_NS{
                         fInputData->invMasses[i].Draw();
                          }
                 PartTypeCanvas->cd(0);
-                        GeneratedTypes->Draw();
+                        fInputData->GeneratedTypes.Draw();
                 DistributionsCanvas->Divide(2,1);
                         DistributionsCanvas->cd(0);
-                                PolarAngles->Draw();
+                            fInputData->PolarAngles.Draw();
                         DistributionsCanvas->cd(1);
-                                AzimuthAngles->Draw();
+                            fInputData->AzimuthAngles.Draw();
                 SumCanvas->Divide(2,1);
                         SumCanvas->cd(0);
-                                fSignalResult->signal1->Draw();
+                                fSignalResult->signal1.Draw();
                         SumCanvas->cd(1);
-                                fSignalResult->signal2->Draw();
+                                fSignalResult->signal2.Draw();
                 PulseCanvas->Divide(3,1);
                         PulseCanvas->cd(0);
-                                Pulse->Draw();
+                            fInputData->Pulse.Draw();
                         PulseCanvas->cd(1);
-                                TransPulse->Draw();
+                            fInputData->TransPulse.Draw();
                         PulseCanvas->cd(2);
-                                Energy->Draw();
+                             fInputData->Energy.Draw();
 
 
 
