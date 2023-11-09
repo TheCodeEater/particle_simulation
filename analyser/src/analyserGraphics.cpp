@@ -13,10 +13,10 @@ namespace BASE_NS{
         MassCanvas{new TCanvas("massCanvas","massCanvas",1200,800)},
         PartTypeCanvas{new TCanvas("PartTypeCanvas","PartTypeCanvas",1200,800)},
         DistributionsCanvas{new TCanvas("DistributionsCanvas","DistributionsCanvas",1200,800)},
-        SumCanvas{new TCanvas("SumCanvas","SumCanvas",1200,800)}
+        SumCanvas{new TCanvas("SumCanvas","SumCanvas",1200,800)},
         PulseCanvas{new TCanvas("PulseCanvas","PulseCanvas",1200,800)}{
                 MassCanvas->Divide(3,2);
-                        for(int i=0; i<fInputData->invMassess.size(); i++){
+                        for(int i=0; i<fInputData->invMasses.size(); i++){
                         MassCanvas->cd(i);
                         fInputData->invMasses[i].Draw();
                          }
@@ -26,7 +26,7 @@ namespace BASE_NS{
                         DistributionsCanvas->cd(0);
                                 PolarAngles->Draw();
                         DistributionsCanvas->cd(1);
-                                AzimuthAngles->cd();
+                                AzimuthAngles->Draw();
                 SumCanvas->Divide(2,1);
                         SumCanvas->cd(0);
                                 fSignalResult->signal1->Draw();
