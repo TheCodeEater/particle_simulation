@@ -16,9 +16,12 @@ namespace BASE_NS{
         SumCanvas{new TCanvas("SumCanvas","SumCanvas",1200,800)},
         PulseCanvas{new TCanvas("PulseCanvas","PulseCanvas",1200,800)}{
                 MassCanvas->Divide(3,2);
-                        for(int i=0; i<fInputData->invMasses.size(); i++){
+                        int i{};
+                        for(auto & node: fInputData->invMasses){
                         MassCanvas->cd(i);
-                        fInputData->invMasses[i].Draw();
+                            //draw each histogram
+                            node.second.Draw();
+                            ++i; //increase pad counter
                          }
                 PartTypeCanvas->cd(0);
                         fInputData->GeneratedTypes.Draw();
