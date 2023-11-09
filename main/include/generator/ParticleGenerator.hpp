@@ -9,6 +9,9 @@
 
 namespace BASE_NS {
 
+    /**
+     * This class encapsulates particle generation, decayment processing, invariant masses distributions
+     */
     class particleGenerator {
 
     };
