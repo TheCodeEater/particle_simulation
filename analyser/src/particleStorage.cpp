@@ -12,5 +12,4 @@ namespace BASE_NS{
             node.second.Sumw2();
         }
     }
-    //ClassImp(particleStorage);
 }

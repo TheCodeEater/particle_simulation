@@ -14,7 +14,8 @@ namespace BASE_NS{
      * Store datas to be analysed
      * The storage type may vary across different versions
      */
-    struct particleStorage: public TObject{
+    class particleStorage: public TObject{
+    public:
         using histCont=std::unordered_map<std::string,TH1F>;
         using hist=TH1F;
 
@@ -31,7 +32,7 @@ namespace BASE_NS{
         //store all invariant masses histograms into a container
         histCont invMasses{};
 
-        ClassDefInlineOverride(particleStorage,1);
+        ClassDefOverride(particleStorage,1);
     };
 }
 
