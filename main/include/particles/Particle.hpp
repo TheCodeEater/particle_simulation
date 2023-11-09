@@ -11,6 +11,7 @@
 
 #include <map>
 #include <string>
+#include <memory>
 
 namespace BASE_NS{
     class Particle{

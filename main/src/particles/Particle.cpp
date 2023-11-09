@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <iostream>
 #include <numeric>
+#include <cmath>
 
 namespace BASE_NS{
 
