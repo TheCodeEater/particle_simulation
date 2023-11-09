@@ -35,4 +35,9 @@ namespace BASE_NS {
             }  {
 
     }
+
+    void particleGenerator::operator()(unsigned int NEvents, unsigned int NParticlesPerEvent) {
+
+    }
+
 } // BASE_NS

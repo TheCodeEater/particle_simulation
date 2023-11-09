@@ -27,6 +27,13 @@ namespace BASE_NS {
              */
             static void loadParticles();
 
+            /**
+             * Run the simulation
+             * @param NEvents Number of dacyment events to be processed
+             * @param NParticlesPerEvent Number of paarticles to be generated per event
+             */
+            void operator()(unsigned NEvents=1e5, unsigned NParticlesPerEvent=1e2);
+
     private:
         randGen fRandom; /// Random generator
         proportionGenerator<PTypeList> fParticleGen;
