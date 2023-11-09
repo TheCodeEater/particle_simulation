@@ -7,7 +7,7 @@
 
 #include "Definitions.hpp"
 #include "TH1.h"
-#include <unordered_map>
+#include <map>
 
 namespace BASE_NS{
     /**
@@ -16,7 +16,7 @@ namespace BASE_NS{
      */
     class particleStorage: public TObject{
     public:
-        using histCont=std::unordered_map<std::string,TH1F>;
+        using histCont=std::map<std::string,TH1F>;
         using hist=TH1F;
 
         particleStorage();

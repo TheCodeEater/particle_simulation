@@ -19,6 +19,8 @@
 #include "generator/ProportionGenerator.hpp"
 #include "particles/ParticleType.hpp"
 
+#include "particleStorage.hpp"
+
 #include <deque>
 
 int main(int argc, char** argv) {
@@ -27,7 +29,7 @@ int main(int argc, char** argv) {
      //   TDirectory::AddDirectory(kFALSE);
     //#endif
     //create root application
-    //APP_TYPE app(APP_NAME, &argc, argv);
+    APP_TYPE app(APP_NAME, &argc, argv);
 
     //load particles
     BASE_NS::particleGenerator::loadParticles();
@@ -161,8 +163,18 @@ int main(int argc, char** argv) {
         EventParticles.clear();
     }
     auto *file = new TFile("Particle.root", "RECREATE");
-    file->Write();
+
+    BASE_NS::particleStorage ps{};
+    ps.GeneratedTypes=*ParticlesType;
+    ps.PolarAngles=*PolarAngles;
+    ps.AzimuthAngles=*AzimuthalAngles;
+    ps.Pulse=*Impulse;
+    ps.TransPulse=*TransverseImpulse;
+    ps.Energy=*Energies;
+
+    ps.Write("PS");
+    file->Close();
     //run application
-    //app.Run();
+    app.Run();
     return 0;
 }
