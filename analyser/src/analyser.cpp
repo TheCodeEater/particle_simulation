@@ -35,8 +35,6 @@ int main(int argc, char** argv){    //create root application
 
     Anal.GetData()->Pulse.Fit(impFit);
     std::cout << "Pulse, Param: " << impFit->GetParameter(0) << " " << impFit->GetParameter(1) << "CQR: " << impFit->GetChisquare()/impFit->GetNDF() << "Probabilità: " << impFit->GetProb();
-
-
     //do stuff
 
     //run application
