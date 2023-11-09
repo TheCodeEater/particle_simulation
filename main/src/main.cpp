@@ -78,7 +78,7 @@ int main(int argc, char** argv) {
     }
     };
     //10^5 eventi
-    for(int j = 0; j < 1e4; ++j){
+    for(int j = 0; j < 1e5; ++j){
         //genero le 100 particelle
         for(int i = 0; i < 1E2; ++i) {
             //generate angles and pulse
