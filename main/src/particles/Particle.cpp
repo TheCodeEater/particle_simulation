@@ -75,12 +75,26 @@ namespace BASE_NS{
     }
 
     double Particle::InvMass(const Particle &p) const {
+        auto e{GetEnergy()+p.GetEnergy()};
+
+        auto x=fPx+p.GetPx();
+        auto y=fPy+p.GetPy();
+        auto  z=fPz+p.GetPz();
+
+        return TMath::Sqrt(e*e-(x*x+y*y+z*z));
+
+        /*return TMath::Sqrt(
+                TMath::Power(GetEnergy()+p.GetEnergy(),2)
+                - (TMath::Power(fPx+p.GetPx(),2)
+                   +TMath::Power(fPy+p.GetPy(),2)
+                   +TMath::Power(fPz+p.GetPz(),2))
+        );
         return TMath::Sqrt(
                 TMath::Power(GetEnergy()+p.GetEnergy(),2)
                 - (TMath::Power(fPx+p.GetPx(),2)
-                    +TMath::Power(fPy+p.GetPy(),2)
-                    +TMath::Power(fPz+p.GetPz(),2))
-                );
+                   +TMath::Power(fPy+p.GetPy(),2)
+                   +TMath::Power(fPz+p.GetPz(),2))
+        );*/
     }
 
     [[nodiscard]] double Particle::GetMass() const {
@@ -88,10 +102,15 @@ namespace BASE_NS{
     }
 
     double Particle::GetEnergy() const {
+        /*return TMath::Sqrt(GetMass()*GetMass()+
+        fPx*fPx+
+        fPy*fPy+
+        fPz*fPz);*/
+        //DO not replace, worsens the performance
         return TMath::Sqrt(TMath::Power(GetMass(),2)+
-        TMath::Power(fPx,2)+
-        TMath::Power(fPy,2)+
-        TMath::Power(fPz,2));
+                           TMath::Power(fPx,2)+
+                           TMath::Power(fPy,2)+
+                           TMath::Power(fPz,2));
     }
 
     //initialise map
