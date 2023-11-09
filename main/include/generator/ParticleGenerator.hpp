@@ -7,6 +7,7 @@
 
 #include "Definitions.hpp"
 #include "TRandom3.h"
+#include "generator/ProportionGenerator.hpp"
 
 namespace BASE_NS {
 
@@ -15,6 +16,9 @@ namespace BASE_NS {
      */
     class particleGenerator {
         using randGen=TRandom3; /// type to be used as random generator
+        using PTypeList = ParticleType::Type; /// alias to list of possible particle types
+        using PTDecayList= ParticleType::DecaymentType;
+
         public:
             explicit particleGenerator(unsigned seed=0);
             /**
@@ -25,6 +29,8 @@ namespace BASE_NS {
 
     private:
         randGen fRandom; /// Random generator
+        proportionGenerator<PTypeList> fParticleGen;
+        proportionGenerator<PTDecayList> fDecaymentGen;
     };
 
 } // BASE_NS

@@ -18,7 +18,21 @@ namespace BASE_NS {
     }
 
     particleGenerator::particleGenerator(unsigned int seed):
-            fRandom{seed}{
+            fRandom{seed},
+            fParticleGen{{
+                {PTypeList::P_Pion,0.4},
+                {PTypeList::N_Pion,0.4},
+                {PTypeList::P_Kaon,0.05},
+                {PTypeList::N_Kaon,0.05},
+                {PTypeList::P_Prot,0.045},
+                {PTypeList::N_Prot,0.045},
+                {PTypeList::R_Kaon,0.01}}
+            },
+            fDecaymentGen{{
+                {PTDecayList::P1,0.5},
+                {PTDecayList::P2,0.5}
+                    }
+            }  {
 
     }
 } // BASE_NS
