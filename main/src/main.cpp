@@ -14,6 +14,8 @@
 #include "../include/particles/Particle.hpp"
 #include "Definitions.hpp"
 
+#include "generator/ParticleGenerator.hpp"
+
 #include "generator/ProportionGenerator.hpp"
 #include "particles/ParticleType.hpp"
 
@@ -27,14 +29,8 @@ int main(int argc, char** argv) {
     //create root application
     //APP_TYPE app(APP_NAME, &argc, argv);
 
-    BASE_NS::Particle::AddParticleType(0, 0.13957, 1);
-    BASE_NS::Particle::AddParticleType(1, 0.13957, -1);
-    BASE_NS::Particle::AddParticleType(2, 0.49367, 1);
-    BASE_NS::Particle::AddParticleType(3, 0.49367, -1);
-    BASE_NS::Particle::AddParticleType(4, 0.93827, 1);
-    BASE_NS::Particle::AddParticleType(5, 0.93827, -1);
-    BASE_NS::Particle::AddParticleType(6, 0.89166, 0, 0.050);
-    gRandom->SetSeed();
+    //load particles
+    BASE_NS::particleGenerator::loadParticles();
 
     std::deque<BASE_NS::Particle> EventParticles{};
     //track decay products both in all events and separately
@@ -61,7 +57,7 @@ int main(int argc, char** argv) {
     using Pt = BASE_NS::ParticleType;
     using PtType = Pt::Type;
 
-    proportionGenerator<PtType> pGen{std::map<PtType,float>{
+    BASE_NS::proportionGenerator<PtType> pGen{std::map<PtType,float>{
         {PtType::P_Pion,0.4},
         {PtType::N_Pion,0.4},
         {PtType::P_Kaon,0.05},
@@ -72,7 +68,7 @@ int main(int argc, char** argv) {
 
     }};
 
-    proportionGenerator<Pt::DecaymentType> decGen{{
+    BASE_NS::proportionGenerator<Pt::DecaymentType> decGen{{
         {Pt::DecaymentType::P1,0.5},
         {Pt::DecaymentType::P2,0.5}
     }
