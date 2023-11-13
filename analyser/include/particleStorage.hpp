@@ -19,7 +19,9 @@ namespace BASE_NS{
         using histCont=std::map<std::string,TH1F>;
         using hist=TH1F;
 
-        particleStorage();
+        particleStorage()=default;
+
+        static void makeDefaultHistograms(particleStorage& storage);
 
         //Histograms classified by type
         hist ParticlesType{};
