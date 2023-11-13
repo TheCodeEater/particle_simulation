@@ -164,15 +164,6 @@ int main(int argc, char** argv) {
     }
     auto *file = new TFile("Particle.root", "RECREATE");
 
-    BASE_NS::particleStorage ps{};
-    ps.GeneratedTypes=*ParticlesType;
-    ps.PolarAngles=*PolarAngles;
-    ps.AzimuthAngles=*AzimuthalAngles;
-    ps.Pulse=*Impulse;
-    ps.TransPulse=*TransverseImpulse;
-    ps.Energy=*Energies;
-
-    ps.Write("PS");
     file->Close();
     //run application
     app.Run();
