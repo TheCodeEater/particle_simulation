@@ -46,6 +46,12 @@ namespace BASE_NS {
 
     private:
         //helper functions
+        /**
+         * Helper function used to better ecapsulate the particle generation
+         * @param EventParticles Reference to the container of generated particles
+         * @param DecayProducts Reference to the container of the decay products
+         * @param dataStorage Struct holding histograms
+         */
         void calculateInvariantMass(PStorage const& EventParticles,
                                     PStorage const& DecayProducts,
                                     particleStorage& dataStorage) const;
