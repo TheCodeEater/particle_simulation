@@ -31,6 +31,8 @@ int main(int argc, char** argv) {
     //create root application
     //APP_TYPE app(APP_NAME, &argc, argv);
 
+    BASE_NS::particleGenerator::loadParticles();
+
     BASE_NS::particleGenerator generator{};
     //run the simulation
     generator(1e4);
