@@ -37,6 +37,10 @@ namespace BASE_NS {
              * Run the simulation
              * @param NEvents Number of dacyment events to be processed
              * @param NParticlesPerEvent Number of paarticles to be generated per event
+             * @return A pointer to a data structure holding the result of the generation
+             *
+             * Note: the returned pointer's structure is dynamically allocated and you are responsible
+             * for its lifetime management. Consider storing it in a smart pointer.
              */
             particleStorage* operator()(unsigned NEvents=1e5, unsigned NParticlesPerEvent=1e2);
 
