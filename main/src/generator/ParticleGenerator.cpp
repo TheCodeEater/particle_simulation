@@ -142,20 +142,24 @@ namespace BASE_NS {
                 if(p.GetCharge() * p2.GetCharge() == 1){
                     dataStorage.InvariantMassesAllc.Fill(invMass);
                 }
-                if(p.GetParticleName() == 0 && p2.GetParticleName() == 3){
+                if(p.GetParticleName() == PTypeList::P_Pion && p2.GetParticleName() == PTypeList::N_Kaon){
                     dataStorage.InvariantMassesPipKn.Fill(invMass);
                 }
-                if(p.GetParticleName() == 1 && p2.GetParticleName() == 2){
+                if(p.GetParticleName() == PTypeList::N_Pion && p2.GetParticleName() == PTypeList::P_Kaon){
                     dataStorage.InvariantMassesPinKp.Fill(invMass);
                 }
-                if(p.GetParticleName() == 0 && p2.GetParticleName() == 2){
+                if(p.GetParticleName() == PTypeList::P_Pion && p2.GetParticleName() == PTypeList::P_Kaon){
                     dataStorage.InvariantMassesPipKp.Fill(invMass);
                 }
-                if(p.GetParticleName() == 1 && p2.GetParticleName() == 3){
+                if(p.GetParticleName() == PTypeList::N_Pion && p2.GetParticleName() == PTypeList::N_Kaon){
                     dataStorage.InvariantMassesPinKn.Fill(invMass);
                 }
             }
         }
+        //generate invariant mass for decay products
+        //since they are inserted in pair after each decay
+        //taking 2 each time ensures invariant mass is computed only for children
+        //of the same unstable particle
         for(unsigned int i = 0; i < DecayProducts.size(); i+=2){
             auto& p = DecayProducts[i];
             dataStorage.InvariantMassesDprod.Fill(p.InvMass(DecayProducts[i+1]));
