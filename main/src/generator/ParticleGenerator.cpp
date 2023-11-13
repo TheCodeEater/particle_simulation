@@ -10,6 +10,8 @@
 #include "TH1F.h"
 #include "TMath.h"
 
+#include "TFile.h"
+
 namespace BASE_NS {
     void particleGenerator::loadParticles() {
         BASE_NS::Particle::AddParticleType(0, 0.13957, 1);
@@ -135,6 +137,19 @@ namespace BASE_NS {
             }
             EventParticles.clear();
         }
+
+        auto *file = new TFile("Particle.root", "RECREATE");
+        ps.Write();
+        //write single histograms for debugging purposes
+        /*ps.InvariantMasses.Write();
+        ps.InvariantMassesAlld.Write();
+        ps.InvariantMassesAllc.Write();
+        ps.InvariantMassesPipKn.Write();
+        ps.InvariantMassesPinKp.Write();
+        ps.InvariantMassesPipKp.Write();
+        ps.InvariantMassesPinKn.Write();
+        ps.InvariantMassesDprod.Write();*/
+        file->Close();
     }
 
 } // BASE_NS
