@@ -24,12 +24,12 @@ namespace BASE_NS{
                             ++i; //increase pad counter
                          }
                 PartTypeCanvas->cd(0);
-                        fInputData->GeneratedTypes.Draw();
+                        fInputData->ParticlesType.Draw();
                 DistributionsCanvas->Divide(2,1);
                         DistributionsCanvas->cd(0);
                             fInputData->PolarAngles.Draw();
                         DistributionsCanvas->cd(1);
-                            fInputData->AzimuthAngles.Draw();
+                            fInputData->AzimuthalAngles.Draw();
                 SumCanvas->Divide(2,1);
                         SumCanvas->cd(0);
                                 fSignalResult->signal1.Draw();
@@ -37,11 +37,11 @@ namespace BASE_NS{
                                 fSignalResult->signal2.Draw();
                 PulseCanvas->Divide(3,1);
                         PulseCanvas->cd(0);
-                            fInputData->Pulse.Draw();
+                            fInputData->Impulse.Draw();
                         PulseCanvas->cd(1);
-                            fInputData->TransPulse.Draw();
+                            fInputData->TransverseImpulse.Draw();
                         PulseCanvas->cd(2);
-                             fInputData->Energy.Draw();
+                             fInputData->Energies.Draw();
 
 
 
