@@ -91,12 +91,12 @@ namespace BASE_NS {
                         name2=PTypeList::P_Kaon;
                     }
 
-                    BASE_NS::Particle p1(name1, 0, 0, 0);
-                    BASE_NS::Particle p2(name2, 0, 0, 0);
-                    BASE_NS::Particle pRes(PTypeList::R_Kaon, P*TMath::Sin(theta)*TMath::Cos(phi), P*TMath::Sin(theta)*TMath::Sin(phi), P*TMath::Cos(theta));
+                    Particle p1(name1, 0, 0, 0);
+                    Particle p2(name2, 0, 0, 0);
+                    Particle pRes(PTypeList::R_Kaon, P*TMath::Sin(theta)*TMath::Cos(phi), P*TMath::Sin(theta)*TMath::Sin(phi), P*TMath::Cos(theta));
 
                     if(pRes.Decay2body(p1, p2) != 0){
-                        throw std::runtime_error("aaaaaaaaaaaaaaaah");
+                        throw std::runtime_error("Decay2body failed!");
                     }
                     DecayProducts.push_back(p1);
                     DecayProducts.push_back(p2);
