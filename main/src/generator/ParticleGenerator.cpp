@@ -56,9 +56,9 @@ namespace BASE_NS {
         TH1F *InvariantMassesPinKn = new TH1F("InvariantMassesPinKn", "Invariant Masses PinKn", 100, 0, 10);
         TH1F *InvariantMassesDprod = new TH1F("InvariantMassesDprod", "Invariant Masses Dprod", 100, 0, 10);
         //run simulation
-        for(int j = 0; j < 1e5; ++j){
+        for(unsigned int j = 0; j < NEvents; ++j){
             //genero le 100 particelle
-            for(int i = 0; i < 1E2; ++i) {
+            for(unsigned int i = 0; i < NParticlesPerEvent; ++i) {
                 //generate angles and pulse
                 const double phi {gRandom->Uniform(0, 2 * TMath::Pi())};
                 const double theta {gRandom->Uniform(0, TMath::Pi())};
