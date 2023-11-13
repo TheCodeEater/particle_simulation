@@ -5,6 +5,7 @@
 #include "generator/ParticleGenerator.hpp"
 
 #include "particles/Particle.hpp"
+#include "particleStorage.hpp"
 
 #include "TH1F.h"
 #include "TMath.h"
@@ -40,21 +41,10 @@ namespace BASE_NS {
     }
 
     void particleGenerator::operator()(unsigned int NEvents, unsigned int NParticlesPerEvent) {
-        TH1F *ParticlesType = new TH1F("ParticlesType", "Particles Type", 7, 0, 7);
-        TH1F *AzimuthalAngles = new TH1F("AzimuthalAngles", "Azimuthal Angles", 100, 0, 2*TMath::Pi());
-        TH1F *PolarAngles = new TH1F("PolarAngles", "Polar Angles", 100, 0, TMath::Pi());
-        TH1F *Impulse = new TH1F("Impulse", "Impulse", 100, 0, 5);
-        TH1F *TransverseImpulse = new TH1F("TransverseImpulse", "Transverse Impulse", 100, 0, 5);
-        TH1F *Energies = new TH1F("Energies", "Energies", 100, 0, 10);
-        TH1F *InvariantMasses = new TH1F("InvariantMasses", "Invariant Masses", 100, 0, 10);
-        InvariantMasses->Sumw2();
-        TH1F *InvariantMassesAlld = new TH1F("InvariantMassesAlld", "Invariant Masses Alld", 100, 0, 10);
-        TH1F *InvariantMassesAllc = new TH1F("InvariantMassesAllc", "Invariant Masses Allc", 100, 0, 10);
-        TH1F *InvariantMassesPipKn = new TH1F("InvariantMassesPipKn", "Invariant Masses PipKn", 100, 0, 10);
-        TH1F *InvariantMassesPinKp = new TH1F("InvariantMassesPinKp", "Invariant Masses PinKp", 100, 0, 10);
-        TH1F *InvariantMassesPipKp = new TH1F("InvariantMassesPipKp", "Invariant Masses PipKp", 100, 0, 10);
-        TH1F *InvariantMassesPinKn = new TH1F("InvariantMassesPinKn", "Invariant Masses PinKn", 100, 0, 10);
-        TH1F *InvariantMassesDprod = new TH1F("InvariantMassesDprod", "Invariant Masses Dprod", 100, 0, 10);
+        //save into particlestorage
+        particleStorage ps{};
+        //create default histograms
+        particleStorage::makeDefaultHistograms(ps);
         //Particle type
         PStorage EventParticles{};
         PStorage DecayProducts{};
@@ -68,14 +58,14 @@ namespace BASE_NS {
                 const double P {gRandom->Exp(1)};
                 //add values to test histograms (must be done here)
                 //because they are not tracked afterwards
-                AzimuthalAngles->Fill(phi);
-                PolarAngles->Fill(theta);
-                Impulse->Fill(P);
+                ps.AzimuthalAngles.Fill(phi);
+                ps.PolarAngles.Fill(theta);
+                ps.Impulse.Fill(P);
 
                 //generate particle
                 const PTypeList name{fParticleGen()};
                 //add to histogram - try to move in another phase
-                ParticlesType->Fill(name);
+                ps.ParticlesType.Fill(name);
 
                 //if it is a resonance, make it decay
                 if(name == PTypeList::R_Kaon){
@@ -107,8 +97,8 @@ namespace BASE_NS {
                     BASE_NS::Particle p(name, P*TMath::Sin(theta)*TMath::Cos(phi), P*TMath::Sin(theta)*TMath::Sin(phi), P*TMath::Cos(theta));
                     EventParticles.push_back(p);
                     const double TransImp = std::sqrt(std::pow(p.GetPx(), 2) + std::pow(p.GetPy(), 2));
-                    TransverseImpulse->Fill(TransImp);
-                    Energies->Fill(p.GetEnergy());
+                    ps.TransverseImpulse.Fill(TransImp);
+                    ps.Energies.Fill(p.GetEnergy());
                 }
             }
             //loop scemo
@@ -118,30 +108,30 @@ namespace BASE_NS {
                     auto const& p2{EventParticles[k]};
                     auto invMass {p.InvMass(p2)};
 
-                    InvariantMasses->Fill(invMass); //MI tra tutti
+                    ps.InvariantMasses.Fill(invMass); //MI tra tutti
                     if(p.GetCharge() * p2.GetCharge() == -1){
-                        InvariantMassesAlld->Fill(invMass);
+                        ps.InvariantMassesAlld.Fill(invMass);
                     }
                     if(p.GetCharge() * p2.GetCharge() == 1){
-                        InvariantMassesAllc->Fill(invMass);
+                        ps.InvariantMassesAllc.Fill(invMass);
                     }
                     if(p.GetParticleName() == 0 && p2.GetParticleName() == 3){
-                        InvariantMassesPipKn->Fill(invMass);
+                        ps.InvariantMassesPipKn.Fill(invMass);
                     }
                     if(p.GetParticleName() == 1 && p2.GetParticleName() == 2){
-                        InvariantMassesPinKp->Fill(invMass);
+                        ps.InvariantMassesPinKp.Fill(invMass);
                     }
                     if(p.GetParticleName() == 0 && p2.GetParticleName() == 2){
-                        InvariantMassesPipKp->Fill(invMass);
+                        ps.InvariantMassesPipKp.Fill(invMass);
                     }
                     if(p.GetParticleName() == 1 && p2.GetParticleName() == 3){
-                        InvariantMassesPinKn->Fill(invMass);
+                        ps.InvariantMassesPinKn.Fill(invMass);
                     }
                 }
             }
             for(unsigned int i = 0; i < DecayProducts.size(); i+=2){
                 auto& p = DecayProducts[i];
-                InvariantMassesDprod->Fill(p.InvMass(DecayProducts[i+1]));
+                ps.InvariantMassesDprod.Fill(p.InvMass(DecayProducts[i+1]));
             }
             EventParticles.clear();
         }
