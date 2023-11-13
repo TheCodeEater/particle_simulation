@@ -12,6 +12,7 @@
 #include <memory>
 #include <vector>
 #include <string>
+#include <memory>
 
 
 namespace BASE_NS{

@@ -166,6 +166,7 @@ namespace BASE_NS{
         return 0;
     }
 
+
     void Particle::Boost(double bx, double by, double bz) {
         double energy = GetEnergy();
 
