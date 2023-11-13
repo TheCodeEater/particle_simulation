@@ -10,6 +10,8 @@
 #include "generator/ProportionGenerator.hpp"
 #include "particles/Particle.hpp"
 
+#include "particleStorage.hpp"
+
 #include <deque>
 
 namespace BASE_NS {
@@ -39,6 +41,11 @@ namespace BASE_NS {
             void operator()(unsigned NEvents=1e5, unsigned NParticlesPerEvent=1e2);
 
     private:
+        //helper functions
+        void calculateInvariantMass(PStorage const& EventParticles,
+                                    PStorage const& DecayProducts,
+                                    particleStorage& dataStorage) const;
+
         randGen fRandom; /// Random generator
         proportionGenerator<PTypeList> fParticleGen;
         proportionGenerator<PTDecayList> fDecaymentGen;

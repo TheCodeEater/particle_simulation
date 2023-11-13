@@ -44,9 +44,9 @@ namespace BASE_NS {
 
     void particleGenerator::operator()(unsigned int NEvents, unsigned int NParticlesPerEvent) {
         //save into particlestorage
-        particleStorage ps{};
+        particleStorage dataStorage{};
         //create default histograms
-        particleStorage::makeDefaultHistograms(ps);
+        particleStorage::makeDefaultHistograms(dataStorage);
         //Particle type
         PStorage EventParticles{};
         PStorage DecayProducts{};
@@ -60,14 +60,14 @@ namespace BASE_NS {
                 const double P {gRandom->Exp(1)};
                 //add values to test histograms (must be done here)
                 //because they are not tracked afterwards
-                ps.AzimuthalAngles.Fill(phi);
-                ps.PolarAngles.Fill(theta);
-                ps.Impulse.Fill(P);
+                dataStorage.AzimuthalAngles.Fill(phi);
+                dataStorage.PolarAngles.Fill(theta);
+                dataStorage.Impulse.Fill(P);
 
                 //generate particle
                 const PTypeList name{fParticleGen()};
                 //add to histogram - try to move in another phase
-                ps.ParticlesType.Fill(name);
+                dataStorage.ParticlesType.Fill(name);
 
                 //if it is a resonance, make it decay
                 if(name == PTypeList::R_Kaon){
@@ -99,57 +99,65 @@ namespace BASE_NS {
                     BASE_NS::Particle p(name, P*TMath::Sin(theta)*TMath::Cos(phi), P*TMath::Sin(theta)*TMath::Sin(phi), P*TMath::Cos(theta));
                     EventParticles.push_back(p);
                     const double TransImp = std::sqrt(std::pow(p.GetPx(), 2) + std::pow(p.GetPy(), 2));
-                    ps.TransverseImpulse.Fill(TransImp);
-                    ps.Energies.Fill(p.GetEnergy());
+                    dataStorage.TransverseImpulse.Fill(TransImp);
+                    dataStorage.Energies.Fill(p.GetEnergy());
                 }
             }
-            //loop scemo
-            for(unsigned int i = 0; i < EventParticles.size(); ++i){
-                auto const& p = EventParticles[i];
-                for(unsigned int k = i; k < EventParticles.size(); ++k){
-                    auto const& p2{EventParticles[k]};
-                    auto invMass {p.InvMass(p2)};
+            calculateInvariantMass(EventParticles,DecayProducts,dataStorage);
 
-                    ps.InvariantMasses.Fill(invMass); //MI tra tutti
-                    if(p.GetCharge() * p2.GetCharge() == -1){
-                        ps.InvariantMassesAlld.Fill(invMass);
-                    }
-                    if(p.GetCharge() * p2.GetCharge() == 1){
-                        ps.InvariantMassesAllc.Fill(invMass);
-                    }
-                    if(p.GetParticleName() == 0 && p2.GetParticleName() == 3){
-                        ps.InvariantMassesPipKn.Fill(invMass);
-                    }
-                    if(p.GetParticleName() == 1 && p2.GetParticleName() == 2){
-                        ps.InvariantMassesPinKp.Fill(invMass);
-                    }
-                    if(p.GetParticleName() == 0 && p2.GetParticleName() == 2){
-                        ps.InvariantMassesPipKp.Fill(invMass);
-                    }
-                    if(p.GetParticleName() == 1 && p2.GetParticleName() == 3){
-                        ps.InvariantMassesPinKn.Fill(invMass);
-                    }
-                }
-            }
-            for(unsigned int i = 0; i < DecayProducts.size(); i+=2){
-                auto& p = DecayProducts[i];
-                ps.InvariantMassesDprod.Fill(p.InvMass(DecayProducts[i+1]));
-            }
             EventParticles.clear();
         }
 
         auto *file = new TFile("Particle.root", "RECREATE");
-        ps.Write();
+        dataStorage.Write();
         //write single histograms for debugging purposes
-        /*ps.InvariantMasses.Write();
-        ps.InvariantMassesAlld.Write();
-        ps.InvariantMassesAllc.Write();
-        ps.InvariantMassesPipKn.Write();
-        ps.InvariantMassesPinKp.Write();
-        ps.InvariantMassesPipKp.Write();
-        ps.InvariantMassesPinKn.Write();
-        ps.InvariantMassesDprod.Write();*/
+        /*dataStorage.InvariantMasses.Write();
+        dataStorage.InvariantMassesAlld.Write();
+        dataStorage.InvariantMassesAllc.Write();
+        dataStorage.InvariantMassesPipKn.Write();
+        dataStorage.InvariantMassesPinKp.Write();
+        dataStorage.InvariantMassesPipKp.Write();
+        dataStorage.InvariantMassesPinKn.Write();
+        dataStorage.InvariantMassesDprod.Write();*/
         file->Close();
     }
+
+    void particleGenerator::calculateInvariantMass(const particleGenerator::PStorage &EventParticles,
+                                                   const particleGenerator::PStorage &DecayProducts,
+                                                   particleStorage& dataStorage) const {
+
+        for(unsigned int i = 0; i < EventParticles.size(); ++i){
+            auto const& p = EventParticles[i];
+            for(unsigned int k = i; k < EventParticles.size(); ++k){
+                auto const& p2{EventParticles[k]};
+                auto invMass {p.InvMass(p2)};
+
+                dataStorage.InvariantMasses.Fill(invMass); //MI tra tutti
+                if(p.GetCharge() * p2.GetCharge() == -1){
+                    dataStorage.InvariantMassesAlld.Fill(invMass);
+                }
+                if(p.GetCharge() * p2.GetCharge() == 1){
+                    dataStorage.InvariantMassesAllc.Fill(invMass);
+                }
+                if(p.GetParticleName() == 0 && p2.GetParticleName() == 3){
+                    dataStorage.InvariantMassesPipKn.Fill(invMass);
+                }
+                if(p.GetParticleName() == 1 && p2.GetParticleName() == 2){
+                    dataStorage.InvariantMassesPinKp.Fill(invMass);
+                }
+                if(p.GetParticleName() == 0 && p2.GetParticleName() == 2){
+                    dataStorage.InvariantMassesPipKp.Fill(invMass);
+                }
+                if(p.GetParticleName() == 1 && p2.GetParticleName() == 3){
+                    dataStorage.InvariantMassesPinKn.Fill(invMass);
+                }
+            }
+        }
+        for(unsigned int i = 0; i < DecayProducts.size(); i+=2){
+            auto& p = DecayProducts[i];
+            dataStorage.InvariantMassesDprod.Fill(p.InvMass(DecayProducts[i+1]));
+        }
+    }
+
 
 } // BASE_NS
