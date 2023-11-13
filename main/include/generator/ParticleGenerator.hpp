@@ -17,7 +17,7 @@ namespace BASE_NS {
     class particleGenerator {
         using randGen=TRandom3; /// type to be used as random generator
         using PTypeList = ParticleType::Type; /// alias to list of possible particle types
-        using PTDecayList= ParticleType::DecaymentType;
+        using PTDecayList= ParticleType::DecaymentType; ///alias to list of possible decayments
 
         public:
             explicit particleGenerator(unsigned seed=0);
