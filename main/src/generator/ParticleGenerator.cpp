@@ -42,11 +42,11 @@ namespace BASE_NS {
 
     }
 
-    void particleGenerator::operator()(unsigned int NEvents, unsigned int NParticlesPerEvent) {
+    particleStorage* particleGenerator::operator()(unsigned int NEvents, unsigned int NParticlesPerEvent) {
         //save into particlestorage
-        particleStorage dataStorage{};
+        std::unique_ptr<particleStorage> dataStorage{new particleStorage{}};
         //create default histograms
-        particleStorage::makeDefaultHistograms(dataStorage);
+        particleStorage::makeDefaultHistograms(*dataStorage);
         //Particle type
         PStorage EventParticles{};
         PStorage DecayProducts{};
@@ -60,14 +60,14 @@ namespace BASE_NS {
                 const double P {gRandom->Exp(1)};
                 //add values to test histograms (must be done here)
                 //because they are not tracked afterwards
-                dataStorage.AzimuthalAngles.Fill(phi);
-                dataStorage.PolarAngles.Fill(theta);
-                dataStorage.Impulse.Fill(P);
+                dataStorage->AzimuthalAngles.Fill(phi);
+                dataStorage->PolarAngles.Fill(theta);
+                dataStorage->Impulse.Fill(P);
 
                 //generate particle
                 const PTypeList name{fParticleGen()};
                 //add to histogram - try to move in another phase
-                dataStorage.ParticlesType.Fill(name);
+                dataStorage->ParticlesType.Fill(name);
 
                 //if it is a resonance, make it decay
                 if(name == PTypeList::R_Kaon){
@@ -99,17 +99,20 @@ namespace BASE_NS {
                     BASE_NS::Particle p(name, P*TMath::Sin(theta)*TMath::Cos(phi), P*TMath::Sin(theta)*TMath::Sin(phi), P*TMath::Cos(theta));
                     EventParticles.push_back(p);
                     const double TransImp = std::sqrt(std::pow(p.GetPx(), 2) + std::pow(p.GetPy(), 2));
-                    dataStorage.TransverseImpulse.Fill(TransImp);
-                    dataStorage.Energies.Fill(p.GetEnergy());
+                    dataStorage->TransverseImpulse.Fill(TransImp);
+                    dataStorage->Energies.Fill(p.GetEnergy());
                 }
             }
-            calculateInvariantMass(EventParticles,DecayProducts,dataStorage);
+            calculateInvariantMass(EventParticles,DecayProducts,*dataStorage);
 
             EventParticles.clear();
         }
 
-        auto *file = new TFile("Particle.root", "RECREATE");
-        dataStorage.Write();
+        //release ownership on object and return raw pointer
+        return dataStorage.release();
+
+        //auto *file = new TFile("Particle.root", "RECREATE");
+        //dataStorage.Write();
         //write single histograms for debugging purposes
         /*dataStorage.InvariantMasses.Write();
         dataStorage.InvariantMassesAlld.Write();
@@ -119,7 +122,7 @@ namespace BASE_NS {
         dataStorage.InvariantMassesPipKp.Write();
         dataStorage.InvariantMassesPinKn.Write();
         dataStorage.InvariantMassesDprod.Write();*/
-        file->Close();
+        //file->Close();
     }
 
     void particleGenerator::calculateInvariantMass(const particleGenerator::PStorage &EventParticles,
