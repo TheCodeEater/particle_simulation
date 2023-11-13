@@ -29,15 +29,15 @@ int main(int argc, char** argv) {
      //   TDirectory::AddDirectory(kFALSE);
     //#endif
     //create root application
-    APP_TYPE app(APP_NAME, &argc, argv);
+    //APP_TYPE app(APP_NAME, &argc, argv);
 
     BASE_NS::particleGenerator generator{};
     //run the simulation
-    generator();
-    auto *file = new TFile("Particle.root", "RECREATE");
+    generator(1e4);
+//    auto *file = new TFile("Particle.root", "RECREATE");
 
-    file->Close();
+    //file->Close();
     //run application
-    app.Run();
+    //app.Run();
     return 0;
 }

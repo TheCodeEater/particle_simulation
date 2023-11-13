@@ -18,6 +18,6 @@ endif()
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 #Warnings, asan, ubsan
-string(APPEND CMAKE_CXX_FLAGS " -Wall -Wextra -Wpedantic -O3")
+string(APPEND CMAKE_CXX_FLAGS " -Wall -Wextra -Wpedantic")
 string(APPEND CMAKE_CXX_FLAGS " -fsanitize=address,undefined -fno-omit-frame-pointer")
 string(APPEND CMAKE_EXE_LINKER_FLAGS " -fsanitize=address,undefined -fno-omit-frame-pointer")
