@@ -27,9 +27,13 @@ namespace BASE_NS{
         std::shared_ptr<particleStorage> fInputData; /// Pointer to the object handling analysed data
         std::shared_ptr<SignalResult> fSignalResult;
 
-        CanvasPtr fCanvas; /// Canvas used to show data
-        //screens
-        std::unordered_map<std::string,std::unique_ptr<TPad>> fViews;
+        //canvas with resulting histograms, similar with similar       
+        CanvasPtr MassCanvas;
+        CanvasPtr PartTypeCanvas;
+        CanvasPtr DistributionsCanvas;
+        CanvasPtr SumCanvas;
+        CanvasPtr PulseCanvas;
+
     };
 }
 
