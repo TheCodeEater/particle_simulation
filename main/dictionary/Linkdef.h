@@ -11,9 +11,6 @@
 #pragma link C++ nestedclasses; //link nested classes
 #pragma link C++ nestedtypedefs; //link nested typedefs
 #pragma link C++ class ResonanceSimulator::particleStorage+;
-#pragma link C++ class std::map<std::string,ResonanceSimulator::particleStorage>+;
-#pragma link C++ class std::string+;
-#pragma link C++ class std::pair<std::string,ResonanceSimulator::particleStorage>+;
 //#pragma link C++ class MyClass; link myClass
 #endif
 
