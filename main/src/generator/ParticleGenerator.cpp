@@ -55,6 +55,9 @@ namespace BASE_NS {
         TH1F *InvariantMassesPipKp = new TH1F("InvariantMassesPipKp", "Invariant Masses PipKp", 100, 0, 10);
         TH1F *InvariantMassesPinKn = new TH1F("InvariantMassesPinKn", "Invariant Masses PinKn", 100, 0, 10);
         TH1F *InvariantMassesDprod = new TH1F("InvariantMassesDprod", "Invariant Masses Dprod", 100, 0, 10);
+        //Particle type
+        PStorage EventParticles{};
+        PStorage DecayProducts{};
         //run simulation
         for(unsigned int j = 0; j < NEvents; ++j){
             //genero le 100 particelle
@@ -70,27 +73,27 @@ namespace BASE_NS {
                 Impulse->Fill(P);
 
                 //generate particle
-                const PtType name{pGen()};
+                const PTypeList name{fParticleGen()};
                 //add to histogram - try to move in another phase
                 ParticlesType->Fill(name);
 
                 //if it is a resonance, make it decay
-                if(name == PtType::R_Kaon){
+                if(name == PTypeList::R_Kaon){
                     //generate decayment pair
-                    PtType name1{},name2{};
+                    PTypeList name1{},name2{};
 
                     //generate decayment couple
-                    if(decGen()==Pt::DecaymentType::P1){
-                        name1=PtType::P_Pion;
-                        name2=PtType::N_Kaon;
+                    if(fDecaymentGen()==PTDecayList::P1){
+                        name1=PTypeList::P_Pion;
+                        name2=PTypeList::N_Kaon;
                     }else{
-                        name1=PtType::N_Pion;
-                        name2=PtType::P_Kaon;
+                        name1=PTypeList::N_Pion;
+                        name2=PTypeList::P_Kaon;
                     }
 
                     BASE_NS::Particle p1(name1, 0, 0, 0);
                     BASE_NS::Particle p2(name2, 0, 0, 0);
-                    BASE_NS::Particle pRes(PtType::R_Kaon, P*TMath::Sin(theta)*TMath::Cos(phi), P*TMath::Sin(theta)*TMath::Sin(phi), P*TMath::Cos(theta));
+                    BASE_NS::Particle pRes(PTypeList::R_Kaon, P*TMath::Sin(theta)*TMath::Cos(phi), P*TMath::Sin(theta)*TMath::Sin(phi), P*TMath::Cos(theta));
 
                     if(pRes.Decay2body(p1, p2) != 0){
                         throw std::runtime_error("aaaaaaaaaaaaaaaah");
@@ -109,9 +112,9 @@ namespace BASE_NS {
                 }
             }
             //loop scemo
-            for(int i = 0; i < EventParticles.size(); ++i){
+            for(unsigned int i = 0; i < EventParticles.size(); ++i){
                 auto const& p = EventParticles[i];
-                for( int k = i; k < EventParticles.size(); ++k){
+                for(unsigned int k = i; k < EventParticles.size(); ++k){
                     auto const& p2{EventParticles[k]};
                     auto invMass {p.InvMass(p2)};
 
@@ -136,8 +139,8 @@ namespace BASE_NS {
                     }
                 }
             }
-            for(int i = 0; i < DecayProducts.size(); i+=2){
-                auto p = DecayProducts[i];
+            for(unsigned int i = 0; i < DecayProducts.size(); i+=2){
+                auto& p = DecayProducts[i];
                 InvariantMassesDprod->Fill(p.InvMass(DecayProducts[i+1]));
             }
             EventParticles.clear();

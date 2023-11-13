@@ -8,6 +8,9 @@
 #include "Definitions.hpp"
 #include "TRandom3.h"
 #include "generator/ProportionGenerator.hpp"
+#include "particles/Particle.hpp"
+
+#include <deque>
 
 namespace BASE_NS {
 
@@ -18,6 +21,7 @@ namespace BASE_NS {
         using randGen=TRandom3; /// type to be used as random generator
         using PTypeList = ParticleType::Type; /// alias to list of possible particle types
         using PTDecayList= ParticleType::DecaymentType; ///alias to list of possible decayments
+        using PStorage=std::deque<Particle>;
 
         public:
             explicit particleGenerator(unsigned seed=0);
