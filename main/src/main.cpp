@@ -35,10 +35,11 @@ int main(int argc, char** argv) {
 
     BASE_NS::particleGenerator generator{};
     //run the simulation
-    generator(1e4);
-//    auto *file = new TFile("Particle.root", "RECREATE");
-
-    //file->Close();
+    //save result in unique pointer
+    std::unique_ptr<BASE_NS::particleStorage> result{generator(1e4)};
+    auto *file = new TFile("Particle.root", "RECREATE");
+    result->Write();
+    file->Close();
     //run application
     //app.Run();
     return 0;
