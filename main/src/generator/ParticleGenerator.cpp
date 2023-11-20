@@ -238,7 +238,7 @@ namespace BASE_NS {
     }
 
     bool particleGenerator::isSameCharge(const Particle &p, const Particle &p2) {
-        return p.GetCharge() * p2.GetCharge() == 1;
+        return p.GetCharge() * p2.GetCharge() > 0;
     }
 
 
