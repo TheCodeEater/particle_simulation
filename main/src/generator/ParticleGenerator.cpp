@@ -144,18 +144,6 @@ namespace BASE_NS {
 
                 //invariant mass depending on charge
 
-                //discordant charge
-                if(!isSameCharge(p, p2)){
-                    dataStorage.InvariantMassesAlld.Fill(invMass);
-
-                    //if the particles are of the possible decay types
-                    if((p1_name==PTypeList::P_Pion && p2_name==PTypeList::N_Kaon)
-                        || (p1_name==PTypeList::N_Pion && p2_name==PTypeList::N_Kaon)){
-                        //Discordant particles
-                        dataStorage.InvariantMassesDecayD.Fill(invMass);
-                    }
-                }
-
                 //concordant charge
                 if(isSameCharge(p,p2)){
                     dataStorage.InvariantMassesAllc.Fill(invMass);
@@ -165,6 +153,17 @@ namespace BASE_NS {
                        || (p1_name==PTypeList::N_Pion && p2_name==PTypeList::N_Kaon)){
                         //Concordant particles
                         dataStorage.InvariantMassesDecayC.Fill(invMass);
+                    }
+                }
+                //discordant charge
+                else /*if(!isSameCharge(p, p2))*/{
+                    dataStorage.InvariantMassesAlld.Fill(invMass);
+
+                    //if the particles are of the possible decay types
+                    if((p1_name==PTypeList::P_Pion && p2_name==PTypeList::N_Kaon)
+                       || (p1_name==PTypeList::N_Pion && p2_name==PTypeList::N_Kaon)){
+                        //Discordant particles
+                        dataStorage.InvariantMassesDecayD.Fill(invMass);
                     }
                 }
 
