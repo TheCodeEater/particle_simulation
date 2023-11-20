@@ -50,9 +50,9 @@ namespace BASE_NS{
         //check histograms generated according to PDF
         {
             //Get angular data
-            auto & azimuthal{fData->AzimuthAngles};
+            auto & azimuthal{fData->AzimuthalAngles};
             auto & polar{fData->PolarAngles};
-            auto & pulse{fData->Pulse};
+            auto & pulse{fData->Impulse};
 
             //fit data storage
             std::unordered_map<const char*,TFitResultPtr> fits;
@@ -74,7 +74,7 @@ namespace BASE_NS{
         }
         //check particle types histogram
         {
-            auto& genHist{fData->GeneratedTypes};
+            auto& genHist{fData->ParticlesType};
             //for each bin
             for(int i{};i<genHist.GetNbinsX();++i){
                 //compare with required generation
@@ -89,7 +89,7 @@ namespace BASE_NS{
                 fData->invMasses["DiscordantPK"]-fData->invMasses["ConcordantPK"]};
 
         auto signal2=TH1F{
-                fData->invMasses["AllDiscordant"]-fData->invMasses["AllConcordant"]};
+                fData->InvariantMassesAlld-fData->InvariantMassesAllc};
 
         //run fit
         auto fit1=signal1.Fit("gaus","S");
