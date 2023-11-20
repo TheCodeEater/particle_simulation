@@ -60,7 +60,7 @@ namespace BASE_NS {
         proportionGenerator<PTypeList> fParticleGen;
         proportionGenerator<PTDecayList> fDecaymentGen;
 
-        bool isSameCharge(const Particle &p, const Particle &p2) const;
+        static bool isSameCharge(const Particle &p, const Particle &p2) ;
     };
 
 } // BASE_NS
