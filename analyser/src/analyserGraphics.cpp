@@ -16,13 +16,16 @@ namespace BASE_NS{
         SumCanvas{new TCanvas("SumCanvas","SumCanvas",1200,800)},
         PulseCanvas{new TCanvas("PulseCanvas","PulseCanvas",1200,800)}{
                 MassCanvas->Divide(3,2);
-                        int i{};
+                        /*int i{};
                         for(auto & node: fInputData->invMasses){
                         MassCanvas->cd(i);
                             //draw each histogram
                             node.second.Draw();
                             ++i; //increase pad counter
-                         }
+                         }*/
+                        //MassCanvas->cd(0);
+
+
                 PartTypeCanvas->cd(0);
                         fInputData->ParticlesType.Draw();
                 DistributionsCanvas->Divide(2,1);

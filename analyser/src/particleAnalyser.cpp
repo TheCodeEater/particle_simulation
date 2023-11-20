@@ -86,7 +86,9 @@ namespace BASE_NS{
 
     std::shared_ptr<SignalResult> dataAnalyser::GetDecaymentSignal() const {
         auto signal1=TH1F{
-                fData->invMasses["DiscordantPK"]-fData->invMasses["ConcordantPK"]};
+                fData->InvariantMassesDecayD-fData->InvariantMassesDecayC
+                //fData->invMasses["DiscordantPK"]-fData->invMasses["ConcordantPK"]
+                };
 
         auto signal2=TH1F{
                 fData->InvariantMassesAlld-fData->InvariantMassesAllc};
@@ -100,9 +102,9 @@ namespace BASE_NS{
 
     dataAnalyser::GenerationResult dataAnalyser::GetGenerationFits() const {
         //Get angular data
-        auto & azimuthal{fData->AzimuthAngles};
+        auto & azimuthal{fData->AzimuthalAngles};
         auto & polar{fData->PolarAngles};
-        auto & pulse{fData->Pulse};
+        auto & pulse{fData->Impulse};
 
         //fit data storage
         std::unordered_map<std::string,TFitResultPtr> fits;
