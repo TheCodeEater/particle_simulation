@@ -147,6 +147,7 @@ namespace BASE_NS {
                 //concordant charge
                 if(isSameCharge(p,p2)){
                     dataStorage.InvariantMassesAllc.Fill(invMass);
+                    checkConcordantDecayCouples(p1_name, p2_name);
 
                     //if the particles are of the possible decay types
                     if((p1_name==PTypeList::P_Pion && p2_name==PTypeList::P_Kaon)
@@ -191,6 +192,31 @@ namespace BASE_NS {
             auto& p = DecayProducts[i];
             dataStorage.InvariantMassesDprod.Fill(p.InvMass(DecayProducts[i+1]));
         }
+    }
+
+    bool particleGenerator::checkConcordantDecayCouples(const particleGenerator::PTypeList &p1_name,
+                                                        const particleGenerator::PTypeList &p2_name) const {//decay product check
+//Pion+ / Kaon +
+        if(p1_name==PTypeList::P_Pion){
+            if(p2_name==PTypeList::P_Kaon){
+                return true;
+            }
+        }else if(p1_name==PTypeList::P_Kaon){//symmetric: Kaon+/Pion+
+            if(p2_name==PTypeList::P_Pion){
+                return true;
+            }
+        }
+        //same with negative
+        if(p1_name==PTypeList::N_Pion){
+            if(p2_name==PTypeList::N_Kaon){
+                return true;
+            }
+        }else if(p1_name==PTypeList::N_Kaon){//symmetric: Kaon+/Pion+
+            if(p2_name==PTypeList::N_Pion){
+                return true;
+            }
+        }
+        return false;
     }
 
     bool particleGenerator::isSameCharge(const Particle &p, const Particle &p2) {

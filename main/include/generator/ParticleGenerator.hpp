@@ -61,6 +61,8 @@ namespace BASE_NS {
         proportionGenerator<PTDecayList> fDecaymentGen;
 
         static bool isSameCharge(const Particle &p, const Particle &p2) ;
+
+        bool checkConcordantDecayCouples(const PTypeList &p1_name, const PTypeList &p2_name) const;
     };
 
 } // BASE_NS
