@@ -4,6 +4,7 @@
 #include "TApplication.h"
 #include "TRint.h"
 #include "particleAnalyser.hpp"
+#include "analyserGraphics.hpp"
 #include "TF1.h"
 #include <iostream>
 
@@ -15,7 +16,7 @@ int main(int argc, char** argv){    //create root application
     //create the logic objects
     BASE_NS::dataAnalyser Anal("Particle.root");
     //per avere il numero di ingressi di un istogramma
-    std::cout << Anal.GetData()->ParticlesType.GetEntries();
+    /*std::cout << Anal.GetData()->ParticlesType.GetEntries();
     //per avere numero di un certo tipo di particella e relativa incertezza
     std::cout << Anal.GetData()->ParticlesType.GetBinContent(0) << "+/-" << Anal.GetData()->ParticlesType.GetBinError(0);
 
@@ -34,8 +35,9 @@ int main(int argc, char** argv){    //create root application
     impFit->SetParameter(1,1);
 
     Anal.GetData()->Impulse.Fit(impFit);
-    std::cout << "Pulse, Param: " << impFit->GetParameter(0) << " " << impFit->GetParameter(1) << "CQR: " << impFit->GetChisquare()/impFit->GetNDF() << "Probabilità: " << impFit->GetProb();
+    std::cout << "Pulse, Param: " << impFit->GetParameter(0) << " " << impFit->GetParameter(1) << "CQR: " << impFit->GetChisquare()/impFit->GetNDF() << "Probabilità: " << impFit->GetProb();*/
     //do stuff
+    BASE_NS::AnalyzerGraphics g{Anal};
 
     //run application
     app.Run();

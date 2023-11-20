@@ -92,7 +92,7 @@ namespace BASE_NS{
                 };
 
         auto signal2=TH1F{
-                fData->InvariantMassesAlld-fData->InvariantMassesAllc};
+                fData->InvariantMassesAllc-fData->InvariantMassesAlld};
 
         //run fit
         auto fit1=signal1.Fit("gaus","S");

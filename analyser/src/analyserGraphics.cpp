@@ -47,6 +47,10 @@ namespace BASE_NS{
                              fInputData->Energies.Draw();
 
 
+                             PartTypeCanvas->Update();
+                             DistributionsCanvas->Update();
+                             SumCanvas->Update();
+                             PulseCanvas->Update();
 
     
     }
