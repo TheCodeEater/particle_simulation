@@ -33,10 +33,12 @@ namespace BASE_NS{
         hist InvariantMasses{};
         hist InvariantMassesAlld{};
         hist InvariantMassesAllc{};
-        hist InvariantMassesPipKn{};
+        /*hist InvariantMassesPipKn{};
         hist InvariantMassesPinKp{};
         hist InvariantMassesPipKp{};
-        hist InvariantMassesPinKn{};
+        hist InvariantMassesPinKn{};*/
+        hist InvariantMassesDecayC{}; /// Concordant particles that can be generated as result of decay
+        hist InvariantMassesDecayD{}; /// Discordant particles that can be generated as result of decay
         hist InvariantMassesDprod{};
 
         ClassDefOverride(particleStorage,1);

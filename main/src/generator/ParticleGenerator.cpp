@@ -129,20 +129,44 @@ namespace BASE_NS {
                                                    const particleGenerator::PStorage &DecayProducts,
                                                    particleStorage& dataStorage) const {
 
+        //loop throught the dataset, comparing each particle with the others
         for(unsigned int i = 0; i < EventParticles.size(); ++i){
             auto const& p = EventParticles[i];
             for(unsigned int k = i; k < EventParticles.size(); ++k){
                 auto const& p2{EventParticles[k]};
                 auto invMass {p.InvMass(p2)};
 
-                dataStorage.InvariantMasses.Fill(invMass); //MI tra tutti
+                PTypeList p1_name{static_cast<PTypeList>(p.GetParticleName())};
+                PTypeList p2_name{static_cast<PTypeList>(p2.GetParticleName())};
+
+                //invariant mass between all particles
+                dataStorage.InvariantMasses.Fill(invMass);
+
+                //invariant mass depending on charge
                 if(p.GetCharge() * p2.GetCharge() == -1){
                     dataStorage.InvariantMassesAlld.Fill(invMass);
+
+                    //if the particles are of the possible decay types
+                    if((p1_name==PTypeList::P_Pion && p2_name==PTypeList::N_Kaon)
+                        || (p1_name==PTypeList::N_Pion && p2_name==PTypeList::N_Kaon)){
+                        //Discordant particles
+                        dataStorage.InvariantMassesDecayD.Fill(invMass);
+                    }
                 }
                 if(p.GetCharge() * p2.GetCharge() == 1){
                     dataStorage.InvariantMassesAllc.Fill(invMass);
+
+                    //if the particles are of the possible decay types
+                    if((p1_name==PTypeList::P_Pion && p2_name==PTypeList::P_Kaon)
+                       || (p1_name==PTypeList::N_Pion && p2_name==PTypeList::N_Kaon)){
+                        //Concordant particles
+                        dataStorage.InvariantMassesDecayC.Fill(invMass);
+                    }
                 }
-                if(p.GetParticleName() == PTypeList::P_Pion && p2.GetParticleName() == PTypeList::N_Kaon){
+
+                //invariant mass between particles that can either be or not be result
+                //of the decay
+                /*if(p.GetParticleName() == PTypeList::P_Pion && p2.GetParticleName() == PTypeList::N_Kaon){
                     dataStorage.InvariantMassesPipKn.Fill(invMass);
                 }
                 if(p.GetParticleName() == PTypeList::N_Pion && p2.GetParticleName() == PTypeList::P_Kaon){
@@ -153,7 +177,7 @@ namespace BASE_NS {
                 }
                 if(p.GetParticleName() == PTypeList::N_Pion && p2.GetParticleName() == PTypeList::N_Kaon){
                     dataStorage.InvariantMassesPinKn.Fill(invMass);
-                }
+                }*/
             }
         }
         //generate invariant mass for decay products
