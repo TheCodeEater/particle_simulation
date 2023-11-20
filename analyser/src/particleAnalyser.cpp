@@ -30,8 +30,9 @@ namespace BASE_NS{
 
         //load data
         fData=dataContainerPtr{
-                dynamic_cast<dataContainer *>(data_source.Get("particles_decay_data"))
+                dynamic_cast<dataContainer *>(data_source.Get("ResonanceSimulator::particleStorage"))
             };
+        //particles_decay_data
     }
 
     dataAnalyser::dataContainerPtr dataAnalyser::GetData() {
