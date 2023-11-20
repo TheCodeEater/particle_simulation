@@ -4,6 +4,7 @@
 #include "analyserGraphics.hpp"
 
 #include <algorithm>
+#include <iostream>
 
 namespace BASE_NS{
     AnalyzerGraphics::AnalyzerGraphics(dataAnalyser& analyser):
@@ -24,6 +25,8 @@ namespace BASE_NS{
                             ++i; //increase pad counter
                          }*/
                         //MassCanvas->cd(0);
+                        MassCanvas->cd(0);
+                        fInputData->InvariantMassesDprod.Draw();
 
 
                 PartTypeCanvas->cd(0);
