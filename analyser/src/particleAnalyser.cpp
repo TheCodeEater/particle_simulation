@@ -24,7 +24,7 @@ namespace BASE_NS{
         TFile data_source{path.c_str(),"READ"};
 
         //check that the file was opened correctly
-        if(data_source.IsOpen()){
+        if(!data_source.IsOpen()){
             throw std::runtime_error{"Cannot open root file. Path: "+path};
         }
 
