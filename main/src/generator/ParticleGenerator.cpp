@@ -147,12 +147,9 @@ namespace BASE_NS {
                 //concordant charge
                 if(isSameCharge(p,p2)){
                     dataStorage.InvariantMassesAllc.Fill(invMass);
-                    checkConcordantDecayCouples(p1_name, p2_name);
 
-                    //if the particles are of the possible decay types
-                    if((p1_name==PTypeList::P_Pion && p2_name==PTypeList::P_Kaon)
-                       || (p1_name==PTypeList::N_Pion && p2_name==PTypeList::N_Kaon)){
-                        //Concordant particles
+                    //check that the particle couple is of the decay product type
+                    if(checkConcordantDecayCouples(p1_name, p2_name)){
                         dataStorage.InvariantMassesDecayC.Fill(invMass);
                     }
                 }
@@ -160,12 +157,10 @@ namespace BASE_NS {
                 else /*if(!isSameCharge(p, p2))*/{
                     dataStorage.InvariantMassesAlld.Fill(invMass);
 
-                    //if the particles are of the possible decay types
-                    if((p1_name==PTypeList::P_Pion && p2_name==PTypeList::N_Kaon)
-                       || (p1_name==PTypeList::N_Pion && p2_name==PTypeList::N_Kaon)){
-                        //Discordant particles
+                    if(checkDiscordantDecayCouples(p1_name, p2_name)){
                         dataStorage.InvariantMassesDecayD.Fill(invMass);
                     }
+                    return;
                 }
 
                 //invariant mass between particles that can either be or not be result
@@ -194,8 +189,32 @@ namespace BASE_NS {
         }
     }
 
+    bool particleGenerator::checkDiscordantDecayCouples(const particleGenerator::PTypeList &p1_name,
+                                                        const particleGenerator::PTypeList &p2_name) {
+        if(p1_name == PTypeList::P_Pion){
+            if(p2_name==PTypeList::N_Kaon){
+                return true;
+            }
+        }else if(p1_name==PTypeList::P_Kaon){//symmetric: Kaon+/Pion+
+            if(p2_name==PTypeList::N_Pion){
+                return true;
+            }
+        }
+        //same with negative
+        if(p1_name==PTypeList::N_Pion){
+            if(p2_name==PTypeList::P_Kaon){
+                return true;
+            }
+        }else if(p1_name==PTypeList::N_Kaon){//symmetric: Kaon+/Pion+
+            if(p2_name==PTypeList::P_Pion){
+                return true;
+            }
+        }
+        return false;
+    }
+
     bool particleGenerator::checkConcordantDecayCouples(const particleGenerator::PTypeList &p1_name,
-                                                        const particleGenerator::PTypeList &p2_name) const {//decay product check
+                                                        const particleGenerator::PTypeList &p2_name) {//decay product check
 //Pion+ / Kaon +
         if(p1_name==PTypeList::P_Pion){
             if(p2_name==PTypeList::P_Kaon){

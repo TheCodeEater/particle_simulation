@@ -62,7 +62,9 @@ namespace BASE_NS {
 
         static bool isSameCharge(const Particle &p, const Particle &p2) ;
 
-        bool checkConcordantDecayCouples(const PTypeList &p1_name, const PTypeList &p2_name) const;
+        static bool checkConcordantDecayCouples(const PTypeList &p1_name, const PTypeList &p2_name) ;
+
+        static bool checkDiscordantDecayCouples(const PTypeList &p1_name, const PTypeList &p2_name) ;
     };
 
 } // BASE_NS
