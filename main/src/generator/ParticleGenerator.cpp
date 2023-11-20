@@ -160,7 +160,6 @@ namespace BASE_NS {
                     if(checkDiscordantDecayCouples(p1_name, p2_name)){
                         dataStorage.InvariantMassesDecayD.Fill(invMass);
                     }
-                    return;
                 }
 
                 //invariant mass between particles that can either be or not be result

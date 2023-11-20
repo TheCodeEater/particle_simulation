@@ -25,10 +25,8 @@ namespace BASE_NS{
         storage.InvariantMasses.Sumw2(); //enable error prorpagation structures
         storage.InvariantMassesAlld = TH1F("InvariantMassesAlld", "Invariant Masses Alld", 100, 0, 10);
         storage.InvariantMassesAllc = TH1F("InvariantMassesAllc", "Invariant Masses Allc", 100, 0, 10);
-        storage.InvariantMassesPipKn = TH1F("InvariantMassesPipKn", "Invariant Masses PipKn", 100, 0, 10);
-        storage.InvariantMassesPinKp = TH1F("InvariantMassesPinKp", "Invariant Masses PinKp", 100, 0, 10);
-        storage.InvariantMassesPipKp = TH1F("InvariantMassesPipKp", "Invariant Masses PipKp", 100, 0, 10);
-        storage.InvariantMassesPinKn = TH1F("InvariantMassesPinKn", "Invariant Masses PinKn", 100, 0, 10);
+        storage.InvariantMassesDecayC = TH1F("InvariantMassesDecayC", "Invariant Masses Concordant", 100, 0, 10);
+        storage.InvariantMassesDecayD = TH1F("InvariantMassesDecayD", "Invariant Masses Discordant", 100, 0, 10);
         storage.InvariantMassesDprod = TH1F("InvariantMassesDprod", "Invariant Masses Dprod", 100, 0, 10);
     }
 }
