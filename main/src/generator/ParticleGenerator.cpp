@@ -143,7 +143,9 @@ namespace BASE_NS {
                 dataStorage.InvariantMasses.Fill(invMass);
 
                 //invariant mass depending on charge
-                if(p.GetCharge() * p2.GetCharge() == -1){
+
+                //discordant charge
+                if(!isSameCharge(p, p2)){
                     dataStorage.InvariantMassesAlld.Fill(invMass);
 
                     //if the particles are of the possible decay types
@@ -153,7 +155,9 @@ namespace BASE_NS {
                         dataStorage.InvariantMassesDecayD.Fill(invMass);
                     }
                 }
-                if(p.GetCharge() * p2.GetCharge() == 1){
+
+                //concordant charge
+                if(isSameCharge(p,p2)){
                     dataStorage.InvariantMassesAllc.Fill(invMass);
 
                     //if the particles are of the possible decay types
@@ -188,6 +192,10 @@ namespace BASE_NS {
             auto& p = DecayProducts[i];
             dataStorage.InvariantMassesDprod.Fill(p.InvMass(DecayProducts[i+1]));
         }
+    }
+
+    bool particleGenerator::isSameCharge(const Particle &p, const Particle &p2) const {
+        return p.GetCharge() * p2.GetCharge() == 1;
     }
 
 

@@ -59,6 +59,8 @@ namespace BASE_NS {
         randGen fRandom; /// Random generator
         proportionGenerator<PTypeList> fParticleGen;
         proportionGenerator<PTDecayList> fDecaymentGen;
+
+        bool isSameCharge(const Particle &p, const Particle &p2) const;
     };
 
 } // BASE_NS
