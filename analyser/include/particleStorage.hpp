@@ -19,18 +19,27 @@ namespace BASE_NS{
         using histCont=std::map<std::string,TH1F>;
         using hist=TH1F;
 
-        particleStorage();
+        particleStorage()=default;
+
+        static void makeDefaultHistograms(particleStorage& storage);
 
         //Histograms classified by type
-        hist GeneratedTypes{};
+        hist ParticlesType{};
+        hist AzimuthalAngles{};
         hist PolarAngles{};
-        hist AzimuthAngles{};
-        hist Pulse{};
-        hist TransPulse{};
-        hist Energy{};
-
-        //store all invariant masses histograms into a container
-        histCont invMasses{};
+        hist Impulse{};
+        hist TransverseImpulse{};
+        hist Energies{};
+        hist InvariantMasses{};
+        hist InvariantMassesAlld{};
+        hist InvariantMassesAllc{};
+        /*hist InvariantMassesPipKn{};
+        hist InvariantMassesPinKp{};
+        hist InvariantMassesPipKp{};
+        hist InvariantMassesPinKn{};*/
+        hist InvariantMassesDecayC{}; /// Concordant particles that can be generated as result of decay
+        hist InvariantMassesDecayD{}; /// Discordant particles that can be generated as result of decay
+        hist InvariantMassesDprod{};
 
         ClassDefOverride(particleStorage,1);
     };
