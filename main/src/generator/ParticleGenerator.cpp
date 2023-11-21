@@ -130,7 +130,7 @@ namespace BASE_NS {
 
     void particleGenerator::calculateInvariantMass(const particleGenerator::PStorage &EventParticles,
                                                    const particleGenerator::PStorage &DecayProducts,
-                                                   particleStorage &dataStorage) const {
+                                                   particleStorage &dataStorage) {
 
         //loop throught the dataset, comparing each particle with the others
         for (unsigned int i = 0; i < EventParticles.size(); ++i) {
@@ -165,20 +165,6 @@ namespace BASE_NS {
                     }
                 }
 
-                //invariant mass between particles that can either be or not be result
-                //of the decay
-                /*if(p.GetParticleName() == PTypeList::P_Pion && p2.GetParticleName() == PTypeList::N_Kaon){
-                    dataStorage.InvariantMassesPipKn.Fill(invMass);
-                }
-                if(p.GetParticleName() == PTypeList::N_Pion && p2.GetParticleName() == PTypeList::P_Kaon){
-                    dataStorage.InvariantMassesPinKp.Fill(invMass);
-                }
-                if(p.GetParticleName() == PTypeList::P_Pion && p2.GetParticleName() == PTypeList::P_Kaon){
-                    dataStorage.InvariantMassesPipKp.Fill(invMass);
-                }
-                if(p.GetParticleName() == PTypeList::N_Pion && p2.GetParticleName() == PTypeList::N_Kaon){
-                    dataStorage.InvariantMassesPinKn.Fill(invMass);
-                }*/
             }
         }
         //generate invariant mass for decay products

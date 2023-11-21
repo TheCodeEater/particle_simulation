@@ -24,19 +24,18 @@ namespace BASE_NS {
         static void makeDefaultHistograms(particleStorage &storage);
 
         //Histograms classified by type
+        //generation histograms
         hist ParticlesType{};
         hist AzimuthalAngles{};
         hist PolarAngles{};
+        //dynamics
         hist Impulse{};
         hist TransverseImpulse{};
         hist Energies{};
+        //relativistic
         hist InvariantMasses{};
         hist InvariantMassesAlld{};
         hist InvariantMassesAllc{};
-        /*hist InvariantMassesPipKn{};
-        hist InvariantMassesPinKp{};
-        hist InvariantMassesPipKp{};
-        hist InvariantMassesPinKn{};*/
         hist InvariantMassesDecayC{}; /// Concordant particles that can be generated as result of decay
         hist InvariantMassesDecayD{}; /// Discordant particles that can be generated as result of decay
         hist InvariantMassesDprod{};

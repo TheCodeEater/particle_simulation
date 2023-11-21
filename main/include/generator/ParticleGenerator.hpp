@@ -53,9 +53,9 @@ namespace BASE_NS {
          * @param DecayProducts Reference to the container of the decay products
          * @param dataStorage Struct holding histograms
          */
-        void calculateInvariantMass(PStorage const &EventParticles,
+        static void calculateInvariantMass(PStorage const &EventParticles,
                                     PStorage const &DecayProducts,
-                                    particleStorage &dataStorage) const;
+                                    particleStorage &dataStorage) ;
 
         randGen fRandom; /// Random generator
         proportionGenerator<PTypeList> fParticleGen;
