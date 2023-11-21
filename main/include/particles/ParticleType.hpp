@@ -9,7 +9,7 @@
 
 #include <string>
 
-namespace BASE_NS {
+namespace ResonanceSimulator {
 
 
     class ParticleType {

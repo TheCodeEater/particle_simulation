@@ -8,7 +8,7 @@
 #include "Definitions.hpp"
 #include "TH1.h"
 
-namespace BASE_NS {
+namespace ResonanceSimulator {
     /**
  * Struct to hold the result of the required histogram difference
  */

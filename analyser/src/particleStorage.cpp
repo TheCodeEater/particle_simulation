@@ -7,7 +7,7 @@
 
 #include "TMath.h"
 
-namespace BASE_NS {
+namespace ResonanceSimulator {
     /*particleStorage::particleStorage() {
         //generate data structures for histogram error calculation
         for(auto & node: invMasses){

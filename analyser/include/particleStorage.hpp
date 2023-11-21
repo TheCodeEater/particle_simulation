@@ -9,7 +9,7 @@
 #include "TH1.h"
 #include <map>
 
-namespace BASE_NS {
+namespace ResonanceSimulator {
     /**
      * Store datas to be analysed
      * The storage type may vary across different versions

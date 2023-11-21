@@ -6,7 +6,7 @@
 #include <algorithm>
 #include <iostream>
 
-namespace BASE_NS {
+namespace ResonanceSimulator {
     AnalyzerGraphics::AnalyzerGraphics(dataAnalyser &analyser) :
             fInputData{analyser.GetData()}, //get input data
             fSignalResult{analyser.GetDecaymentSignal()}, //run fit

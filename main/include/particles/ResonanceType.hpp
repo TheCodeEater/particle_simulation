@@ -8,7 +8,7 @@
 #include "Definitions.hpp"
 #include "particles/ParticleType.hpp"
 
-namespace BASE_NS {
+namespace ResonanceSimulator {
     class ResonanceType : public ParticleType {
 
     public:

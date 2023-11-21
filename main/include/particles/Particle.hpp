@@ -15,7 +15,7 @@
 #include <memory>
 
 
-namespace BASE_NS {
+namespace ResonanceSimulator {
     class Particle {
         using pTypeStorage = std::vector<std::unique_ptr<ParticleType>>;
     public:

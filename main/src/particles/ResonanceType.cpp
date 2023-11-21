@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-namespace BASE_NS {
+namespace ResonanceSimulator {
 
     ResonanceType::ResonanceType(const int name, double mass, int charge, double width) :
             ParticleType{name, mass, charge},

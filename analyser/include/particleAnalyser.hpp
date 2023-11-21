@@ -15,7 +15,7 @@
 #include "dataStructures/genCheckResult.hpp"
 #include "dataStructures/signalFitResult.hpp"
 
-namespace BASE_NS {
+namespace ResonanceSimulator {
     /**
      * This class encapsulates the data analysis for the K* decayment trace.
      * The class acts as a mere analysis running tool: results are NOT stored internally. The user is required

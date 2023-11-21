@@ -4,7 +4,7 @@
 #include "particles/ParticleType.hpp"
 #include <iostream>
 
-namespace BASE_NS {
+namespace ResonanceSimulator {
 
     ParticleType::ParticleType(int name, double mass, int charge) :
             fName((Type) name),

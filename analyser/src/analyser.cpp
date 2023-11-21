@@ -15,7 +15,7 @@ int main(int argc, char **argv) {    //create root application
     APP_TYPE app(APP_NAME, &argc, argv);
 
     //create the logic objects
-    BASE_NS::dataAnalyser Anal("Particle.root");
+    ResonanceSimulator::dataAnalyser Anal("Particle.root");
     //per avere il numero di ingressi di un istogramma
     /*std::cout << Anal.GetData()->ParticlesType.GetEntries();
     //per avere numero di un certo tipo di particella e relativa incertezza
@@ -41,7 +41,7 @@ int main(int argc, char **argv) {    //create root application
     gStyle->SetHistFillColor(kGreen);
     gStyle->SetHistLineColor(kRed);
     //do stuff
-    BASE_NS::AnalyzerGraphics g{Anal};
+    ResonanceSimulator::AnalyzerGraphics g{Anal};
 
     //run application
     app.Run();

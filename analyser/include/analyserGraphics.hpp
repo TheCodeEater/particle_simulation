@@ -13,7 +13,7 @@
 
 #include "particleAnalyser.hpp"
 
-namespace BASE_NS {
+namespace ResonanceSimulator {
     /**
      * This class encapsulates graphics for the particle data analysis
      */

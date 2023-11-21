@@ -11,7 +11,7 @@
 
 #include "TMath.h"
 
-namespace BASE_NS {
+namespace ResonanceSimulator {
 
     Particle::Particle(const int name, double Px, double Py, double Pz) :
             fParticleName{name},

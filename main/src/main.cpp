@@ -26,12 +26,12 @@ int main(int argc, char **argv) {
     // create root application
     // APP_TYPE app(APP_NAME, &argc, argv);
 
-    BASE_NS::particleGenerator::loadParticles();
+    ResonanceSimulator::particleGenerator::loadParticles();
 
-    BASE_NS::particleGenerator generator{};
+    ResonanceSimulator::particleGenerator generator{};
     // run the simulation
     // save result in unique pointer
-    std::unique_ptr<BASE_NS::particleStorage> result{generator(1e5)};
+    std::unique_ptr<ResonanceSimulator::particleStorage> result{generator(1e5)};
     auto *file = new TFile("Particle.root", "RECREATE");
     result->Write();
     file->Close();

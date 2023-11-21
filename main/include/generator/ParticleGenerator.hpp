@@ -14,7 +14,7 @@
 
 #include <deque>
 
-namespace BASE_NS {
+namespace ResonanceSimulator {
 
     /**
      * This class encapsulates particle generation, decayment processing, invariant masses distributions
@@ -68,6 +68,6 @@ namespace BASE_NS {
         static bool checkDiscordantDecayCouples(const PTypeList &p1_name, const PTypeList &p2_name);
     };
 
-} // BASE_NS
+} // ResonanceSimulator
 
 #endif //ROOT_TEMPLATE_PROJECT_PARTICLEGENERATOR_HPP

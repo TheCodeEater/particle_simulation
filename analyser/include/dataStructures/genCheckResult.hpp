@@ -10,7 +10,7 @@
 #include <string>
 #include <sstream>
 
-namespace BASE_NS {
+namespace ResonanceSimulator {
     /**
 * Represent the result of distribution consistency check
 */

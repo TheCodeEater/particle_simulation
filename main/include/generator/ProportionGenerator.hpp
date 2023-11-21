@@ -15,7 +15,7 @@
 
 #include "Definitions.hpp"
 
-namespace BASE_NS {
+namespace ResonanceSimulator {
 
 /**
  * This class generates, based on definite proportions, the elements it is instructed to

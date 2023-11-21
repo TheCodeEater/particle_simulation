@@ -12,15 +12,15 @@
 
 #include "TFile.h"
 
-namespace BASE_NS {
+namespace ResonanceSimulator {
     void particleGenerator::loadParticles() {
-        BASE_NS::Particle::AddParticleType(0, 0.13957, 1);
-        BASE_NS::Particle::AddParticleType(1, 0.13957, -1);
-        BASE_NS::Particle::AddParticleType(2, 0.49367, 1);
-        BASE_NS::Particle::AddParticleType(3, 0.49367, -1);
-        BASE_NS::Particle::AddParticleType(4, 0.93827, 1);
-        BASE_NS::Particle::AddParticleType(5, 0.93827, -1);
-        BASE_NS::Particle::AddParticleType(6, 0.89166, 0, 0.050);
+        Particle::AddParticleType(0, 0.13957, 1);
+        Particle::AddParticleType(1, 0.13957, -1);
+        Particle::AddParticleType(2, 0.49367, 1);
+        Particle::AddParticleType(3, 0.49367, -1);
+        Particle::AddParticleType(4, 0.93827, 1);
+        Particle::AddParticleType(5, 0.93827, -1);
+        Particle::AddParticleType(6, 0.89166, 0, 0.050);
     }
 
     particleGenerator::particleGenerator(unsigned int seed) :
@@ -97,7 +97,7 @@ namespace BASE_NS {
                     EventParticles.push_back(p1);
                     EventParticles.push_back(p2);
                 } else {
-                    BASE_NS::Particle p(name, P * TMath::Sin(theta) * TMath::Cos(phi),
+                    ResonanceSimulator::Particle p(name, P * TMath::Sin(theta) * TMath::Cos(phi),
                                         P * TMath::Sin(theta) * TMath::Sin(phi), P * TMath::Cos(theta));
                     EventParticles.push_back(p);
                     const double TransImp = std::sqrt(std::pow(p.GetPx(), 2) + std::pow(p.GetPy(), 2));
@@ -231,4 +231,4 @@ namespace BASE_NS {
     }
 
 
-} // BASE_NS
+} // ResonanceSimulator

@@ -15,7 +15,7 @@
 
 #include <sstream>
 
-namespace BASE_NS {
+namespace ResonanceSimulator {
 
     dataAnalyser::dataAnalyser(const std::string &path) :
     //create empty TList

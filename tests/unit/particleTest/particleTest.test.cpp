@@ -5,7 +5,7 @@
 #include "particles/ResonanceType.hpp"
 #include "Definitions.hpp"
 
-using namespace BASE_NS;
+using namespace ResonanceSimulator;
 
 int main() {
     ParticleType part{"part1", 1, 16};

@@ -6,7 +6,7 @@
 
 #include <string>
 
-namespace BASE_NS {
+namespace ResonanceSimulator {
     CheckResult::operator bool() const {
         return fSuccessful;
     }
