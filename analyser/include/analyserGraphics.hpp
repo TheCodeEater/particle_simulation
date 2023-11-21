@@ -34,6 +34,11 @@ namespace BASE_NS {
         CanvasPtr SumCanvas;
         CanvasPtr PulseCanvas;
 
+        void graphicSetup();
+
+        void drawCanvases();
+
+        void writeHistograms() const;
     };
 }
 

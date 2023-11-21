@@ -16,6 +16,27 @@ namespace BASE_NS {
             DistributionsCanvas{new TCanvas("DistributionsCanvas", "Distribuzioni di generazione", 1200, 800)},
             SumCanvas{new TCanvas("SumCanvas", "Segnali estratti", 1200, 800)},
             PulseCanvas{new TCanvas("PulseCanvas", "Parametri meccanici", 1200, 800)} {
+
+        //draw all canvases
+        drawCanvases();
+
+        //notify that canvas have been drawn
+        graphicSetup();
+
+        //write histograms to file
+        writeHistograms();
+
+
+    }
+
+    void AnalyzerGraphics::writeHistograms() const {
+        PartTypeCanvas->Print("particleTypes.gif");
+        DistributionsCanvas->Print("generationDistributions.gif");
+        SumCanvas->Print("sumCanvas.gif");
+        PulseCanvas->Print("pulseCanvas.gif");
+    }
+
+    void AnalyzerGraphics::drawCanvases() {
         const char *options{"HIST,SAME"};
 
         MassCanvas->Divide(3, 2);
@@ -27,12 +48,12 @@ namespace BASE_NS {
             ++i; //increase pad counter
          }*/
         //MassCanvas->cd(0);
-        //invariant masses
+//invariant masses
         MassCanvas->cd(1);
         fInputData->InvariantMassesDprod.Draw(options);
 
         //particle types
-        PartTypeCanvas->Divide(1,0);
+        PartTypeCanvas->Divide(1, 0);
         PartTypeCanvas->cd(1);
         fInputData->ParticlesType.Draw(options);
 
@@ -58,7 +79,9 @@ namespace BASE_NS {
         fInputData->TransverseImpulse.Draw(options);
         PulseCanvas->cd(3);
         fInputData->Energies.Draw(options);
+    }
 
+    void AnalyzerGraphics::graphicSetup() {
         MassCanvas->Modified();
         PartTypeCanvas->Modified();
         DistributionsCanvas->Modified();
@@ -70,13 +93,6 @@ namespace BASE_NS {
         DistributionsCanvas->Update();
         SumCanvas->Update();
         PulseCanvas->Update();
-
-        PartTypeCanvas->Print("particleTypes.gif");
-        DistributionsCanvas->Print("generationDistributions.gif");
-        SumCanvas->Print("sumCanvas.gif");
-        PulseCanvas->Print("pulseCanvas.gif");
-
-
     }
 }
 
