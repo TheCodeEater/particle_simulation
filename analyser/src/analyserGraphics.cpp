@@ -10,12 +10,22 @@ namespace BASE_NS {
     AnalyzerGraphics::AnalyzerGraphics(dataAnalyser &analyser) :
             fInputData{analyser.GetData()}, //get input data
             fSignalResult{analyser.GetDecaymentSignal()}, //run fit
+            fCanvasContainer{} {
+        //create canvases
+        {
+        CanvasPtr MassCanvas{new TCanvas("massCanvas", "Masse Invarianti", 1200, 800)};
+        CanvasPtr PartTypeCanvas{new TCanvas("ParticleTypeCanvas", "Tipi di particelle", 1200, 800)};
+        CanvasPtr DistributionsCanvas{new TCanvas("DistributionsCanvas", "Distribuzioni di generazione", 1200, 800)};
+        CanvasPtr SumCanvas{new TCanvas("SignalCanvas", "Segnali estratti", 1200, 800)};
+        CanvasPtr PulseCanvas{new TCanvas("PulseCanvas", "Parametri meccanici", 1200, 800)};
 
-            MassCanvas{new TCanvas("massCanvas", "Masse Invarianti", 1200, 800)},
-            PartTypeCanvas{new TCanvas("PartTypeCanvas", "Tipi di particelle", 1200, 800)},
-            DistributionsCanvas{new TCanvas("DistributionsCanvas", "Distribuzioni di generazione", 1200, 800)},
-            SumCanvas{new TCanvas("SumCanvas", "Segnali estratti", 1200, 800)},
-            PulseCanvas{new TCanvas("PulseCanvas", "Parametri meccanici", 1200, 800)} {
+        //register canvases
+        fCanvasContainer[MassCanvas->GetName()] = std::move(MassCanvas);
+        fCanvasContainer[PartTypeCanvas->GetName()] = std::move(PartTypeCanvas);
+        fCanvasContainer[DistributionsCanvas->GetName()] = std::move(DistributionsCanvas);
+        fCanvasContainer[SumCanvas->GetName()] = std::move(SumCanvas);
+        fCanvasContainer[PulseCanvas->GetName()] = std::move(PulseCanvas);
+    }
 
         //draw all canvases
         drawCanvases();
@@ -30,25 +40,27 @@ namespace BASE_NS {
     }
 
     void AnalyzerGraphics::writeHistograms() const {
-        PartTypeCanvas->Print("particleTypes.gif");
-        DistributionsCanvas->Print("generationDistributions.gif");
-        SumCanvas->Print("sumCanvas.gif");
-        PulseCanvas->Print("pulseCanvas.gif");
+        for(auto& canvas: fCanvasContainer){
+            canvas.second->Print((
+                    std::string{canvas.second->GetName()}+".pdf"
+                    ).c_str());
+        }
+
     }
 
     void AnalyzerGraphics::drawCanvases() {
         const char *options{"HIST,SAME"};
 
+        //bind references to ptr for simplicity
+        CanvasPtr& MassCanvas{fCanvasContainer["massCanvas"]};
+        CanvasPtr& PartTypeCanvas{fCanvasContainer["ParticleTypeCanvas"]};
+        CanvasPtr& DistributionsCanvas{fCanvasContainer["DistributionsCanvas"]};
+        CanvasPtr& SumCanvas{fCanvasContainer["SignalCanvas"]};
+        CanvasPtr& PulseCanvas{fCanvasContainer["PulseCanvas"]};
+
+        //invariant masses
         MassCanvas->Divide(3, 2);
-        /*int i{};
-        for(auto & node: fInputData->invMasses){
-        MassCanvas->cd(i);
-            //draw each histogram
-            node.second.Draw();
-            ++i; //increase pad counter
-         }*/
-        //MassCanvas->cd(0);
-//invariant masses
+
         MassCanvas->cd(1);
         fInputData->InvariantMassesDprod.Draw(options);
 
@@ -82,17 +94,10 @@ namespace BASE_NS {
     }
 
     void AnalyzerGraphics::graphicSetup() {
-        MassCanvas->Modified();
-        PartTypeCanvas->Modified();
-        DistributionsCanvas->Modified();
-        SumCanvas->Modified();
-        PulseCanvas->Modified();
-
-        MassCanvas->Update();
-        PartTypeCanvas->Update();
-        DistributionsCanvas->Update();
-        SumCanvas->Update();
-        PulseCanvas->Update();
+        for(auto& canvas: fCanvasContainer){
+            canvas.second->Modified();
+            canvas.second->Update();
+        }
     }
 }
 

@@ -19,6 +19,7 @@ namespace BASE_NS {
      */
     class AnalyzerGraphics {
         using CanvasPtr = std::unique_ptr<TCanvas>;
+        using CanvasCont = std::unordered_map<std::string,CanvasPtr>;
 
     public:
         explicit AnalyzerGraphics(dataAnalyser &analyser);
@@ -28,11 +29,12 @@ namespace BASE_NS {
         std::shared_ptr<SignalResult> fSignalResult;
 
         //canvas with resulting histograms, similar with similar       
-        CanvasPtr MassCanvas;
+        /*CanvasPtr MassCanvas;
         CanvasPtr PartTypeCanvas;
         CanvasPtr DistributionsCanvas;
         CanvasPtr SumCanvas;
-        CanvasPtr PulseCanvas;
+        CanvasPtr PulseCanvas;*/
+        CanvasCont fCanvasContainer;
 
         void graphicSetup();
 
