@@ -51,7 +51,7 @@ namespace BASE_NS {
     void AnalyzerGraphics::drawCanvases() {
         const char *options{"HIST,SAME"};
 
-        //bind references to ptr for simplicity
+        //bind references to ptr for simplicit
         CanvasPtr& MassCanvas{fCanvasContainer["massCanvas"]};
         CanvasPtr& PartTypeCanvas{fCanvasContainer["ParticleTypeCanvas"]};
         CanvasPtr& DistributionsCanvas{fCanvasContainer["DistributionsCanvas"]};
