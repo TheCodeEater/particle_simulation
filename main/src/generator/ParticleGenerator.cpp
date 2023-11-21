@@ -106,6 +106,7 @@ namespace BASE_NS {
             calculateInvariantMass(EventParticles,DecayProducts,*dataStorage);
 
             EventParticles.clear();
+            DecayProducts.clear();
         }
 
         //release ownership on object and return raw pointer
