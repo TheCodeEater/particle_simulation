@@ -9,11 +9,11 @@ include_guard(GLOBAL) #Compiler options should be processed once
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 #set C++ std
-if(CONFIG_AUTODETECT_ROOT_STD)
-message(FATAL_ERROR "Root c++ std autodetection scripts does not exist!")
-else()
+if (CONFIG_AUTODETECT_ROOT_STD)
+    message(FATAL_ERROR "Root c++ std autodetection scripts does not exist!")
+else ()
     set(CMAKE_CXX_STANDARD 17)
-endif()
+endif ()
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)

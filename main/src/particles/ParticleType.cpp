@@ -4,17 +4,17 @@
 #include "particles/ParticleType.hpp"
 #include <iostream>
 
-namespace BASE_NS{
+namespace BASE_NS {
 
-    ParticleType::ParticleType(int name, double mass, int charge):
-        fName((Type)name),
-        fMass(mass),
-        fCharge(charge) {}
+    ParticleType::ParticleType(int name, double mass, int charge) :
+            fName((Type) name),
+            fMass(mass),
+            fCharge(charge) {}
 
     void ParticleType::Print() const {
-        std::cout<<"Name: "<<fName<<'\n'
-            <<"Mass: "<<fMass<<'\n'
-            <<"Charge: "<<fCharge<<'\n';
+        std::cout << "Name: " << fName << '\n'
+                  << "Mass: " << fMass << '\n'
+                  << "Charge: " << fCharge << '\n';
     }
 
     int ParticleType::GetName() const {

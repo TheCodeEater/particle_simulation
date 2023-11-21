@@ -8,13 +8,13 @@
 #include "Definitions.hpp"
 #include "TH1.h"
 
-namespace BASE_NS{
+namespace BASE_NS {
     /**
  * Struct to hold the result of the required histogram difference
  */
-    struct SignalResult{
-        using Hist=TH1F;
-        using FitPtr=TFitResultPtr;
+    struct SignalResult {
+        using Hist = TH1F;
+        using FitPtr = TFitResultPtr;
 
         SignalResult(const Hist &signal1, const Hist &signal2, const FitPtr &fitSignal1, const FitPtr &fitSignal2);
 

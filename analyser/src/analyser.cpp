@@ -10,7 +10,7 @@
 
 #include "Definitions.hpp"
 
-int main(int argc, char** argv){    //create root application
+int main(int argc, char **argv) {    //create root application
     APP_TYPE app(APP_NAME, &argc, argv);
 
     //create the logic objects

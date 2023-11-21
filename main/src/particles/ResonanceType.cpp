@@ -5,11 +5,11 @@
 
 #include <iostream>
 
-namespace BASE_NS{
+namespace BASE_NS {
 
-    ResonanceType::ResonanceType(const int name, double mass, int charge, double width):
-        ParticleType{name,mass,charge},
-        fWidth{width}{
+    ResonanceType::ResonanceType(const int name, double mass, int charge, double width) :
+            ParticleType{name, mass, charge},
+            fWidth{width} {
 
     }
 
@@ -19,6 +19,6 @@ namespace BASE_NS{
 
     void ResonanceType::Print() const {
         ParticleType::Print();
-        std::cout<<"Resonance: "<<fWidth<<'\n';
+        std::cout << "Resonance: " << fWidth << '\n';
     }
 }

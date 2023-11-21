@@ -7,7 +7,7 @@
 
 #include "TMath.h"
 
-namespace BASE_NS{
+namespace BASE_NS {
     /*particleStorage::particleStorage() {
         //generate data structures for histogram error calculation
         for(auto & node: invMasses){
@@ -16,7 +16,7 @@ namespace BASE_NS{
     }*/
     void particleStorage::makeDefaultHistograms(particleStorage &storage) {
         storage.ParticlesType = TH1F("ParticlesType", "Particles Type", 7, 0, 7);
-        storage.AzimuthalAngles = TH1F("AzimuthalAngles", "Azimuthal Angles", 100, 0, 2*TMath::Pi());
+        storage.AzimuthalAngles = TH1F("AzimuthalAngles", "Azimuthal Angles", 100, 0, 2 * TMath::Pi());
         storage.PolarAngles = TH1F("PolarAngles", "Polar Angles", 100, 0, TMath::Pi());
         storage.Impulse = TH1F("Impulse", "Impulse", 100, 0, 5);
         storage.TransverseImpulse = TH1F("TransverseImpulse", "Transverse Impulse", 100, 0, 5);

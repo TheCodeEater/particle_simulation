@@ -8,11 +8,11 @@
 #include "Definitions.hpp"
 #include "particles/ParticleType.hpp"
 
-namespace BASE_NS{
-    class ResonanceType : public ParticleType{
+namespace BASE_NS {
+    class ResonanceType : public ParticleType {
 
     public:
-        ResonanceType(int const name, double mass, int charge,double width);
+        ResonanceType(int const name, double mass, int charge, double width);
 
         [[nodiscard]] double GetWidth() const override;
 

@@ -13,15 +13,15 @@
 
 #include "particleAnalyser.hpp"
 
-namespace BASE_NS{
+namespace BASE_NS {
     /**
      * This class encapsulates graphics for the particle data analysis
      */
-    class AnalyzerGraphics{
-        using CanvasPtr=std::unique_ptr<TCanvas>;
+    class AnalyzerGraphics {
+        using CanvasPtr = std::unique_ptr<TCanvas>;
 
     public:
-        explicit AnalyzerGraphics(dataAnalyser& analyser);
+        explicit AnalyzerGraphics(dataAnalyser &analyser);
 
     private:
         std::shared_ptr<particleStorage> fInputData; /// Pointer to the object handling analysed data

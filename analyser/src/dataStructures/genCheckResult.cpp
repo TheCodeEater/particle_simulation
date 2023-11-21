@@ -6,7 +6,7 @@
 
 #include <string>
 
-namespace BASE_NS{
+namespace BASE_NS {
     CheckResult::operator bool() const {
         return fSuccessful;
     }
@@ -15,9 +15,9 @@ namespace BASE_NS{
         return fError;
     }
 
-    CheckResult::CheckResult(bool success, std::string error):
+    CheckResult::CheckResult(bool success, std::string error) :
             fSuccessful{success},
-            fError{std::move(error)}{
+            fError{std::move(error)} {
 
     }
 }

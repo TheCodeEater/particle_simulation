@@ -8,7 +8,7 @@ add_subdirectory(${ANALYSER_BASE})
 
 
 #Add tests
-if(BUILD_TESTING)
+if (BUILD_TESTING)
     add_subdirectory(${PROGRAM_TEST_UNIT}/sample) #add example test
     add_subdirectory(${PROGRAM_TEST_UNIT}/particleTest)
-endif()
+endif ()

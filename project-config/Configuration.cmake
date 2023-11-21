@@ -2,14 +2,14 @@
 include_guard(GLOBAL)
 
 #Process Definitions.hpp.in
-if(DEFINED PROGRAM_NAMESPACE AND
+if (DEFINED PROGRAM_NAMESPACE AND
         DEFINED PROGRAM_NAME #AND
         #DEFINED PROGRAM_ATTACH_CLING AND
         #DEFINED PROGRAM_USE_LOCAL_OWNERSHIP
         )
     configure_file(${PROGRAM_CODE_TEMPLATES}/Definitions.hpp.in
             ${PROGRAM_HEADERS}/Definitions.hpp)
-else()
+else ()
     message(FATAL_ERROR "Missing application configuration variables!")
-endif()
+endif ()
 

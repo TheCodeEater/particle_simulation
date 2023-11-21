@@ -11,13 +11,13 @@
 
 #include "TMath.h"
 
-namespace BASE_NS{
+namespace BASE_NS {
 
-    Particle::Particle(const int name, double Px, double Py, double Pz):
-        fParticleName{name},
-        fPx{Px},
-        fPy{Py},
-        fPz{Pz}{
+    Particle::Particle(const int name, double Px, double Py, double Pz) :
+            fParticleName{name},
+            fPx{Px},
+            fPy{Py},
+            fPz{Pz} {
         //check that the requested particle name exist
         fParticleType.at(name);
     }
@@ -27,39 +27,39 @@ namespace BASE_NS{
     }
 
     void Particle::AddParticleType(int name, double mass, int charge, double width) {
-        if(fParticleType.size()==fMaxNumParticleType){
+        if (fParticleType.size() == fMaxNumParticleType) {
             throw std::runtime_error{"Maximum particle number reached!"};
         }
         //fParticleType.at(name); //se non c'è, inserisci
-            if(width==0){ //may cause troubles with FP numbers
-                fParticleType[name]=std::make_unique<ParticleType>(name,mass,charge);
-            }else{
-                fParticleType[name]=std::make_unique<ResonanceType>(name,mass,charge,width);
-            }
+        if (width == 0) { //may cause troubles with FP numbers
+            fParticleType[name] = std::make_unique<ParticleType>(name, mass, charge);
+        } else {
+            fParticleType[name] = std::make_unique<ResonanceType>(name, mass, charge, width);
+        }
     }
 
     void Particle::SetParticleType(int name) {
         fParticleType.at(name);
-        fParticleName=name;
+        fParticleName = name;
     }
 
     void Particle::PrintParticleList() {
-        std::for_each(fParticleType.cbegin(),fParticleType.cend(),[](auto const& node){
+        std::for_each(fParticleType.cbegin(), fParticleType.cend(), [](auto const &node) {
             node->Print();
         });
     }
 
     void Particle::PrintData() const {
-        std::cout<<"Name:"<<fParticleName<<'\n'
-            <<"PX"<<fPx<<'\n'
-            <<"PY"<<fPy<<'\n'
-            <<"PZ"<<fPz<<'\n';
+        std::cout << "Name:" << fParticleName << '\n'
+                  << "PX" << fPx << '\n'
+                  << "PY" << fPy << '\n'
+                  << "PZ" << fPz << '\n';
     }
 
     void Particle::SetP(double px, double py, double pz) {
-        fPx=px;
-        fPy=py;
-        fPz=pz;
+        fPx = px;
+        fPy = py;
+        fPz = pz;
     }
 
     double Particle::GetPx() const {
@@ -75,13 +75,13 @@ namespace BASE_NS{
     }
 
     double Particle::InvMass(const Particle &p) const {
-        auto e{GetEnergy()+p.GetEnergy()};
+        auto e{GetEnergy() + p.GetEnergy()};
 
-        auto x=fPx+p.GetPx();
-        auto y=fPy+p.GetPy();
-        auto  z=fPz+p.GetPz();
+        auto x = fPx + p.GetPx();
+        auto y = fPy + p.GetPy();
+        auto z = fPz + p.GetPz();
 
-        return TMath::Sqrt(e*e-(x*x+y*y+z*z));
+        return TMath::Sqrt(e * e - (x * x + y * y + z * z));
 
         /*return TMath::Sqrt(
                 TMath::Power(GetEnergy()+p.GetEnergy(),2)
@@ -107,17 +107,17 @@ namespace BASE_NS{
         fPy*fPy+
         fPz*fPz);*/
         //DO not replace, worsens the performance
-        return TMath::Sqrt(TMath::Power(GetMass(),2)+
-                           TMath::Power(fPx,2)+
-                           TMath::Power(fPy,2)+
-                           TMath::Power(fPz,2));
+        return TMath::Sqrt(TMath::Power(GetMass(), 2) +
+                           TMath::Power(fPx, 2) +
+                           TMath::Power(fPy, 2) +
+                           TMath::Power(fPz, 2));
     }
 
     //initialise map
     Particle::pTypeStorage Particle::fParticleType(120);
 
     int Particle::Decay2body(Particle &dau1, Particle &dau2) const {
-        if(GetMass() == 0.0){
+        if (GetMass() == 0.0) {
             std::cout << "there is no decay if mass is zero";
             return 1;
         }
@@ -128,40 +128,41 @@ namespace BASE_NS{
 
         double x1, x2, w, y1;
 
-        double invnum = 1./RAND_MAX;
+        double invnum = 1. / RAND_MAX;
         do {
-            x1 = 2.0 * rand()*invnum - 1.0;
-            x2 = 2.0 * rand()*invnum - 1.0;
+            x1 = 2.0 * rand() * invnum - 1.0;
+            x2 = 2.0 * rand() * invnum - 1.0;
             w = x1 * x1 + x2 * x2;
-        } while ( w >= 1.0 );
+        } while (w >= 1.0);
 
-        w = sqrt( (-2.0 * log( w ) ) / w );
+        w = sqrt((-2.0 * log(w)) / w);
         y1 = x1 * w;
 
         massMot += fParticleType[fParticleName]->GetWidth() * y1;
 
-        if(massMot < massDau1 + massDau2){
-            std::cout <<"Decayment cannot be preformed because mass is too low in this channel\n";
+        if (massMot < massDau1 + massDau2) {
+            std::cout << "Decayment cannot be preformed because mass is too low in this channel\n";
             return 2;
         }
 
-        double pout = sqrt((massMot*massMot - (massDau1+massDau2)*(massDau1+massDau2))*(massMot*massMot - (massDau1-massDau2)*(massDau1-massDau2)))/massMot*0.5;
+        double pout = sqrt((massMot * massMot - (massDau1 + massDau2) * (massDau1 + massDau2)) *
+                           (massMot * massMot - (massDau1 - massDau2) * (massDau1 - massDau2))) / massMot * 0.5;
 
-        double norm = 2*M_PI/RAND_MAX;
+        double norm = 2 * M_PI / RAND_MAX;
 
-        double phi = rand()*norm;
-        double theta = rand()*norm*0.5 - M_PI/2.;
-        dau1.SetP(pout*sin(theta)*cos(phi),pout*sin(theta)*sin(phi),pout*cos(theta));
-        dau2.SetP(-pout*sin(theta)*cos(phi),-pout*sin(theta)*sin(phi),-pout*cos(theta));
+        double phi = rand() * norm;
+        double theta = rand() * norm * 0.5 - M_PI / 2.;
+        dau1.SetP(pout * sin(theta) * cos(phi), pout * sin(theta) * sin(phi), pout * cos(theta));
+        dau2.SetP(-pout * sin(theta) * cos(phi), -pout * sin(theta) * sin(phi), -pout * cos(theta));
 
-        double energy = sqrt(fPx*fPx + fPy*fPy + fPz*fPz + massMot*massMot);
+        double energy = sqrt(fPx * fPx + fPy * fPy + fPz * fPz + massMot * massMot);
 
-        double bx = fPx/energy;
-        double by = fPy/energy;
-        double bz = fPz/energy;
+        double bx = fPx / energy;
+        double by = fPy / energy;
+        double bz = fPz / energy;
 
-        dau1.Boost(bx,by,bz);
-        dau2.Boost(bx,by,bz);
+        dau1.Boost(bx, by, bz);
+        dau2.Boost(bx, by, bz);
 
         return 0;
     }
@@ -171,14 +172,14 @@ namespace BASE_NS{
         double energy = GetEnergy();
 
         //Boost this Lorentz vector
-        double b2 = bx*bx + by*by + bz*bz;
+        double b2 = bx * bx + by * by + bz * bz;
         double gamma = 1.0 / sqrt(1.0 - b2);
-        double bp = bx*fPx + by*fPy + bz*fPz;
-        double gamma2 = b2 > 0 ? (gamma - 1.0)/b2 : 0.0;
+        double bp = bx * fPx + by * fPy + bz * fPz;
+        double gamma2 = b2 > 0 ? (gamma - 1.0) / b2 : 0.0;
 
-        fPx += gamma2*bp*bx + gamma*bx*energy;
-        fPy += gamma2*bp*by + gamma*by*energy;
-        fPz += gamma2*bp*bz + gamma*bz*energy;
+        fPx += gamma2 * bp * bx + gamma * bx * energy;
+        fPy += gamma2 * bp * by + gamma * by * energy;
+        fPz += gamma2 * bp * bz + gamma * bz * energy;
     }
 
     int Particle::GetCharge() const {

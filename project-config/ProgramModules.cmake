@@ -6,8 +6,8 @@
 # Note: use this only for program-specific code, if you plan to use shared components,
 # add them as a library
 include_guard(DIRECTORY)
- set(PROGRAM_MODULES_MAIN_SRC
-         ${PROGRAM_SOURCES}/main.cpp)
+set(PROGRAM_MODULES_MAIN_SRC
+        ${PROGRAM_SOURCES}/main.cpp)
 
 set(PROGRAM_MODULES_MAIN_H
         ${PROGRAM_HEADERS}/Definitions.hpp)

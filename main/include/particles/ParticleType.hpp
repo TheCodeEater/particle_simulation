@@ -9,19 +9,23 @@
 
 #include <string>
 
-namespace BASE_NS{
+namespace BASE_NS {
 
 
-    class ParticleType{
+    class ParticleType {
 
     public:
-        enum Type{P_Pion, N_Pion, P_Kaon, N_Kaon, P_Prot, N_Prot, R_Kaon};
-        enum DecaymentType{
+        enum Type {
+            P_Pion, N_Pion, P_Kaon, N_Kaon, P_Prot, N_Prot, R_Kaon
+        };
+        enum DecaymentType {
             P1,//P+ K-
-            P2};//P- K+
+            P2
+        };//P- K+
 
         ParticleType(int name, double mass, int charge);
-        virtual ~ParticleType()=default;
+
+        virtual ~ParticleType() = default;
 
         virtual void Print() const;
 
@@ -34,7 +38,7 @@ namespace BASE_NS{
         [[nodiscard]] virtual double GetWidth() const;
 
     private:
-         Type fName;
+        Type fName;
         double fMass;
         int fCharge;
     };

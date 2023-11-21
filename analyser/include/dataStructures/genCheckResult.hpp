@@ -10,14 +10,15 @@
 #include <string>
 #include <sstream>
 
-namespace BASE_NS{
+namespace BASE_NS {
     /**
 * Represent the result of distribution consistency check
 */
-    class CheckResult{
+    class CheckResult {
 
     public:
         CheckResult(bool success, std::string error);
+
         /**
          * Convert to bool
          * @return fSuccessful
@@ -28,7 +29,8 @@ namespace BASE_NS{
          * Get error string
          * @return error string
          */
-        [[nodiscard]] std::string const& GetError() const;
+        [[nodiscard]] std::string const &GetError() const;
+
     private:
         bool fSuccessful{}; /// wether the check was successful
         std::string fError{}; /// Arose errors

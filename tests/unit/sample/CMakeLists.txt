@@ -5,13 +5,13 @@
 include_guard(GLOBAL)
 include(${CONFIG_BUILD_DIR}/ProgramModules.cmake)
 
-set(PROGRAM_TARGET_TEST_SAMPLE sample_test.t )
+set(PROGRAM_TARGET_TEST_SAMPLE sample_test.t)
 
 add_executable(${PROGRAM_TARGET_TEST_SAMPLE} sample_test.test.cpp) #add also equired program modules
 
 # target_link_libraries#link needed libraries
 target_include_directories(${PROGRAM_TARGET_TEST_SAMPLE}
-                            PRIVATE ${PROGRAM_HEADERS})
+        PRIVATE ${PROGRAM_HEADERS})
 
 #Generate root dictionary if needed
 

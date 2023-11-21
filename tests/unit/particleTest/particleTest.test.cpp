@@ -7,7 +7,7 @@
 
 using namespace BASE_NS;
 
-int main(){
+int main() {
     ParticleType part{"part1", 1, 16};
     ResonanceType pawrt{"pawrt1", 2, 32, 8.};
 
