@@ -3,9 +3,6 @@
 //
 #include "particleAnalyser.hpp"
 
-#include <utility>
-#include "Definitions.hpp"
-
 #include "particleStorage.hpp"
 #include "dataStructures/signalFitResult.hpp"
 #include "dataStructures/genCheckResult.hpp"

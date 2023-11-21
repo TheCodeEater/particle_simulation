@@ -5,8 +5,6 @@
 #ifndef ROOT_TEMPLATE_PROJECT_PARTICLETYPE_HPP
 #define ROOT_TEMPLATE_PROJECT_PARTICLETYPE_HPP
 
-#include "Definitions.hpp"
-
 #include <string>
 
 namespace ResonanceSimulator {

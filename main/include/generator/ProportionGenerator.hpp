@@ -13,8 +13,6 @@
 
 #include "TRandom.h"
 
-#include "Definitions.hpp"
-
 namespace ResonanceSimulator {
 
 /**

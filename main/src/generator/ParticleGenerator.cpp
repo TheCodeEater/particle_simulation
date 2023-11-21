@@ -7,7 +7,6 @@
 #include "particles/Particle.hpp"
 #include "particleStorage.hpp"
 
-#include "TH1F.h"
 #include "TMath.h"
 
 #include "TFile.h"

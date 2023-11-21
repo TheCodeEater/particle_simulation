@@ -5,7 +5,6 @@
 #ifndef ROOT_TEMPLATE_PROJECT_SIGNALFITRESULT_HPP
 #define ROOT_TEMPLATE_PROJECT_SIGNALFITRESULT_HPP
 
-#include "Definitions.hpp"
 #include "TH1.h"
 
 namespace ResonanceSimulator {

@@ -2,9 +2,6 @@
 // Created by Giacomo Errani on 04/11/23.
 //
 #include "particleStorage.hpp"
-
-#include "Rtypes.h"
-
 #include "TMath.h"
 
 namespace ResonanceSimulator {

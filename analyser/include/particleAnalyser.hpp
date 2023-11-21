@@ -5,7 +5,6 @@
 #ifndef ROOT_TEMPLATE_PROJECT_PARTICLEAANALYSER_HPP
 #define ROOT_TEMPLATE_PROJECT_PARTICLEAANALYSER_HPP
 
-#include "Definitions.hpp"
 #include "TFile.h"
 #include "TH1.h"
 #include <string>

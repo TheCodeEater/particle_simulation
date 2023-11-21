@@ -5,7 +5,6 @@
 #ifndef ROOT_TEMPLATE_PROJECT_PARTICLE_HPP
 #define ROOT_TEMPLATE_PROJECT_PARTICLE_HPP
 
-#include "Definitions.hpp"
 #include "particles/ParticleType.hpp"
 #include "particles/ResonanceType.hpp"
 

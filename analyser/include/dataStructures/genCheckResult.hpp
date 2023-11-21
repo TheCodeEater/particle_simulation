@@ -5,8 +5,6 @@
 #ifndef ROOT_TEMPLATE_PROJECT_GENCHECKRESULT_HPP
 #define ROOT_TEMPLATE_PROJECT_GENCHECKRESULT_HPP
 
-#include "Definitions.hpp"
-
 #include <string>
 #include <sstream>
 
