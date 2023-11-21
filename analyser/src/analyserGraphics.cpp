@@ -11,12 +11,12 @@ namespace BASE_NS {
             fInputData{analyser.GetData()}, //get input data
             fSignalResult{analyser.GetDecaymentSignal()}, //run fit
 
-            MassCanvas{new TCanvas("massCanvas", "massCanvas", 1200, 800)},
-            PartTypeCanvas{new TCanvas("PartTypeCanvas", "PartTypeCanvas", 1200, 800)},
-            DistributionsCanvas{new TCanvas("DistributionsCanvas", "DistributionsCanvas", 1200, 800)},
-            SumCanvas{new TCanvas("SumCanvas", "SumCanvas", 1200, 800)},
-            PulseCanvas{new TCanvas("PulseCanvas", "PulseCanvas", 1200, 800)} {
-        const char *options{"HIST"};
+            MassCanvas{new TCanvas("massCanvas", "Masse Invarianti", 1200, 800)},
+            PartTypeCanvas{new TCanvas("PartTypeCanvas", "Tipi di particelle", 1200, 800)},
+            DistributionsCanvas{new TCanvas("DistributionsCanvas", "Distribuzioni di generazione", 1200, 800)},
+            SumCanvas{new TCanvas("SumCanvas", "Segnali estratti", 1200, 800)},
+            PulseCanvas{new TCanvas("PulseCanvas", "Parametri meccanici", 1200, 800)} {
+        const char *options{"HIST,SAME"};
 
         MassCanvas->Divide(3, 2);
         /*int i{};
@@ -27,28 +27,36 @@ namespace BASE_NS {
             ++i; //increase pad counter
          }*/
         //MassCanvas->cd(0);
-        MassCanvas->cd(0);
+        //invariant masses
+        MassCanvas->cd(1);
         fInputData->InvariantMassesDprod.Draw(options);
 
-
-        PartTypeCanvas->cd(0);
+        //particle types
+        PartTypeCanvas->Divide(1,0);
+        PartTypeCanvas->cd(1);
         fInputData->ParticlesType.Draw(options);
+
+        //generation distributions
         DistributionsCanvas->Divide(2, 1);
-        DistributionsCanvas->cd(0);
-        fInputData->PolarAngles.Draw(options);
         DistributionsCanvas->cd(1);
+        fInputData->PolarAngles.Draw(options);
+        DistributionsCanvas->cd(2);
         fInputData->AzimuthalAngles.Draw(options);
+
+        //signal canvas
         SumCanvas->Divide(2, 1);
-        SumCanvas->cd(0);
-        fSignalResult->signal1.Draw(options);
         SumCanvas->cd(1);
+        fSignalResult->signal1.Draw(options);
+        SumCanvas->cd(2);
         fSignalResult->signal2.Draw(options);
+
+        //mechanical canvas
         PulseCanvas->Divide(3, 1);
-        PulseCanvas->cd(0);
-        fInputData->Impulse.Draw(options);
         PulseCanvas->cd(1);
-        fInputData->TransverseImpulse.Draw(options);
+        fInputData->Impulse.Draw(options);
         PulseCanvas->cd(2);
+        fInputData->TransverseImpulse.Draw(options);
+        PulseCanvas->cd(3);
         fInputData->Energies.Draw(options);
 
         MassCanvas->Modified();
