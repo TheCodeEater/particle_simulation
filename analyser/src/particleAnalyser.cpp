@@ -89,7 +89,7 @@ namespace ResonanceSimulator {
         };
 
         auto signal2 = TH1F{
-                fData->InvariantMassesAllc - fData->InvariantMassesAlld};
+                fData->InvariantMassesAlld - fData->InvariantMassesAllc};
 
         //run fit
         auto fit1 = signal1.Fit("gaus", "S");
