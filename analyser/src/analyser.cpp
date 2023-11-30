@@ -40,6 +40,7 @@ int main(int argc, char **argv) {    //create root application
     //graphic setup
     gStyle->SetHistFillColor(kGreen);
     gStyle->SetHistLineColor(kRed);
+    gStyle->SetOptStat(1110);
     //do stuff
     ResonanceSimulator::AnalyzerGraphics g{Anal};
 
