@@ -63,6 +63,11 @@ namespace ResonanceSimulator {
 
         MassCanvas->cd(1);
         fInputData->InvariantMassesDprod.Draw(options);
+        MassCanvas->cd(2);
+        fInputData->InvariantMassesAllc.Draw(options);
+        MassCanvas->cd(3);
+        fInputData->InvariantMassesAlld.Draw(options);
+        MassCanvas->cd(4);
 
         //particle types
         PartTypeCanvas->Divide(1, 0);
