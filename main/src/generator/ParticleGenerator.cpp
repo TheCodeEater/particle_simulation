@@ -226,7 +226,7 @@ namespace ResonanceSimulator {
     }
 
     bool particleGenerator::isSameCharge(const Particle &p, const Particle &p2) {
-        return p.GetCharge() * p2.GetCharge() > 0;
+        return (p.GetCharge() * p2.GetCharge()) > 0;
     }
 
 
