@@ -13,13 +13,13 @@
 
 namespace ResonanceSimulator {
     void particleGenerator::loadParticles() {
-        Particle::AddParticleType(0, 0.13957, 1);
-        Particle::AddParticleType(1, 0.13957, -1);
-        Particle::AddParticleType(2, 0.49367, 1);
-        Particle::AddParticleType(3, 0.49367, -1);
-        Particle::AddParticleType(4, 0.93827, 1);
-        Particle::AddParticleType(5, 0.93827, -1);
-        Particle::AddParticleType(6, 0.89166, 0, 0.050);
+        Particle::AddParticleType(PTypeList::P_Pion , 0.13957, 1);
+        Particle::AddParticleType(PTypeList::N_Pion, 0.13957, -1);
+        Particle::AddParticleType(PTypeList::P_Kaon, 0.49367, 1);
+        Particle::AddParticleType(PTypeList::N_Kaon, 0.49367, -1);
+        Particle::AddParticleType(PTypeList::P_Prot, 0.93827, 1);
+        Particle::AddParticleType(PTypeList::N_Prot, 0.93827, -1);
+        Particle::AddParticleType(PTypeList::R_Kaon, 0.89166, 0, 0.050);
     }
 
     particleGenerator::particleGenerator(unsigned int seed) :
