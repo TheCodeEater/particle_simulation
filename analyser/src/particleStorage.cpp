@@ -20,10 +20,10 @@ namespace ResonanceSimulator {
         storage.Energies = TH1F("Energies", "Energies", 100, 0, 10);
         storage.InvariantMasses = TH1F("InvariantMasses", "Invariant Masses", 100, 0, 10);
         storage.InvariantMasses.Sumw2(); //enable error prorpagation structures
-        storage.InvariantMassesAlld = TH1F("InvariantMassesAlld", "Invariant Masses Alld", 100, 0, 10);
-        storage.InvariantMassesAllc = TH1F("InvariantMassesAllc", "Invariant Masses Allc", 100, 0, 10);
-        storage.InvariantMassesDecayC = TH1F("InvariantMassesDecayC", "Invariant Masses Concordant", 100, 0, 10);
-        storage.InvariantMassesDecayD = TH1F("InvariantMassesDecayD", "Invariant Masses Discordant", 100, 0, 10);
-        storage.InvariantMassesDprod = TH1F("InvariantMassesDprod", "Invariant Masses Dprod", 100, 0, 10);
+        storage.InvariantMassesAlld = TH1F("InvariantMassesAlld", "Invariant Masses Alld", invMassBins, 0, 10);
+        storage.InvariantMassesAllc = TH1F("InvariantMassesAllc", "Invariant Masses Allc", invMassBins, 0, 10);
+        storage.InvariantMassesDecayC = TH1F("InvariantMassesDecayC", "Invariant Masses Concordant", invMassBins, 0, 10);
+        storage.InvariantMassesDecayD = TH1F("InvariantMassesDecayD", "Invariant Masses Discordant", invMassBins, 0, 10);
+        storage.InvariantMassesDprod = TH1F("InvariantMassesDprod", "Invariant Masses Dprod", invMassBins, 0, 10);
     }
 }
