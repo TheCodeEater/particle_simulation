@@ -10,7 +10,8 @@ namespace ResonanceSimulator {
     AnalyzerGraphics::AnalyzerGraphics(dataAnalyser &analyser) :
             fInputData{analyser.GetData()}, //get input data
             fSignalResult{analyser.GetDecaymentSignal()}, //run fit
-            fCanvasContainer{} {
+            fCanvasContainer{},
+            fLegendContainer{}{
         //create canvases
         {
         CanvasPtr MassCanvas{new TCanvas("massCanvas", "Masse Invarianti", 1200, 800)};
@@ -26,6 +27,9 @@ namespace ResonanceSimulator {
         fCanvasContainer[SumCanvas->GetName()] = std::move(SumCanvas);
         fCanvasContainer[PulseCanvas->GetName()] = std::move(PulseCanvas);
     }
+        //create legends
+        //allocate memory
+        fCanvasContainer.reserve(11);
 
         //draw all canvases
         drawCanvases();

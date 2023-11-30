@@ -7,9 +7,11 @@
 
 #include <memory>
 #include <unordered_map>
+#include <vector>
 
 #include "TCanvas.h"
 #include "TPad.h"
+#include "TLegend.h"
 
 #include "particleAnalyser.hpp"
 
@@ -20,6 +22,8 @@ namespace ResonanceSimulator {
     class AnalyzerGraphics {
         using CanvasPtr = std::unique_ptr<TCanvas>;
         using CanvasCont = std::unordered_map<std::string,CanvasPtr>;
+        using LegendPtr=std::unique_ptr<TLegend>;
+        using LegendCont=std::vector<LegendPtr>;
 
     public:
         explicit AnalyzerGraphics(dataAnalyser &analyser);
@@ -35,6 +39,7 @@ namespace ResonanceSimulator {
         CanvasPtr SumCanvas;
         CanvasPtr PulseCanvas;*/
         CanvasCont fCanvasContainer;
+        LegendCont fLegendContainer;
 
         void graphicSetup();
 
