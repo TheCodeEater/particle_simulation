@@ -134,7 +134,7 @@ namespace ResonanceSimulator {
         //loop throught the dataset, comparing each particle with the others
         for (unsigned int i = 0; i < EventParticles.size(); ++i) {
             auto const &p = EventParticles[i];
-            for (unsigned int k = i; k < EventParticles.size(); ++k) {
+            for (unsigned int k = i+1; k < EventParticles.size(); ++k) {
                 auto const &p2{EventParticles[k]};
                 auto invMass{p.InvMass(p2)};
 
