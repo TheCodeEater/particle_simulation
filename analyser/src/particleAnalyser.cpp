@@ -88,8 +88,14 @@ namespace ResonanceSimulator {
                 //fData->invMasses["DiscordantPK"]-fData->invMasses["ConcordantPK"]
         };
 
+        signal1.SetName("DecaySignal1");
+        signal1.SetTitle("K* signal from decay products");
+
         auto signal2 = TH1F{
                 fData->InvariantMassesAlld - fData->InvariantMassesAllc};
+
+        signal2.SetName("DecaySignal2");
+        signal2.SetTitle("K* signal from all particles");
 
         //run fit
         auto fit1 = signal1.Fit("gaus", "S");
