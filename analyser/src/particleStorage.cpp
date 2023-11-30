@@ -20,11 +20,11 @@ namespace ResonanceSimulator {
         storage.Energies = TH1F("Energies", "Energies", 100, 0, 10);
         storage.InvariantMasses = TH1F("InvariantMasses", "Invariant Masses", 100, 0, 10);
 
-        storage.InvariantMassesAlld = TH1F("InvariantMassesAlld", "Invariant Masses Alld", invMassBins, 0, 10);
-        storage.InvariantMassesAllc = TH1F("InvariantMassesAllc", "Invariant Masses Allc", invMassBins, 0, 10);
-        storage.InvariantMassesDecayC = TH1F("InvariantMassesDecayC", "Invariant Masses Concordant", invMassBins, 0, 10);
-        storage.InvariantMassesDecayD = TH1F("InvariantMassesDecayD", "Invariant Masses Discordant", invMassBins, 0, 10);
-        storage.InvariantMassesDprod = TH1F("InvariantMassesDprod", "Invariant Masses Dprod", invMassBins, 0, 10);
+        storage.InvariantMassesAlld = TH1F("InvariantMassesAlld", "All discordant charges", invMassBins, 0, 10);
+        storage.InvariantMassesAllc = TH1F("InvariantMassesAllc", "All concordant charges", invMassBins, 0, 10);
+        storage.InvariantMassesDecayC = TH1F("InvariantMassesDecayC", "Pion/Kaon concordant charges", invMassBins, 0, 10);
+        storage.InvariantMassesDecayD = TH1F("InvariantMassesDecayD", "Pion/Kaon discordant charges", invMassBins, 0, 10);
+        storage.InvariantMassesDprod = TH1F("InvariantMassesDprod", "K* child couples", invMassBins, 0, 10);
 
         //enable error propagation for histograms
         storage.InvariantMassesAlld.Sumw2();
