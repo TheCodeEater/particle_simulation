@@ -6,6 +6,7 @@
 #define ROOT_TEMPLATE_PROJECT_SIGNALFITRESULT_HPP
 
 #include "TH1.h"
+#include "TFitResultPtr.h"
 
 namespace ResonanceSimulator {
     /**

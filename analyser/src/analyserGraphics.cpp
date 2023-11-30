@@ -6,6 +6,8 @@
 #include <algorithm>
 #include <iostream>
 
+#include "TFitResult.h"
+
 namespace ResonanceSimulator {
     AnalyzerGraphics::AnalyzerGraphics(dataAnalyser &analyser) :
             fInputData{analyser.GetData()}, //get input data
@@ -29,7 +31,7 @@ namespace ResonanceSimulator {
     }
         //create legends
         //allocate memory
-        fCanvasContainer.reserve(11);
+        fLegendContainer.reserve(11);
 
         //draw all canvases
         drawCanvases();
