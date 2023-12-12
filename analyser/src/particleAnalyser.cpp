@@ -98,8 +98,11 @@ namespace ResonanceSimulator {
         signal2.SetTitle("K* signal from all particles");
 
         //run fit
-        auto fit1 = signal1.Fit("gaus", "S");
-        auto fit2 = signal2.Fit("gaus", "S");
+        TF1 fit1{"FIT_SIGNAL_1","gaus"};
+        signal1.Fit(&fit1, "");
+
+        TF1 fit2{"FIT_SIGNAL_2","gaus"};
+        signal2.Fit(&fit2, "");
         //return the 2 signals
         return std::make_shared<SignalResult>(signal1, signal2, fit1, fit2);
     }

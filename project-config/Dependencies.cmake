@@ -6,7 +6,11 @@ include_guard(DIRECTORY)
 # Add path to local libraries
 # Note: the Find<library>.cmake must be placed in an immediate subdirectory of the specific
 #library folder
-list(APPEND CMAKE_PREFIX_PATH ${CMAKE_SOURCE_DIR}/libraries)
+string(APPEND CMAKE_PREFIX_PATH /opt/homebrew/Cellar/root/6.30.02/include/root)
+string(APPEND CMAKE_LIBRARY_PATH /opt/homebrew/Cellar/root/6.30.02/lib/root)
+
+#set(VDT_INCLUDE_DIR /opt/homebrew/Cellar/root/6.30.02/include/root)
+#set(VDT_LIBRARY)
 
 #find package section
 find_package(ROOT REQUIRED)
@@ -29,7 +33,6 @@ set(PROGRAM_LIBRARIES_DEFAULT
         ROOT::Postscript
         ROOT::RIO
         ROOT::ROOTDataFrame
-        ROOT::ROOTVecOps
         ROOT::Rint
         ROOT::Thread
         ROOT::TreePlayer

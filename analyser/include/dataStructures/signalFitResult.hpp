@@ -7,6 +7,9 @@
 
 #include "TH1.h"
 #include "TFitResultPtr.h"
+#include "TF1.h"
+
+#include <memory>
 
 namespace ResonanceSimulator {
     /**
@@ -14,7 +17,7 @@ namespace ResonanceSimulator {
  */
     struct SignalResult {
         using Hist = TH1F;
-        using FitPtr = TFitResultPtr;
+        using FitPtr = TF1;
 
         SignalResult(const Hist &signal1, const Hist &signal2, const FitPtr &fitSignal1, const FitPtr &fitSignal2);
 
