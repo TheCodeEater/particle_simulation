@@ -59,10 +59,10 @@ namespace ResonanceSimulator {
 
         //bind references to ptr for simplicit
         CanvasPtr& MassCanvas{fCanvasContainer["massCanvas"]};
-        CanvasPtr& PartTypeCanvas{fCanvasContainer["ParticleTypeCanvas"]};
+        //CanvasPtr& PartTypeCanvas{fCanvasContainer["ParticleTypeCanvas"]};
         CanvasPtr& DistributionsCanvas{fCanvasContainer["DistributionsCanvas"]};
-        CanvasPtr& SumCanvas{fCanvasContainer["SignalCanvas"]};
-        CanvasPtr& PulseCanvas{fCanvasContainer["PulseCanvas"]};
+        CanvasPtr& SignalCanvas{fCanvasContainer["SignalCanvas"]};
+        CanvasPtr& DynamicsCanvas{fCanvasContainer["DynamicsCanvas"]};
 
         //invariant masses
         MassCanvas->Divide(3, 2);
@@ -81,33 +81,39 @@ namespace ResonanceSimulator {
         fInputData->InvariantMassesDprod.Draw(options);
 
         //particle types
-        PartTypeCanvas->Divide(1, 0);
+        /*PartTypeCanvas->Divide(1, 0);
         PartTypeCanvas->cd(1);
-        fInputData->ParticlesType.Draw(options);
+        fInputData->ParticlesType.Draw(options);*/
 
         //generation distributions
-        DistributionsCanvas->Divide(2, 1);
+        DistributionsCanvas->Divide(2, 2);
         DistributionsCanvas->cd(1);
         fInputData->PolarAngles.Draw(options);
         DistributionsCanvas->cd(2);
         fInputData->AzimuthalAngles.Draw(options);
+        DistributionsCanvas->cd(3);
+        fInputData->Impulse.Draw(options);
+        DistributionsCanvas->cd(4);
+        fInputData->ParticlesType.Draw(options);
 
         //signal canvas
-        SumCanvas->Divide(2, 1);
-        SumCanvas->cd(1);
+        SignalCanvas->Divide(3, 1);
+        SignalCanvas->cd(1);
         fSignalResult->signal1.Draw(options);
         fSignalResult->fitSignal1.Draw("SAME");
-        SumCanvas->cd(2);
+        SignalCanvas->cd(2);
         fSignalResult->signal2.Draw(options);
         fSignalResult->fitSignal2.Draw("SAME");
+        SignalCanvas->cd(3);
+        fInputData->InvariantMassesDprod.Draw(options);
 
         //mechanical canvas
-        PulseCanvas->Divide(3, 1);
-        PulseCanvas->cd(1);
-        fInputData->Impulse.Draw(options);
-        PulseCanvas->cd(2);
+        DynamicsCanvas->Divide(2, 1);
+        //DynamicsCanvas->cd(1);
+        //fInputData->Impulse.Draw(options);
+        DynamicsCanvas->cd(1);
         fInputData->TransverseImpulse.Draw(options);
-        PulseCanvas->cd(3);
+        DynamicsCanvas->cd(2);
         fInputData->Energies.Draw(options);
     }
 
