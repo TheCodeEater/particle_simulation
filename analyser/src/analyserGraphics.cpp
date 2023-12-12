@@ -20,14 +20,14 @@ namespace ResonanceSimulator {
         CanvasPtr PartTypeCanvas{new TCanvas("ParticleTypeCanvas", "Tipi di particelle", 1200, 800)};
         CanvasPtr DistributionsCanvas{new TCanvas("DistributionsCanvas", "Distribuzioni di generazione", 1200, 800)};
         CanvasPtr SumCanvas{new TCanvas("SignalCanvas", "Segnali estratti", 1200, 800)};
-        CanvasPtr PulseCanvas{new TCanvas("PulseCanvas", "Parametri meccanici", 1200, 800)};
+        CanvasPtr DynamicsCanvas{new TCanvas("DynamicsCanvas", "Parametri meccanici", 1200, 800)};
 
         //register canvases
         fCanvasContainer[MassCanvas->GetName()] = std::move(MassCanvas);
         fCanvasContainer[PartTypeCanvas->GetName()] = std::move(PartTypeCanvas);
         fCanvasContainer[DistributionsCanvas->GetName()] = std::move(DistributionsCanvas);
         fCanvasContainer[SumCanvas->GetName()] = std::move(SumCanvas);
-        fCanvasContainer[PulseCanvas->GetName()] = std::move(PulseCanvas);
+        fCanvasContainer[DynamicsCanvas->GetName()] = std::move(DynamicsCanvas);
     }
         //create legends
         //allocate memory
