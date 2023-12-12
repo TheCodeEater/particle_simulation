@@ -129,10 +129,21 @@ namespace ResonanceSimulator {
         //Print distribution fit
         std::cout<<"=========== DISTRIBUTION FIT RESULT ===============\n";
 
-        std::cout<<"Impulse: "<<"Constant: "<<impulse.GetParameter(0)<<"\n"
-            <<"Mean: "<<impulse.GetParameter(1)<<"\n"
-            <<"Sigma: "<<impulse.GetParameter(2)<<"\n"
+        std::cout<<"Impulse: \n"<<"Constant: "<<impulse.GetParameter(0)<<"\n"
+            <<"Slope: "<<impulse.GetParameter(1)<<"\n"
             <<"Chi/Dof: "<<impulse.GetChisquare()/impulse.GetNDF()<<"\n";
+
+        std::cout<<"=============\n";
+
+        std::cout<<"Azimuthal angle: \n"<<"Constant: "<<azimuth.GetParameter(0)<<"\n"
+            <<"Chi/Dof: "<<azimuth.GetChisquare()/azimuth.GetNDF()<<"\n";
+
+        std::cout<<"=============\n";
+
+        std::cout<<"Polar angle: \n"<<"Constant: "<<polar.GetParameter(0)<<"\n"
+                 <<"Chi/Dof: "<<polar.GetChisquare()/polar.GetNDF()<<"\n";
+
+        std::cout<<"=============\n";
     }
 }
 
