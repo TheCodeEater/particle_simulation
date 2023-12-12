@@ -17,7 +17,7 @@ int main(int argc, char **argv) {    //create root application
     gStyle->SetHistFillColor(kGreen);
     gStyle->SetHistLineColor(kRed);
     gStyle->SetOptStat(1110);
-    gStyle->SetOptFit(111);
+    gStyle->SetOptFit(0111);
 
     //create the logic objects
     ResonanceSimulator::dataAnalyser Anal("Particle.root");

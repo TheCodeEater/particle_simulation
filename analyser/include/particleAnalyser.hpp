@@ -24,12 +24,12 @@ namespace ResonanceSimulator {
      * manipulation before running the true analysis
      */
     class dataAnalyser {
+
+    public:
         using dataContainer = particleStorage;
         using dataContainerPtr = std::shared_ptr<dataContainer>;
         using dataContainerConstPtr = std::shared_ptr<const dataContainer>;
         using GenerationResult = std::unordered_map<std::string, TFitResultPtr>;
-
-    public:
         /**
          * Construct the analyser class
          * @param path Path to the ROOT file holding the required objects

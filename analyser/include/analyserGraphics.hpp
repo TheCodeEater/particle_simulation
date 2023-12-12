@@ -35,6 +35,7 @@ namespace ResonanceSimulator {
     private:
         std::shared_ptr<particleStorage> fInputData; /// Pointer to the object handling analysed data
         std::shared_ptr<SignalResult> fSignalResult;
+        dataAnalyser::GenerationResult fGenerationDistributionFit;
 
         //canvas with resulting histograms, similar with similar       
         /*CanvasPtr MassCanvas;
