@@ -96,8 +96,10 @@ namespace ResonanceSimulator {
         SumCanvas->Divide(2, 1);
         SumCanvas->cd(1);
         fSignalResult->signal1.Draw(options);
+        fSignalResult->fitSignal1.Draw("SAME");
         SumCanvas->cd(2);
         fSignalResult->signal2.Draw(options);
+        fSignalResult->fitSignal2.Draw("SAME");
 
         //mechanical canvas
         PulseCanvas->Divide(3, 1);
