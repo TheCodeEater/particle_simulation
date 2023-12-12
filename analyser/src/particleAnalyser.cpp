@@ -99,10 +99,10 @@ namespace ResonanceSimulator {
 
         //run fit
         TF1 fit1{"FIT_SIGNAL_1","gaus",0,10};
-        signal1.Fit(&fit1, "");
+        signal1.Fit(&fit1);
 
         TF1 fit2{"FIT_SIGNAL_2","gaus",0,10};
-        signal2.Fit(&fit2, "");
+        signal2.Fit(&fit2);
 
         TF1 fit3{"FIT_SIGNAL_RAW","gaus",0,10};
         fData->InvariantMassesDprod.Fit(&fit3);

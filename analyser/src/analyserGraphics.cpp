@@ -79,15 +79,15 @@ namespace ResonanceSimulator {
         DistributionsCanvas->Divide(2, 2);
         DistributionsCanvas->cd(1);
         fInputData->PolarAngles.Draw(options);
-        fGenerationDistributionFit["Polar"].Draw("SAME");
+        //fGenerationDistributionFit["Polar"].Draw("SAME");
 
         DistributionsCanvas->cd(2);
         fInputData->AzimuthalAngles.Draw(options);
-        fGenerationDistributionFit["Azimuth"].Draw("SAME");
+        //fGenerationDistributionFit["Azimuth"].Draw("SAME");
 
         DistributionsCanvas->cd(3);
         fInputData->Impulse.Draw(options);
-        fGenerationDistributionFit["Pulse"].Draw("SAME");
+        //fGenerationDistributionFit["Pulse"].Draw("SAME");
 
         DistributionsCanvas->cd(4);
         fInputData->ParticlesType.Draw(options);
