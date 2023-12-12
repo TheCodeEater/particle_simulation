@@ -44,6 +44,15 @@ int main(int argc, char **argv) {    //create root application
     //do stuff
     ResonanceSimulator::AnalyzerGraphics g{Anal};
 
+    //draw all canvases
+    g.drawCanvases();
+
+    //notify that canvas have been drawn
+    g.graphicSetup();
+
+    //write histograms to file
+    g.writeHistograms();
+
     //run application
     app.Run();
     return 0;

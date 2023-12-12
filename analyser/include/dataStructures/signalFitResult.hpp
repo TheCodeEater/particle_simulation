@@ -19,12 +19,14 @@ namespace ResonanceSimulator {
         using Hist = TH1F;
         using FitPtr = TF1;
 
-        SignalResult(const Hist &signal1, const Hist &signal2, const FitPtr &fitSignal1, const FitPtr &fitSignal2);
+        SignalResult(const Hist &signal1, const Hist &signal2, const FitPtr &fitSignal1, const FitPtr &fitSignal2,
+                     const FitPtr &fitSignal3);
 
         Hist signal1; /// Difference between the 2 kaon-pion histograms
         Hist signal2; /// Difference between the concordant and discordant charge histogram
         FitPtr fitSignal1; /// Fit result ptr for signal 1
         FitPtr fitSignal2; /// Fit result ptr for signal 2
+        FitPtr fitSignal3; /// Fit result for direct child histogram
 
 
     };

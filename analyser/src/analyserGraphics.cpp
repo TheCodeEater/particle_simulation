@@ -33,16 +33,6 @@ namespace ResonanceSimulator {
         //allocate memory
         fLegendContainer.reserve(11);
 
-        //draw all canvases
-        drawCanvases();
-
-        //notify that canvas have been drawn
-        graphicSetup();
-
-        //write histograms to file
-        writeHistograms();
-
-
     }
 
     void AnalyzerGraphics::writeHistograms() const {
@@ -106,6 +96,7 @@ namespace ResonanceSimulator {
         fSignalResult->fitSignal2.Draw("SAME");
         SignalCanvas->cd(3);
         fInputData->InvariantMassesDprod.Draw(options);
+        fSignalResult->fitSignal3.Draw("SAME");
 
         //mechanical canvas
         DynamicsCanvas->Divide(2, 1);

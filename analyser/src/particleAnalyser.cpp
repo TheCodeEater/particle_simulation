@@ -103,8 +103,11 @@ namespace ResonanceSimulator {
 
         TF1 fit2{"FIT_SIGNAL_2","gaus",0,10};
         signal2.Fit(&fit2, "");
+
+        TF1 fit3{"FIT_SIGNAL_RAW","gaus",0,10};
+        fData->InvariantMassesDprod.Fit(&fit3);
         //return the 2 signals
-        return std::make_shared<SignalResult>(signal1, signal2, fit1, fit2);
+        return std::make_shared<SignalResult>(signal1, signal2, fit1, fit2, fit3);
     }
 
     dataAnalyser::GenerationResult dataAnalyser::GetGenerationFits() const {

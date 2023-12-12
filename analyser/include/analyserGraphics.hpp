@@ -28,6 +28,10 @@ namespace ResonanceSimulator {
     public:
         explicit AnalyzerGraphics(dataAnalyser &analyser);
 
+        void graphicSetup();
+        void drawCanvases();
+        void writeHistograms() const;
+
     private:
         std::shared_ptr<particleStorage> fInputData; /// Pointer to the object handling analysed data
         std::shared_ptr<SignalResult> fSignalResult;
@@ -40,12 +44,6 @@ namespace ResonanceSimulator {
         CanvasPtr PulseCanvas;*/
         CanvasCont fCanvasContainer;
         LegendCont fLegendContainer;
-
-        void graphicSetup();
-
-        void drawCanvases();
-
-        void writeHistograms() const;
     };
 }
 
