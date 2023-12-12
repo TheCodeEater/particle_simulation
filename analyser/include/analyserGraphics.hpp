@@ -46,6 +46,8 @@ namespace ResonanceSimulator {
         CanvasPtr PulseCanvas;*/
         CanvasCont fCanvasContainer;
         LegendCont fLegendContainer;
+
+        void PrintSignalFit(std::string const& initialText, const SignalResult::FitPtr &fit) const;
     };
 }
 

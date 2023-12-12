@@ -144,6 +144,25 @@ namespace ResonanceSimulator {
                  <<"Chi/Dof: "<<polar.GetChisquare()/polar.GetNDF()<<"\n";
 
         std::cout<<"=============\n";
+
+        auto const& discordantPK{fSignalResult->fitSignal1};
+        auto const& discordantALL{fSignalResult->fitSignal2};
+        auto const& benchmark{fSignalResult->fitSignal3};
+
+        std::cout<<"============K* SIGNAL FITS===========\n";
+
+        PrintSignalFit("Discordant Pion-Kaon", discordantPK);
+        PrintSignalFit("All discordant",discordantALL);
+        PrintSignalFit("Benchmark",benchmark);
+    }
+
+    void AnalyzerGraphics::PrintSignalFit(std::string const& initialText, const SignalResult::FitPtr &fit) const {
+        std::cout << initialText<<"\n" << "Constant: " << fit.GetParameter(0) << "\n"
+                  << "Mass (mean): " << fit.GetParameter(1) << "\n"
+                  << "Resonance width (sigma): " << fit.GetParameter(2) << "\n"
+                  << "Chi/Dof: " <<fit.GetChisquare()/fit.GetNDF() << "\n";
+
+        std::cout<<"=============\n";
     }
 }
 
