@@ -14,6 +14,11 @@
 int main(int argc, char **argv) {    //create root application
     APP_TYPE app(APP_NAME, &argc, argv);
 
+    gStyle->SetHistFillColor(kGreen);
+    gStyle->SetHistLineColor(kRed);
+    gStyle->SetOptStat(1110);
+    gStyle->SetOptFit(111);
+
     //create the logic objects
     ResonanceSimulator::dataAnalyser Anal("Particle.root");
     //per avere il numero di ingressi di un istogramma
@@ -38,9 +43,6 @@ int main(int argc, char **argv) {    //create root application
     Anal.GetData()->Impulse.Fit(impFit);
     std::cout << "Pulse, Param: " << impFit->GetParameter(0) << " " << impFit->GetParameter(1) << "CQR: " << impFit->GetChisquare()/impFit->GetNDF() << "Probabilità: " << impFit->GetProb();*/
     //graphic setup
-    gStyle->SetHistFillColor(kGreen);
-    gStyle->SetHistLineColor(kRed);
-    gStyle->SetOptStat(1110);
     //do stuff
     ResonanceSimulator::AnalyzerGraphics g{Anal};
 
