@@ -6,12 +6,11 @@
 #include <algorithm>
 #include <iostream>
 
-#include "TFitResult.h"
-
 namespace ResonanceSimulator {
     AnalyzerGraphics::AnalyzerGraphics(dataAnalyser &analyser) :
             fInputData{analyser.GetData()}, //get input data
             fSignalResult{analyser.GetDecaymentSignal()}, //run fit
+            fGenerationDistributionFit{analyser.GetGenerationFits()},
             fCanvasContainer{},
             fLegendContainer{}{
         //create canvases
@@ -79,15 +78,15 @@ namespace ResonanceSimulator {
         DistributionsCanvas->Divide(2, 2);
         DistributionsCanvas->cd(1);
         fInputData->PolarAngles.Draw(options);
-        //fGenerationDistributionFit["Polar"].Draw("SAME");
+        fGenerationDistributionFit["Polar"].Draw("SAME");
 
         DistributionsCanvas->cd(2);
         fInputData->AzimuthalAngles.Draw(options);
-        //fGenerationDistributionFit["Azimuth"].Draw("SAME");
+        fGenerationDistributionFit["Azimuth"].Draw("SAME");
 
         DistributionsCanvas->cd(3);
         fInputData->Impulse.Draw(options);
-        //fGenerationDistributionFit["Pulse"].Draw("SAME");
+        fGenerationDistributionFit["Pulse"].Draw("SAME");
 
         DistributionsCanvas->cd(4);
         fInputData->ParticlesType.Draw(options);
@@ -119,6 +118,21 @@ namespace ResonanceSimulator {
             canvas.second->Modified();
             canvas.second->Update();
         }
+    }
+
+    void AnalyzerGraphics::PrintFitResult() const {
+        auto const& genFit{fGenerationDistributionFit};
+
+        auto const& polar{genFit.at("Polar")};
+        auto const& azimuth{genFit.at("Azimuth")};
+        auto const& impulse{genFit.at("Pulse")};
+        //Print distribution fit
+        std::cout<<"=========== DISTRIBUTION FIT RESULT ===============\n";
+
+        std::cout<<"Impulse: "<<"Constant: "<<impulse.GetParameter(0)<<"\n"
+            <<"Mean: "<<impulse.GetParameter(1)<<"\n"
+            <<"Sigma: "<<impulse.GetParameter(2)<<"\n"
+            <<"Chi/Dof: "<<impulse.GetChisquare()/impulse.GetNDF()<<"\n";
     }
 }
 

@@ -55,6 +55,8 @@ int main(int argc, char **argv) {    //create root application
     //write histograms to file
     g.writeHistograms();
 
+    g.PrintFitResult();
+
     //run application
     app.Run();
     return 0;

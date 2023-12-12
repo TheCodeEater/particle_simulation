@@ -120,9 +120,9 @@ namespace ResonanceSimulator {
         GenerationResult fits;
 
         //run the fit, saving results in tfit ptr
-        fits.insert({"Azimuth", TF1{"FIT_AZIMUTH","pol0"}});
-        fits.insert({"Polar", TF1{"FIT_POLAR","pol0"}});
-        fits.insert({"Pulse", TF1{"FIT_PULSE","expo"}});
+        fits.insert({"Azimuth", TF1{"FIT_AZIMUTH","pol0",0,10}});
+        fits.insert({"Polar", TF1{"FIT_POLAR","pol0",0,10}});
+        fits.insert({"Pulse", TF1{"FIT_PULSE","expo",0,10}});
 
         azimuthal.Fit(&fits["Azimuth"]);
         polar.Fit(&fits["Polar"]);

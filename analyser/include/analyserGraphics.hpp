@@ -31,6 +31,7 @@ namespace ResonanceSimulator {
         void graphicSetup();
         void drawCanvases();
         void writeHistograms() const;
+        void PrintFitResult() const;
 
     private:
         std::shared_ptr<particleStorage> fInputData; /// Pointer to the object handling analysed data
