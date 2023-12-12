@@ -8,7 +8,6 @@
 //HEADER TO DEFINE MACROS FOR THE TEMPLATE CODE
 
 //base namespace name for root application
-#define ResonanceSimulator @PROGRAM_NAMESPACE@
 #define APP_NAME "@PROGRAM_NAME@"
 #cmakedefine PROGRAM_ATTACH_CLING
 #cmakedefine PROGRAM_USE_LOCAL_OWNERSHIP
