@@ -117,12 +117,16 @@ namespace ResonanceSimulator {
         auto &pulse{fData->Impulse};
 
         //fit data storage
-        std::unordered_map<std::string, TFitResultPtr> fits;
+        GenerationResult fits;
 
         //run the fit, saving results in tfit ptr
-        fits.insert({"Azimuth", azimuthal.Fit("pol0", "S")});
-        fits.insert({"Polar", polar.Fit("pol0", "S")});
-        fits.insert({"Pulse", pulse.Fit("expo", "S")});
+        fits.insert({"Azimuth", TF1{"FIT_AZIMUTH","pol0"}});
+        fits.insert({"Polar", TF1{"FIT_POLAR","pol0"}});
+        fits.insert({"Pulse", TF1{"FIT_PULSE","expo"}});
+
+        azimuthal.Fit(&fits["Azimuth"]);
+        polar.Fit(&fits["Polar"]);
+        pulse.Fit(&fits["Pulse"]);
 
         return fits;
     }
