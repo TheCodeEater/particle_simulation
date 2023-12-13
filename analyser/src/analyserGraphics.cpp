@@ -161,9 +161,9 @@ namespace ResonanceSimulator {
     }
 
     void AnalyzerGraphics::PrintSignalFit(std::string const& initialText, const SignalResult::FitPtr &fit) const {
-        std::cout << initialText<<"\n" << "Constant: " << fit.GetParameter(0) << "\n"
-                  << "Mass (mean): " << fit.GetParameter(1) << "\n"
-                  << "Resonance width (sigma): " << fit.GetParameter(2) << "\n"
+        std::cout << initialText<<"\n" << "Constant: " << fit.GetParameter(0) << " +/- "<<fit.GetParError(0) << "\n"
+                  << "Mass (mean): " << fit.GetParameter(1) << " +/- "<<fit.GetParError(1)<<"\n"
+                  << "Resonance width (sigma): " << fit.GetParameter(2)<< " +/- "<<fit.GetParError(2) << "\n"
                   << "Chi/Dof: " <<fit.GetChisquare()/fit.GetNDF() << "\n";
 
         std::cout<<"=============\n";

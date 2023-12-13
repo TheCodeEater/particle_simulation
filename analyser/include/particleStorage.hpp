@@ -20,7 +20,7 @@ namespace ResonanceSimulator {
 
         particleStorage() = default;
 
-        static constexpr unsigned invMassBins{100};
+        static constexpr unsigned invMassBins{1000};
         static void makeDefaultHistograms(particleStorage &storage);
 
         //Histograms classified by type
