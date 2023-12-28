@@ -23,3 +23,14 @@ ROOT_GENERATE_DICTIONARY(analyser_dictionary
         ${PROGRAM_MODULES_ALL_HEADERS}
         MODULE ${PROGRAM_TARGET_ANALYSER}
         LINKDEF ${PROGRAM_BASE}/dictionary/Linkdef.h)
+
+add_library(particleStorage ${PROGRAM_MODULES_STORAGE_SRC} ${PROGRAM_ALL_HEADERS})
+
+target_include_directories(particleStorage PRIVATE ${ANALYSER_HEADERS} ${PROGRAM_HEADERS})
+
+target_link_libraries(particleStorage ${PROGRAM_LIBRARIES_DEFAULT})
+
+ROOT_GENERATE_DICTIONARY(particleStorage_dictionary
+        ${PROGRAM_MODULES_ALL_HEADERS}
+        MODULE particleStorage
+        LINKDEF ${PROGRAM_BASE}/dictionary/Linkdef.h)
