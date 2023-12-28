@@ -39,6 +39,12 @@ namespace ResonanceSimulator {
             canvas.second->Print((
                     std::string{canvas.second->GetName()}+".pdf"
                     ).c_str());
+            canvas.second->Print((
+                                         std::string{canvas.second->GetName()}+".C"
+                                 ).c_str());
+            canvas.second->Print((
+                                         std::string{canvas.second->GetName()}+".root"
+                                 ).c_str());
         }
 
     }
