@@ -29,7 +29,9 @@ namespace ResonanceSimulator {
         fData = dataContainerPtr{
                 dynamic_cast<dataContainer *>(data_source.Get("ResonanceSimulator::particleStorage"))
         };
-        //particles_decay_data
+        //normalize generation distirbutions
+        //fData->PolarAngles.Scale(1./fData->PolarAngles.Integral());
+        //fData->AzimuthalAngles.Scale(1./fData->AzimuthalAngles.Integral());
     }
 
     dataAnalyser::dataContainerPtr dataAnalyser::GetData() {
