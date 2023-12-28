@@ -105,9 +105,11 @@ namespace ResonanceSimulator {
         SignalCanvas->Divide(3, 1);
         SignalCanvas->cd(1);
         fSignalResult->signal1.Draw(options);
+        fSignalResult->signal1.Fit("gaus");
         fSignalResult->fitSignal1.Draw("SAME");
         SignalCanvas->cd(2);
         fSignalResult->signal2.Draw(options);
+        fSignalResult->signal2.Fit("gaus");
         fSignalResult->fitSignal2.Draw("SAME");
         SignalCanvas->cd(3);
         fInputData->InvariantMassesDprod.Draw(options);
