@@ -82,8 +82,10 @@ namespace ResonanceSimulator {
 
         //generation distributions
         //fix scale on polar/azimuth distributioms
-        fInputData->PolarAngles.GetYaxis()->SetRangeUser(0,1.2e5);
-        fInputData->AzimuthalAngles.GetYaxis()->SetRangeUser(0,1.2e5);
+        //fInputData->PolarAngles.GetYaxis()->SetRangeUser(0,1.2e5);
+        //fInputData->AzimuthalAngles.GetYaxis()->SetRangeUser(0,1.2e5);
+        fInputData->PolarAngles.GetYaxis()->SetRangeUser(0,0.5);
+        fInputData->AzimuthalAngles.GetYaxis()->SetRangeUser(0,0.25);
 
         DistributionsCanvas->Divide(2, 2);
         DistributionsCanvas->cd(1);

@@ -30,8 +30,9 @@ namespace ResonanceSimulator {
                 dynamic_cast<dataContainer *>(data_source.Get("ResonanceSimulator::particleStorage"))
         };
         //normalize generation distirbutions
-        //fData->PolarAngles.Scale(1./fData->PolarAngles.Integral());
-        //fData->AzimuthalAngles.Scale(1./fData->AzimuthalAngles.Integral());
+        //for bin width, i chose bin 1 but all bins have the same width
+        fData->PolarAngles.Scale(1./(fData->PolarAngles.GetEntries()*fData->PolarAngles.GetBinWidth(1)));
+        fData->AzimuthalAngles.Scale(1./(fData->AzimuthalAngles.GetEntries()*fData->AzimuthalAngles.GetBinWidth(1)));
     }
 
     dataAnalyser::dataContainerPtr dataAnalyser::GetData() {
