@@ -7,6 +7,7 @@
 #include "analyserGraphics.hpp"
 #include "TF1.h"
 #include "TStyle.h"
+#include "TROOT.h"
 #include <iostream>
 
 #include "Definitions.hpp"
@@ -14,13 +15,14 @@
 int main(int argc, char **argv) {    //create root application
     APP_TYPE app(APP_NAME, &argc, argv);
 
+    //create the logic objects
+    ResonanceSimulator::dataAnalyser Anal("Particle.root");
+
     gStyle->SetHistFillColor(kGreen);
     gStyle->SetHistLineColor(kRed);
     gStyle->SetOptStat(1110);
-    gStyle->SetOptFit(0111);
-
-    //create the logic objects
-    ResonanceSimulator::dataAnalyser Anal("Particle.root");
+    gStyle->SetOptFit(111);
+    gROOT->ForceStyle(true);
     //per avere il numero di ingressi di un istogramma
     /*std::cout << Anal.GetData()->ParticlesType.GetEntries();
     //per avere numero di un certo tipo di particella e relativa incertezza

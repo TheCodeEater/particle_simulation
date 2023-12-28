@@ -86,15 +86,18 @@ namespace ResonanceSimulator {
 
     std::shared_ptr<SignalResult> dataAnalyser::GetDecaymentSignal() const {
         auto signal1 = TH1F{
-                fData->InvariantMassesDecayD - fData->InvariantMassesDecayC
+                fData->InvariantMassesDecayD
                 //fData->invMasses["DiscordantPK"]-fData->invMasses["ConcordantPK"]
         };
+
+        signal1.Add(&fData->InvariantMassesDecayC,-1);
 
         signal1.SetName("DecaySignal1");
         signal1.SetTitle("K* signal from decay products");
 
         auto signal2 = TH1F{
-                fData->InvariantMassesAlld - fData->InvariantMassesAllc};
+                fData->InvariantMassesAlld};
+        signal2.Add(&fData->InvariantMassesAllc,-1);
 
         signal2.SetName("DecaySignal2");
         signal2.SetTitle("K* signal from all particles");
