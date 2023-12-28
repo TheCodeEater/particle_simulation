@@ -16,10 +16,10 @@ namespace ResonanceSimulator {
  * Struct to hold the result of the required histogram difference
  */
     struct SignalResult {
-        using Hist = TH1F;
+        using Hist = TH1F*;
         using FitPtr = TF1;
 
-        SignalResult(const Hist &signal1, const Hist &signal2, const FitPtr &fitSignal1, const FitPtr &fitSignal2,
+        SignalResult(Hist signal1, Hist signal2, const FitPtr &fitSignal1, const FitPtr &fitSignal2,
                      const FitPtr &fitSignal3);
 
         Hist signal1; /// Difference between the 2 kaon-pion histograms

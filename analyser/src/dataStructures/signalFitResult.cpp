@@ -7,7 +7,7 @@
 
 namespace ResonanceSimulator {
 
-    SignalResult::SignalResult(const SignalResult::Hist &signal1, const SignalResult::Hist &signal2,
+    SignalResult::SignalResult(SignalResult::Hist signal1, SignalResult::Hist signal2,
                                const SignalResult::FitPtr &fitSignal1, const SignalResult::FitPtr &fitSignal2,
                                const SignalResult::FitPtr &fitSignal3) : signal1(signal1), signal2(signal2),
                                                                          fitSignal1(fitSignal1), fitSignal2(fitSignal2),
