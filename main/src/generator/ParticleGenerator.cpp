@@ -5,7 +5,7 @@
 #include "generator/ParticleGenerator.hpp"
 
 #include "particles/Particle.hpp"
-#include "ParticleStorage.hpp"
+#include "particleStorage.hpp"
 
 #include "TMath.h"
 
@@ -41,11 +41,11 @@ namespace ResonanceSimulator {
 
     }
 
-    ParticleStorage *ParticleGenerator::operator()(unsigned int NEvents, unsigned int NParticlesPerEvent) {
+    particleStorage *ParticleGenerator::operator()(unsigned int NEvents, unsigned int NParticlesPerEvent) {
         //save into particlestorage
-        std::unique_ptr<ParticleStorage> dataStorage{new ParticleStorage{}};
+        std::unique_ptr<particleStorage> dataStorage{new particleStorage{}};
         //create default histograms
-        ParticleStorage::makeDefaultHistograms(*dataStorage);
+        particleStorage::makeDefaultHistograms(*dataStorage);
         //Particle type
         PStorage EventParticles{};
         PStorage DecayProducts{};
@@ -129,7 +129,7 @@ namespace ResonanceSimulator {
 
     void ParticleGenerator::CalculateInvariantMass(const PStorage &EventParticles,
                                                    const PStorage &DecayProducts,
-                                                   ParticleStorage &dataStorage) {
+                                                   particleStorage &dataStorage) {
 
         //loop throught the dataset, comparing each particle with the others
         for (unsigned int i = 0; i < EventParticles.size(); ++i) {

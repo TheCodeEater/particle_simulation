@@ -34,7 +34,7 @@ namespace ResonanceSimulator {
         void PrintFitResult() const;
 
     private:
-        std::shared_ptr<ParticleStorage> fInputData; /// Pointer to the object handling analysed data
+        std::shared_ptr<particleStorage> fInputData; /// Pointer to the object handling analysed data
         std::shared_ptr<SignalResult> fSignalResult;
         dataAnalyser::GenerationResult fGenerationDistributionFit;
 

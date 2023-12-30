@@ -10,7 +10,7 @@
 #include <string>
 #include <unordered_map>
 
-#include "ParticleStorage.hpp"
+#include "particleStorage.hpp"
 #include "dataStructures/genCheckResult.hpp"
 #include "dataStructures/signalFitResult.hpp"
 
@@ -26,7 +26,7 @@ namespace ResonanceSimulator {
     class dataAnalyser {
 
     public:
-        using dataContainer = ParticleStorage;
+        using dataContainer = particleStorage;
         using dataContainerPtr = std::shared_ptr<dataContainer>;
         using dataContainerConstPtr = std::shared_ptr<const dataContainer>;
         using GenerationResult = std::unordered_map<std::string, TF1>;

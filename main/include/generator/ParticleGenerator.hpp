@@ -9,7 +9,7 @@
 #include "generator/ProportionGenerator.hpp"
 #include "particles/Particle.hpp"
 
-#include "ParticleStorage.hpp"
+#include "particleStorage.hpp"
 
 #include <deque>
 
@@ -42,7 +42,7 @@ namespace ResonanceSimulator {
          * Note: the returned pointer's structure is dynamically allocated and you are responsible
          * for its lifetime management. Consider storing it in a smart pointer.
          */
-        ParticleStorage *operator()(unsigned NEvents = 1e5, unsigned NParticlesPerEvent = 1e2);
+        particleStorage *operator()(unsigned NEvents = 1e5, unsigned NParticlesPerEvent = 1e2);
 
     private:
         //helper functions
@@ -54,7 +54,7 @@ namespace ResonanceSimulator {
          */
         static void CalculateInvariantMass(PStorage const &EventParticles,
                                            PStorage const &DecayProducts,
-                                           ParticleStorage &dataStorage) ;
+                                           particleStorage &dataStorage) ;
 
         randGen fRandom; /// Random generator
         ProportionGenerator<PTypeList> fParticleGen;

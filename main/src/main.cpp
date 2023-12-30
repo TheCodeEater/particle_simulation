@@ -9,7 +9,7 @@
 #include "TFile.h"
 
 #include "generator/ParticleGenerator.hpp"
-#include "ParticleStorage.hpp"
+#include "particleStorage.hpp"
 #include "particles/ParticleType.hpp"
 
 int main(int argc, char **argv) {
@@ -26,7 +26,7 @@ int main(int argc, char **argv) {
     ResonanceSimulator::ParticleGenerator generator{};
     // run the simulation
     // save result in unique pointer
-    std::unique_ptr<ResonanceSimulator::ParticleStorage> result{generator(1e5)};
+    std::unique_ptr<ResonanceSimulator::particleStorage> result{generator(1e5)};
 
     //write to file
     std::unique_ptr<TFile> output_file{new TFile("Particle.root", "RECREATE")};

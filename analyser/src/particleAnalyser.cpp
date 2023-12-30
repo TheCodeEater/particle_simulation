@@ -3,7 +3,7 @@
 //
 #include "particleAnalyser.hpp"
 
-#include "ParticleStorage.hpp"
+#include "particleStorage.hpp"
 #include "dataStructures/signalFitResult.hpp"
 #include "dataStructures/genCheckResult.hpp"
 
@@ -27,7 +27,7 @@ namespace ResonanceSimulator {
 
         //load data
         fData = dataContainerPtr{
-                dynamic_cast<dataContainer *>(data_source.Get("ResonanceSimulator::ParticleStorage"))
+                dynamic_cast<dataContainer *>(data_source.Get("ResonanceSimulator::particleStorage"))
         };
         //normalize generation distirbutions
         //for bin width, i chose bin 1 but all bins have the same width
