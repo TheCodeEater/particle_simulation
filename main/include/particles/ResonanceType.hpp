@@ -2,8 +2,8 @@
 // Created by Giacomo Errani on 25/10/23.
 //
 
-#ifndef ROOT_TEMPLATE_PROJECT_RESONANCETYPE_HPP
-#define ROOT_TEMPLATE_PROJECT_RESONANCETYPE_HPP
+#ifndef RESONANCETYPE_HPP
+#define RESONANCETYPE_HPP
 
 #include "particles/ParticleType.hpp"
 
@@ -11,7 +11,7 @@ namespace ResonanceSimulator {
     class ResonanceType : public ParticleType {
 
     public:
-        ResonanceType(int const name, double mass, int charge, double width);
+        ResonanceType(int name, double mass, int charge, double width);
 
         [[nodiscard]] double GetWidth() const override;
 
@@ -22,4 +22,4 @@ namespace ResonanceSimulator {
     };
 }
 
-#endif //ROOT_TEMPLATE_PROJECT_RESONANCETYPE_HPP
+#endif

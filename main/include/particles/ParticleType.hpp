@@ -35,9 +35,9 @@ namespace ResonanceSimulator {
         [[nodiscard]] virtual double GetWidth() const;
 
     private:
-        Type fName; ///name of the particle, expressed as an enum constant
-        double fMass;
-        int fCharge;
+        const Type fName; ///name of the particle, expressed as an enum constant
+        const double fMass;
+        const int fCharge;
     };
 }
 
