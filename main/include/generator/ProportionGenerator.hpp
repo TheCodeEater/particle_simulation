@@ -2,8 +2,8 @@
 // Created by Giacomo Errani on 08/11/23.
 //
 
-#ifndef ROOT_TEMPLATE_PROJECT_PROPORTIONGENERATOR_HPP
-#define ROOT_TEMPLATE_PROJECT_PROPORTIONGENERATOR_HPP
+#ifndef PROPORTIONGENERATOR_HPP
+#define PROPORTIONGENERATOR_HPP
 
 #include "particles/ParticleType.hpp"
 #include <map>
@@ -86,4 +86,4 @@ namespace ResonanceSimulator {
 }
 
 
-#endif //ROOT_TEMPLATE_PROJECT_PROPORTIONGENERATOR_HPP
+#endif
