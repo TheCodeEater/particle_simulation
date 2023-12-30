@@ -12,7 +12,7 @@
 #include "TFile.h"
 
 namespace ResonanceSimulator {
-    void particleGenerator::loadParticles() {
+    void ParticleGenerator::loadParticles() {
         Particle::AddParticleType(PTypeList::P_Pion , 0.13957, 1);
         Particle::AddParticleType(PTypeList::N_Pion, 0.13957, -1);
         Particle::AddParticleType(PTypeList::P_Kaon, 0.49367, 1);
@@ -22,7 +22,7 @@ namespace ResonanceSimulator {
         Particle::AddParticleType(PTypeList::R_Kaon, 0.89166, 0, 0.050);
     }
 
-    particleGenerator::particleGenerator(unsigned int seed) :
+    ParticleGenerator::ParticleGenerator(unsigned int seed) :
             fRandom{seed},
             fParticleGen{{
                                  {PTypeList::P_Pion, 0.4},
@@ -41,7 +41,7 @@ namespace ResonanceSimulator {
 
     }
 
-    particleStorage *particleGenerator::operator()(unsigned int NEvents, unsigned int NParticlesPerEvent) {
+    particleStorage *ParticleGenerator::operator()(unsigned int NEvents, unsigned int NParticlesPerEvent) {
         //save into particlestorage
         std::unique_ptr<particleStorage> dataStorage{new particleStorage{}};
         //create default histograms
@@ -127,8 +127,8 @@ namespace ResonanceSimulator {
         //file->Close();
     }
 
-    void particleGenerator::calculateInvariantMass(const particleGenerator::PStorage &EventParticles,
-                                                   const particleGenerator::PStorage &DecayProducts,
+    void ParticleGenerator::calculateInvariantMass(const ParticleGenerator::PStorage &EventParticles,
+                                                   const ParticleGenerator::PStorage &DecayProducts,
                                                    particleStorage &dataStorage) {
 
         //loop throught the dataset, comparing each particle with the others
@@ -176,8 +176,8 @@ namespace ResonanceSimulator {
         }
     }
 
-    bool particleGenerator::checkDiscordantDecayCouples(const particleGenerator::PTypeList &p1_name,
-                                                        const particleGenerator::PTypeList &p2_name) {
+    bool ParticleGenerator::checkDiscordantDecayCouples(const ParticleGenerator::PTypeList &p1_name,
+                                                        const ParticleGenerator::PTypeList &p2_name) {
         if (p1_name == PTypeList::P_Pion) {
             if (p2_name == PTypeList::N_Kaon) {
                 return true;
@@ -200,8 +200,8 @@ namespace ResonanceSimulator {
         return false;
     }
 
-    bool particleGenerator::checkConcordantDecayCouples(const particleGenerator::PTypeList &p1_name,
-                                                        const particleGenerator::PTypeList &p2_name) {//decay product check
+    bool ParticleGenerator::checkConcordantDecayCouples(const ParticleGenerator::PTypeList &p1_name,
+                                                        const ParticleGenerator::PTypeList &p2_name) {//decay product check
 //Pion+ / Kaon +
         if (p1_name == PTypeList::P_Pion) {
             if (p2_name == PTypeList::P_Kaon) {
@@ -225,7 +225,7 @@ namespace ResonanceSimulator {
         return false;
     }
 
-    bool particleGenerator::isSameCharge(const Particle &p, const Particle &p2) {
+    bool ParticleGenerator::isSameCharge(const Particle &p, const Particle &p2) {
         return (p.GetCharge() * p2.GetCharge()) > 0;
     }
 

@@ -18,14 +18,14 @@ namespace ResonanceSimulator {
     /**
      * This class encapsulates particle generation, decayment processing, invariant masses distributions
      */
-    class particleGenerator {
+    class ParticleGenerator {
         using randGen = TRandom3; /// type to be used as random generator
         using PTypeList = ParticleType::Type; /// alias to list of possible particle types
         using PTDecayList = ParticleType::DecaymentType; ///alias to list of possible decayments
         using PStorage = std::deque<Particle>;
 
     public:
-        explicit particleGenerator(unsigned seed = 0);
+        explicit ParticleGenerator(unsigned seed = 0);
 
         /**
          * Register particle list into particle container
@@ -57,8 +57,8 @@ namespace ResonanceSimulator {
                                     particleStorage &dataStorage) ;
 
         randGen fRandom; /// Random generator
-        proportionGenerator<PTypeList> fParticleGen;
-        proportionGenerator<PTDecayList> fDecaymentGen;
+        ProportionGenerator<PTypeList> fParticleGen;
+        ProportionGenerator<PTDecayList> fDecaymentGen;
 
         static bool isSameCharge(const Particle &p, const Particle &p2);
 

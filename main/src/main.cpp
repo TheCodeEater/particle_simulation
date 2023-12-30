@@ -20,10 +20,10 @@ int main(int argc, char **argv) {
     #endif
 
     //allocate memory for particle data
-    ResonanceSimulator::particleGenerator::loadParticles();
+    ResonanceSimulator::ParticleGenerator::loadParticles();
 
     //create generator object
-    ResonanceSimulator::particleGenerator generator{};
+    ResonanceSimulator::ParticleGenerator generator{};
     // run the simulation
     // save result in unique pointer
     std::unique_ptr<ResonanceSimulator::particleStorage> result{generator(1e5)};
