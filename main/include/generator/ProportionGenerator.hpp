@@ -22,11 +22,11 @@ namespace ResonanceSimulator {
  * NOTE: probability is given in percentile in integer values (to avoid FP problems)
  */
     template<typename GEN>
-    class proportionGenerator {
+    class ProportionGenerator {
         /**
          * Struct representing a node of generation, holding values with cumulative weight
          */
-        struct node {
+        struct Node {
             GEN fValue{}; /// Value
             float fCumulativeProbability{}; /// Relevant cumulative probability
         };
@@ -37,7 +37,7 @@ namespace ResonanceSimulator {
     public:
         using probType = float;/// type to represent probability
 
-        explicit proportionGenerator(std::map<GEN, probType> sourceData) :
+        explicit ProportionGenerator(std::map<GEN, probType> sourceData) :
                 fNodes{} {
             //check probability
             auto totalProb = std::accumulate(sourceData.begin(),
@@ -78,7 +78,7 @@ namespace ResonanceSimulator {
         }
 
     private:
-        std::vector<node> fNodes;
+        std::vector<Node> fNodes;
 
 
     };
