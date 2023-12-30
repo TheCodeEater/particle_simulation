@@ -2,24 +2,23 @@
 // Created by Giacomo Errani on 25/10/23.
 //
 
-#ifndef ROOT_TEMPLATE_PROJECT_PARTICLETYPE_HPP
-#define ROOT_TEMPLATE_PROJECT_PARTICLETYPE_HPP
+#ifndef PARTICLETYPE_HPP
+#define PARTICLETYPE_HPP
 
 #include <string>
 
 namespace ResonanceSimulator {
 
-
     class ParticleType {
 
     public:
-        enum Type {
+        enum Type { /// particle type enum
             P_Pion, N_Pion, P_Kaon, N_Kaon, P_Prot, N_Prot, R_Kaon
         };
-        enum DecaymentType {
+        enum DecaymentType { /// decay result type enum
             P1,//P+ K-
-            P2
-        };//P- K+
+            P2 //P- K+
+        };
 
         ParticleType(int name, double mass, int charge);
 
@@ -36,10 +35,10 @@ namespace ResonanceSimulator {
         [[nodiscard]] virtual double GetWidth() const;
 
     private:
-        Type fName;
+        Type fName; ///name of the particle, expressed as an enum constant
         double fMass;
         int fCharge;
     };
 }
 
-#endif //ROOT_TEMPLATE_PROJECT_PARTICLETYPE_HPP
+#endif
