@@ -2,8 +2,8 @@
 // Created by Giacomo Errani on 25/10/23.
 //
 
-#ifndef ROOT_TEMPLATE_PROJECT_PARTICLE_HPP
-#define ROOT_TEMPLATE_PROJECT_PARTICLE_HPP
+#ifndef PARTICLE_HPP
+#define PARTICLE_HPP
 
 #include "particles/ParticleType.hpp"
 #include "particles/ResonanceType.hpp"
@@ -59,8 +59,7 @@ namespace ResonanceSimulator {
         double fPy;
         double fPz;
 
-        //ClassDef(Particle, 1);
     };
 }
 
-#endif //ROOT_TEMPLATE_PROJECT_PARTICLE_HPP
+#endif
