@@ -13,15 +13,15 @@ namespace ResonanceSimulator {
      * Store datas to be analysed
      * The storage type may vary across different versions
      */
-    class particleStorage : public TObject {
+    class ParticleStorage : public TObject {
     public:
         using histCont = std::map<std::string, TH1F>;
         using hist = TH1F;
 
-        particleStorage() = default;
+        ParticleStorage() = default;
 
         static constexpr unsigned invMassBins{1000};
-        static void makeDefaultHistograms(particleStorage &storage);
+        static void makeDefaultHistograms(ParticleStorage &storage);
 
         //Histograms classified by type
         //generation histograms
@@ -40,7 +40,7 @@ namespace ResonanceSimulator {
         hist InvariantMassesDecayD{}; /// Discordant particles that can be generated as result of decay
         hist InvariantMassesDprod{};
 
-    ClassDefOverride(particleStorage, 1);
+    ClassDefOverride(ParticleStorage, 1);
     };
 }
 

@@ -9,7 +9,7 @@
 #include "generator/ProportionGenerator.hpp"
 #include "particles/Particle.hpp"
 
-#include "particleStorage.hpp"
+#include "ParticleStorage.hpp"
 
 #include <deque>
 
@@ -31,7 +31,7 @@ namespace ResonanceSimulator {
          * Register particle list into particle container
          * Data is hard-coded
          */
-        static void loadParticles();
+        static void LoadParticles();
 
         /**
          * Run the simulation
@@ -42,7 +42,7 @@ namespace ResonanceSimulator {
          * Note: the returned pointer's structure is dynamically allocated and you are responsible
          * for its lifetime management. Consider storing it in a smart pointer.
          */
-        particleStorage *operator()(unsigned NEvents = 1e5, unsigned NParticlesPerEvent = 1e2);
+        ParticleStorage *operator()(unsigned NEvents = 1e5, unsigned NParticlesPerEvent = 1e2);
 
     private:
         //helper functions
@@ -52,19 +52,19 @@ namespace ResonanceSimulator {
          * @param DecayProducts Reference to the container of the decay products
          * @param dataStorage Struct holding histograms
          */
-        static void calculateInvariantMass(PStorage const &EventParticles,
-                                    PStorage const &DecayProducts,
-                                    particleStorage &dataStorage) ;
+        static void CalculateInvariantMass(PStorage const &EventParticles,
+                                           PStorage const &DecayProducts,
+                                           ParticleStorage &dataStorage) ;
 
         randGen fRandom; /// Random generator
         ProportionGenerator<PTypeList> fParticleGen;
         ProportionGenerator<PTDecayList> fDecaymentGen;
 
-        static bool isSameCharge(const Particle &p, const Particle &p2);
+        static bool IsSameCharge(const Particle &p, const Particle &p2);
 
-        static bool checkConcordantDecayCouples(const PTypeList &p1_name, const PTypeList &p2_name);
+        static bool CheckConcordantDecayCouples(const PTypeList &p1_name, const PTypeList &p2_name);
 
-        static bool checkDiscordantDecayCouples(const PTypeList &p1_name, const PTypeList &p2_name);
+        static bool CheckDiscordantDecayCouples(const PTypeList &p1_name, const PTypeList &p2_name);
     };
 
 } // ResonanceSimulator

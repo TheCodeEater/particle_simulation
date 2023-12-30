@@ -1,17 +1,17 @@
 //
 // Created by Giacomo Errani on 04/11/23.
 //
-#include "particleStorage.hpp"
+#include "ParticleStorage.hpp"
 #include "TMath.h"
 
 namespace ResonanceSimulator {
-    /*particleStorage::particleStorage() {
+    /*ParticleStorage::ParticleStorage() {
         //generate data structures for histogram error calculation
         for(auto & node: invMasses){
             node.second.Sumw2();
         }
     }*/
-    void particleStorage::makeDefaultHistograms(particleStorage &storage) {
+    void ParticleStorage::makeDefaultHistograms(ParticleStorage &storage) {
         storage.ParticlesType = TH1F("ParticlesType", "Particles Type; Type; Occurrencies", 7, 0, 7);
         storage.AzimuthalAngles = TH1F("AzimuthalAngles", "Azimuthal Angles; Angle (rad); Occurrencies", 100, 0, 2 * TMath::Pi());
         storage.PolarAngles = TH1F("PolarAngles", "Polar Angles; Angle (rad); Occurrencies", 100, 0, TMath::Pi());
